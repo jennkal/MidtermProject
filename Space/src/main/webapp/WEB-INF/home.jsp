@@ -10,5 +10,7 @@
 
 <h1>Fly Away</h1>
 
+${test}
+
 </body>
 </html>
