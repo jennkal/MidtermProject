@@ -8,7 +8,26 @@
 <!-- start entities -->
 	<class>com.skilldistillery.jpaspace.entities.User</class>
 	
+	<class>com.skilldistillery.jpaspace.entities.Classification</class>
+	
+	<class>com.skilldistillery.jpaspace.entities.Category</class>
 
+	<class>com.skilldistillery.jpaspace.entities.CelestialBody</class>
+	
+	<class>com.skilldistillery.jpaspace.entities.CelestialBodyComment</class>
+	
+	<class>com.skilldistillery.jpaspace.entities.Location</class>
+
+	<class>com.skilldistillery.jpaspace.entities.Encounter</class>
+
+	<class>com.skilldistillery.jpaspace.entities.EncounterImage</class>
+	
+	<class>com.skilldistillery.jpaspace.entities.EncounterComment</class>
+
+	<class>com.skilldistillery.jpaspace.entities.RatingId</class>
+
+	<class>com.skilldistillery.jpaspace.entities.Rating</class>
+	
 <!-- end entities  -->
 
 
@@ -18,8 +37,8 @@
       <property name="javax.persistence.jdbc.password" value="spaceuser" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
-      <property name="hibernate.show_sql" value="false" />
-      <property name="hibernate.format_sql" value="false" />
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="true" />
 
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
       <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
