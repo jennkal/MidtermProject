@@ -12,11 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
+@Table(name="celestial_body")
 public class CelestialBody {
 	
 	@Id
@@ -27,7 +29,7 @@ public class CelestialBody {
 	
 	private Boolean enabled;
 	
-	private String discription;
+	private String description;
 	
 	@Column(name = "created_at")
 	@CreationTimestamp
@@ -39,6 +41,10 @@ public class CelestialBody {
 	
 	@Column(name = "tracking_url")
 	private String trackingUrl;
+	
+	
+	@Column(name = "image_url")
+	private String imageUrl;
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
@@ -85,12 +91,12 @@ public class CelestialBody {
 		this.enabled = enabled;
 	}
 
-	public String getDiscription() {
-		return discription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -156,9 +162,18 @@ public class CelestialBody {
 		this.encounters = encounters;
 	}
 
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public String toString() {
-		return "CelestialBody [id=" + id + ", name=" + name + ", enabled=" + enabled + ", discription=" + discription
+		return "CelestialBody [id=" + id + ", name=" + name + ", enabled=" + enabled + ", discription=" + description
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", trackingUrl=" + trackingUrl
 				+ ", category=" + category + ", parent=" + parent + ", children=" + children + "]";
 	}

@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class CelestialBodyCommentTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private CelestialBodyComment comment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,41 +32,27 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		comment = em.find(CelestialBodyComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
-	}
-
-	@Test
-	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		comment = null;
 	}
 	
 	@Test
-	void user_mapping_rating() {
-		assertNotNull(user);
-		assertNotNull(user.getRatings());
-		assertEquals(5, user.getRatings().get(0).getRating());
+	void cbComment_mapping() {
+		assertNotNull(comment);
+		assertEquals(1, comment.getId());
 	}
-	
 	@Test
-	void user_comments() {
-		assertNotNull(user);
-		assertNotNull(user.getComments());
-		assertNotNull(user.getEncounterComments());
-		assertEquals("I hope you'll like this super neat picture I found!", user.getComments().get(0).getBody());
-		assertEquals("Why hasn't anyone commented yet about how amazing my photo is?", user.getEncounterComments().get(0).getBody());
-	}
-
-	@Test
-	void user_encounter() {
-		assertNotNull(user);
-		assertNotNull(user.getEncounters());
-		assertEquals("Eagle Sighting!", user.getEncounters().get(0).getTitle());
+	void cbComment_userandCB() {
+		assertNotNull(comment);
+		assertNotNull(comment.getUser());
+		assertNotNull(comment.getCelestialBody());
+		assertEquals("1234", comment.getUser().getPassword());
+		assertEquals("open-cluster of stars in the constellation Serpens. Discovered in 1745.", comment.getCelestialBody().getDescription());
+		assertEquals("https://cdn.spacetelescope.org/archives/images/screen/opo9544b.jpg", comment.getCelestialBody().getImageUrl());
 	}
 }

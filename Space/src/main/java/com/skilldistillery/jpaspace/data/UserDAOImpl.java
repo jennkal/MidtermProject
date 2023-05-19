@@ -30,4 +30,28 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	public User findById(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User addUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean removeUser(int userId, User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User updateUser(int userId, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

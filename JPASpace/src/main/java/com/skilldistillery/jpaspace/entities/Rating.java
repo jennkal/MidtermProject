@@ -19,6 +19,7 @@ public class Rating {
 	@EmbeddedId
 	private RatingId id;
 	
+	@Column(name="rating_value")
 	private int rating;
 	
 	@Column(name = "created_at")
@@ -73,6 +74,23 @@ public class Rating {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Encounter getEncounter() {
+		return encounter;
+	}
+
+	public void setEncounter(Encounter encounter) {
+		this.encounter = encounter;
 	}
 
 	@Override

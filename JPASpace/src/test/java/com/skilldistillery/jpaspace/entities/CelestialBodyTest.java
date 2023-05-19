@@ -2,6 +2,7 @@ package com.skilldistillery.jpaspace.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +14,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class CelestialBodyTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private CelestialBody body;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,41 +33,29 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		body = em.find(CelestialBody.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
-	}
-
-	@Test
-	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		body = null;
 	}
 	
 	@Test
-	void user_mapping_rating() {
-		assertNotNull(user);
-		assertNotNull(user.getRatings());
-		assertEquals(5, user.getRatings().get(0).getRating());
+	void cb_mapping() {
+		assertNotNull(body);
+		assertEquals("Messier-16 (Eagle)", body.getName());
+		assertNull(body.getTrackingUrl());
 	}
 	
 	@Test
-	void user_comments() {
-		assertNotNull(user);
-		assertNotNull(user.getComments());
-		assertNotNull(user.getEncounterComments());
-		assertEquals("I hope you'll like this super neat picture I found!", user.getComments().get(0).getBody());
-		assertEquals("Why hasn't anyone commented yet about how amazing my photo is?", user.getEncounterComments().get(0).getBody());
+	void cb_list() {
+		assertNotNull(body);
+		assertNotNull(body.getComments());
+		assertNotNull(body.getEncounters());	
+		assertEquals("I hope you'll like this super neat picture I found!",body.getComments().get(0).getBody());
+		assertEquals(1 ,body.getEncounters().get(0).getUser().getId());
 	}
 
-	@Test
-	void user_encounter() {
-		assertNotNull(user);
-		assertNotNull(user.getEncounters());
-		assertEquals("Eagle Sighting!", user.getEncounters().get(0).getTitle());
-	}
 }

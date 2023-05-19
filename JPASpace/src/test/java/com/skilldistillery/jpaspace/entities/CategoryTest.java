@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class CategoryTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Category cate;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,41 +32,19 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		cate = em.find(Category.class, 18);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
-	}
-
-	@Test
-	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		cate = null;
 	}
 	
 	@Test
-	void user_mapping_rating() {
-		assertNotNull(user);
-		assertNotNull(user.getRatings());
-		assertEquals(5, user.getRatings().get(0).getRating());
-	}
-	
-	@Test
-	void user_comments() {
-		assertNotNull(user);
-		assertNotNull(user.getComments());
-		assertNotNull(user.getEncounterComments());
-		assertEquals("I hope you'll like this super neat picture I found!", user.getComments().get(0).getBody());
-		assertEquals("Why hasn't anyone commented yet about how amazing my photo is?", user.getEncounterComments().get(0).getBody());
-	}
-
-	@Test
-	void user_encounter() {
-		assertNotNull(user);
-		assertNotNull(user.getEncounters());
-		assertEquals("Eagle Sighting!", user.getEncounters().get(0).getTitle());
+	void cate_mapping() {
+		assertNotNull(cate);
+		assertEquals("Gas", cate.getName());
+		assertEquals(4, cate.getClassification().getId());
 	}
 }
