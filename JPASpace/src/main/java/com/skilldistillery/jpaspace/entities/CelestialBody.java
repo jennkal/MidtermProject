@@ -1,6 +1,7 @@
 package com.skilldistillery.jpaspace.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -146,12 +147,53 @@ public class CelestialBody {
 	public void setChildren(List<CelestialBody> children) {
 		this.children = children;
 	}
+	
+	public void addBody(CelestialBody body) {
+		if (children == null) {
+			children = new ArrayList<>();
+		}
+		if (!children.contains(body)) {
+			children.add(body);
+			if (body.getParent() != null) {
+				body.getParent().removeBody(body);
+			}
+			body.setParent(this);
+		}
+	}
+
+	public void removeBody(CelestialBody body) {
+		if (children != null && children.contains(body)) {
+			children.remove(body);
+			body.setParent(null);
+		}
+	}
+	
 	public List<CelestialBodyComment> getComments() {
 		return comments;
 	}
 	
 	public void setComments(List<CelestialBodyComment> comments) {
 		this.comments = comments;
+	}
+	
+	public void addComment(CelestialBodyComment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			if (comment.getCelestialBody() != null) {
+				comment.getCelestialBody().removeComment(comment);
+			}
+			comment.setCelestialBody(this);
+		}
+	}
+
+	public void removeComment(CelestialBodyComment comment) {
+		if (comments != null && comments.contains(comment)) {
+			comments.remove(comment);
+			comment.setCelestialBody(null);
+		}
 	}
 
 	public List<Encounter> getEncounters() {
@@ -160,6 +202,26 @@ public class CelestialBody {
 
 	public void setEncounters(List<Encounter> encounters) {
 		this.encounters = encounters;
+	}
+	
+	public void addEncounter(Encounter encounter) {
+		if (encounters == null) {
+			encounters = new ArrayList<>();
+		}
+		if (!encounters.contains(encounter)) {
+			encounters.add(encounter);
+			if (encounter.getCelestialBody() != null) {
+				encounter.getCelestialBody().removeEncounter(encounter);
+			}
+			encounter.setCelestialBody(this);
+		}
+	}
+
+	public void removeEncounter(Encounter encounter) {
+		if (encounters != null && encounters.contains(encounter)) {
+			encounters.remove(encounter);
+			encounter.setCelestialBody(null);
+		}
 	}
 
 	

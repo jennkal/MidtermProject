@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,6 +49,26 @@ public class Classification {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+	
+	public void addCategory(Category category) {
+		if (categories == null) {
+			categories = new ArrayList<>();
+		}
+		if (!categories.contains(category)) {
+			categories.add(category);
+			if (category.getClassification() != null) {
+				category.getClassification().removeCategory(category);
+			}
+			category.setClassification(this);
+		}
+	}
+
+	public void removeCategory(Category category) {
+		if (categories != null && categories.contains(category)) {
+			categories.remove(category);
+			category.setClassification(null);
+		}
 	}
 
 	@Override

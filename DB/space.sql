@@ -405,7 +405,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `spacedb`;
-INSERT INTO `encounter` (`id`, `title`, `description`, `behavior`, `enabled`, `created_at`, `updated_at`, `encounter_date`, `encounter_time`, `capture_method`, `user_id`, `celestial_body_id`, `location_id`) VALUES (1, 'Eagle Sighting!', 'It was a glowing and colorful night. Who could resist some telescope time? Lucky idea since I captured this boss image.', 'I caught it spitting out baby stars!', 1, '2023-05-19', NULL, '2023-05-18', NULL, 'QHY 5III585C Planetary Camera and Guider', 1, 1, NULL);
+INSERT INTO `encounter` (`id`, `title`, `description`, `behavior`, `enabled`, `created_at`, `updated_at`, `encounter_date`, `encounter_time`, `capture_method`, `user_id`, `celestial_body_id`, `location_id`) VALUES (1, 'Eagle Sighting!', 'It was a glowing and colorful night. Who could resist some telescope time? Lucky idea since I captured this boss image.', 'I caught it spitting out baby stars!', 1, '2023-05-19', NULL, '2023-05-18', NULL, 'QHY 5III585C Planetary Camera and Guider', 1, 1, 1);
 
 COMMIT;
 

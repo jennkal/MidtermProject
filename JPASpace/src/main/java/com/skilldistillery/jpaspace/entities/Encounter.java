@@ -3,6 +3,7 @@ package com.skilldistillery.jpaspace.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,65 +26,57 @@ public class Encounter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
 	private String description;
-	
+
 	private String behavior;
-	
+
 	private Boolean enabled;
-	
+
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-	
+
 	@Column(name = "encounter_date")
 	private LocalDate encounterDate;
-	
+
 	@Column(name = "encounter_time")
 	private LocalTime encounterTime;
-	
+
 	@Column(name = "capture_method")
 	private String captureMethod;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "celestial_body_id")
 	private CelestialBody celestialBody;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@OneToMany(mappedBy = "encounter")
 	private List<EncounterImage> images;
-	
+
 	@OneToMany(mappedBy = "encounter")
 	private List<EncounterComment> comments;
-	
+
 	@OneToMany(mappedBy = "encounter")
 	private List<Rating> ratings;
-	
+
 	@ManyToMany(mappedBy = "favoritedEncounters")
 	private List<User> favoritedUsers;
 
 	public Encounter() {
 		super();
-	}
-
-	public List<User> getFavoritedUsers() {
-		return favoritedUsers;
-	}
-
-	public void setFavoritedUsers(List<User> favoritedUsers) {
-		this.favoritedUsers = favoritedUsers;
 	}
 
 	public int getId() {
@@ -198,6 +191,26 @@ public class Encounter {
 		this.images = images;
 	}
 
+	public void addImage(EncounterImage image) {
+		if (images == null) {
+			images = new ArrayList<>();
+		}
+		if (!images.contains(image)) {
+			images.add(image);
+			if (image.getEncounter() != null) {
+				image.getEncounter().removeImage(image);
+			}
+			image.setEncounter(this);
+		}
+	}
+
+	public void removeImage(EncounterImage image) {
+		if (images != null && images.contains(image)) {
+			images.remove(image);
+			image.setEncounter(null);
+		}
+	}
+
 	public List<EncounterComment> getComments() {
 		return comments;
 	}
@@ -206,12 +219,78 @@ public class Encounter {
 		this.comments = comments;
 	}
 
+	public void addComment(EncounterComment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			if (comment.getEncounter() != null) {
+				comment.getEncounter().removeComment(comment);
+			}
+			comment.setEncounter(this);
+		}
+	}
+
+	public void removeComment(EncounterComment comment) {
+		if (comments != null && comments.contains(comment)) {
+			comments.remove(comment);
+			comment.setEncounter(null);
+		}
+	}
+
 	public List<Rating> getRatings() {
 		return ratings;
 	}
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
+	}
+
+	public void addRating(Rating rating) {
+		if (ratings == null) {
+			ratings = new ArrayList<>();
+		}
+		if (!ratings.contains(rating)) {
+			ratings.add(rating);
+			if (rating.getEncounter() != null) {
+				rating.getEncounter().removeRating(rating);
+			}
+			rating.setEncounter(this);
+		}
+	}
+
+	public void removeRating(Rating rating) {
+		if (ratings != null && ratings.contains(rating)) {
+			ratings.remove(rating);
+			rating.setEncounter(null);
+		}
+	}
+
+	public List<User> getFavoritedUsers() {
+		return favoritedUsers;
+	}
+
+	public void setFavoritedUsers(List<User> favoritedUsers) {
+		this.favoritedUsers = favoritedUsers;
+	}
+
+	public void addFavoritedUser(User favoritedUser) {
+		if (favoritedUsers == null) {
+			favoritedUsers = new ArrayList<>();
+		}
+		if (!favoritedUsers.contains(favoritedUser)) {
+			favoritedUsers.add(favoritedUser);
+			favoritedUser.addFavoritedEncounter(this);
+		}
+	}
+
+	public void removeFavoritedUser(User favoritedUser) {
+		if (favoritedUsers != null && favoritedUsers.contains(favoritedUser)) {
+			favoritedUsers.remove(favoritedUser);
+			favoritedUser.setFavoritedEncounters(null);
+		}
+
 	}
 
 	@Override
@@ -239,7 +318,5 @@ public class Encounter {
 		Encounter other = (Encounter) obj;
 		return id == other.id;
 	}
-	
-	
-	
+
 }

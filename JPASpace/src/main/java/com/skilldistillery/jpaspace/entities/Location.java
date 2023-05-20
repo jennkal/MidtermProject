@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -100,6 +101,27 @@ public class Location {
 	public void setEncounters(List<Encounter> encounters) {
 		this.encounters = encounters;
 	}
+	
+	public void addEncounter(Encounter encounter) {
+		if (encounters == null) {
+			encounters = new ArrayList<>();
+		}
+		if (!encounters.contains(encounter)) {
+			encounters.add(encounter);
+			if (encounter.getLocation() != null) {
+				encounter.getLocation().removeEncounter(encounter);
+			}
+			encounter.setLocation(this);
+		}
+	}
+
+	public void removeEncounter(Encounter encounter) {
+		if (encounters != null && encounters.contains(encounter)) {
+			encounters.remove(encounter);
+			encounter.setLocation(null);
+		}
+	}
+
 
 	@Override
 	public String toString() {

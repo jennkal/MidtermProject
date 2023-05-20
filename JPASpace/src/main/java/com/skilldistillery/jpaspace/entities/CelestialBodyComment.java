@@ -1,6 +1,7 @@
 package com.skilldistillery.jpaspace.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -112,6 +113,26 @@ public class CelestialBodyComment {
 
 	public void setReplies(List<CelestialBodyComment> replies) {
 		this.replies = replies;
+	}
+	
+	public void addReply(CelestialBodyComment reply) {
+		if (replies == null) {
+			replies = new ArrayList<>();
+		}
+		if (!replies.contains(reply)) {
+			replies.add(reply);
+			if (reply.getReply() != null) {
+				reply.getReply().removeReply(reply);
+			}
+			reply.setReply(this);
+		}
+	}
+
+	public void removeReply(CelestialBodyComment reply) {
+		if (replies != null && replies.contains(reply)) {
+			replies.remove(reply);
+			reply.setReply(null);
+		}
 	}
 
 	public User getUser() {

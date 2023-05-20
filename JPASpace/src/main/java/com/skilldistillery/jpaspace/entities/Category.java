@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,22 +12,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Category {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "classification_id")
 	private Classification classification;
-	
+
 	@OneToMany(mappedBy = "category")
-	private List<CelestialBody> bodies; 
+	private List<CelestialBody> bodies;
 
 	public Category() {
 		super();
@@ -64,6 +64,26 @@ public class Category {
 		this.bodies = bodies;
 	}
 
+	public void addBody(CelestialBody body) {
+		if (bodies == null) {
+			bodies = new ArrayList<>();
+		}
+		if (!bodies.contains(body)) {
+			bodies.add(body);
+			if (body.getCategory() != null) {
+				body.getCategory().removeBody(body);
+			}
+			body.setCategory(this);
+		}
+	}
+
+	public void removeBody(CelestialBody body) {
+		if (bodies != null && bodies.contains(body)) {
+			bodies.remove(body);
+			body.setCategory(null);
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", classification=" + classification + "]";
@@ -85,7 +105,5 @@ public class Category {
 		Category other = (Category) obj;
 		return id == other.id;
 	}
-	
-	
 
 }
