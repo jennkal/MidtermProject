@@ -1,8 +1,12 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.util.List;
+
 import com.skilldistillery.jpaspace.entities.Location;
 
 public interface LocationDAO {
+	
+	List<Location> findall();
 	
 	Location findLocationById(int locationId);
 	

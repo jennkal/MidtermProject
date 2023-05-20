@@ -1,8 +1,12 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.util.List;
+
 import com.skilldistillery.jpaspace.entities.User;
 
 public interface UserDAO {
+	
+	List<User> findall();
 
 	User findById(int userId);
 

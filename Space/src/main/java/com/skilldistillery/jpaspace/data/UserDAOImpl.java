@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -50,6 +52,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateUser(int userId, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findall() {
 		// TODO Auto-generated method stub
 		return null;
 	}

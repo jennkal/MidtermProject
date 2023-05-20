@@ -1,8 +1,12 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.util.List;
+
 import com.skilldistillery.jpaspace.entities.EncounterComment;
 
 public interface EncounterCommentDAO {
+	
+	List<EncounterComment> findall();
 	
 	EncounterComment findCommentById(int commentId);
 	

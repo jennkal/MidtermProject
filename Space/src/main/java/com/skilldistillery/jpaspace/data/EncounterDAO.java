@@ -6,6 +6,8 @@ import com.skilldistillery.jpaspace.entities.Encounter;
 
 public interface EncounterDAO {
 	
+	List<Encounter> findall();
+	
 	Encounter findEncounterById(int encounterId);   
 	
 	List<Encounter> searchByKeyword(String keyword);
