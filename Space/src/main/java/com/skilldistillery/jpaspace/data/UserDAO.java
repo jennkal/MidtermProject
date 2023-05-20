@@ -14,8 +14,10 @@ public interface UserDAO {
 
 	User addUser(User user);
 
-	boolean removeUser(int userId, User user);
+	boolean removeUser(int userId);
 
 	User updateUser(int userId, User user);
+	
+	List<User> searchByKeyword(String keyword);
 
 }

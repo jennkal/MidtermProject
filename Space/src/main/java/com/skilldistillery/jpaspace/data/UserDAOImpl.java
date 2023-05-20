@@ -13,9 +13,9 @@ import com.skilldistillery.jpaspace.entities.User;
 @Service
 @Transactional
 public class UserDAOImpl implements UserDAO {
-	//NO transaction begin/commit
-	//NO em.close()
-	
+	// NO transaction begin/commit
+	// NO em.close()
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -24,7 +24,8 @@ public class UserDAOImpl implements UserDAO {
 		User user = null;
 		String jpql = "SELECT u FROM User u WHERE u.username =:un AND u.password = :pw AND u.enabled = true";
 		try {
-			user = em.createQuery(jpql, User.class).setParameter("un", username).setParameter("pw", password).getSingleResult();
+			user = em.createQuery(jpql, User.class).setParameter("un", username).setParameter("pw", password)
+					.getSingleResult();
 		} catch (Exception e) {
 			System.err.println("Invalid login");
 		}
@@ -34,32 +35,63 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User findById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(User.class, userId);
 	}
 
 	@Override
 	public User addUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		em.persist(user);
+		return user;
 	}
 
 	@Override
-	public boolean removeUser(int userId, User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeUser(int userId) {
+		if (userId != 0) {
+			User managedUser = em.find(User.class, userId);
+			em.remove(managedUser);
+			return true;
+		} else {
+			System.out.println("No such work exist");
+			return false;
+		}
 	}
 
 	@Override
 	public User updateUser(int userId, User user) {
-		// TODO Auto-generated method stub
-		return null;
+		User managedUser = em.find(User.class, userId);
+
+		managedUser.setUsername(user.getUsername());
+		managedUser.setPassword(user.getPassword());
+		managedUser.setEnabled(user.getEnabled());
+		managedUser.setRole(user.getRole());
+		managedUser.setCreatedAt(user.getCreatedAt());
+		managedUser.setUpdatedAt(user.getUpdatedAt());
+		managedUser.setImageUrl(user.getImageUrl());
+		managedUser.setAbout(user.getAbout());
+		managedUser.setComments(user.getComments());
+		managedUser.setEncounters(user.getEncounters());
+		managedUser.setEncounterComments(user.getEncounterComments());
+		managedUser.setRatings(user.getRatings());
+		managedUser.setFavoritedEncounters(user.getFavoritedEncounters());
+
+		return managedUser;
 	}
 
 	@Override
 	public List<User> findall() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT user FROM User user ";
+		List<User> queryResults = em.createQuery(query, User.class).getResultList();
+		return queryResults;
+	}
+
+	@Override
+	public List<User> searchByKeyword(String keyword) {
+		String queryString = "SELECT user FROM User user WHERE user.username LIKE :keyword "
+				+ "OR user.about LIKE :keyword";
+		List<User> userList = em.createQuery(queryString, User.class)
+				 .setParameter("keyword","%" + keyword + "%")
+				.getResultList();
+		return userList;
 	}
 
 }
