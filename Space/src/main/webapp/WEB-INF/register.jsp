@@ -9,13 +9,12 @@
 </head>
 <body>
 
-<form class="input" action="newuser.do">
-	<input type="text" name="username" placeholder="enterusername" required/>
-	<input type="text" name="password" placeholder="enterpassword" required/>
-	<input type="url" name="imageURL" placeholder="pictureurl"/>
-	<input type="submit" value="account" />
+<form class="input" action="newuser.do" method="POST">
+	<input type="text" name="username" placeholder="Create a Username" required/><br>
+	<input type="text" name="password" placeholder="Create a Password" required/><br>
+	<input type="url" name="imageUrl" placeholder="Optional: Add a Profile Picture"/><br>
+	<textarea class="input" name="about" rows="5" cols="20" >Optional: Tell About Yourself</textarea><br>
+	<input type="submit" value="Create Account">
 </form>
-	<textarea class="input" rows="5" cols="5" >About Yourself</textarea>
-
 </body>
 </html>

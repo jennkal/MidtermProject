@@ -40,8 +40,15 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User addUser(User user) {
-		em.persist(user);
-		return user;
+		String jpql = "SELECT u FROM User u WHERE u.username LIKE :bindName"; 
+		List<User> duplicate = em.createQuery(jpql, User.class).
+				setParameter("bindName", user.getUsername()).getResultList();
+		User newUser = null;
+		if (duplicate.size() == 0 || duplicate.get(0) == null) {
+				em.persist(user);
+				newUser = em.find(User.class, user.getId());
+		}
+		return newUser;
 	}
 
 	@Override

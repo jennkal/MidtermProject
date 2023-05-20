@@ -52,8 +52,6 @@ public class UserController {
 			model.addAttribute("loggedOut", loggedOut);
 			redirect.addFlashAttribute("loggedOut", loggedOut);
 			
-			
-			
 		}
 		return "redirect:home.do";
 	}
@@ -74,20 +72,19 @@ public class UserController {
 	@PostMapping("newuser.do")
 	public String addNewUser(Model model, User user, RedirectAttributes redirect) {
 		
+		user.setEnabled(true);
 		User newUser = userDAO.addUser(user);
-//		redirect.addFlashAttribute("newUser", userDAO.addUser(user));
+		
 		boolean created = true;
 		
 		if(newUser == null) {
 			created = false;
 		}
-			
+		
 		model.addAttribute("created", created);
 		redirect.addFlashAttribute("created", created);
 		
 		return "redirect:home.do";
 	}
-	
-	
 
 }
