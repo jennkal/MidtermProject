@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpaspace.data.UserDAO;
 import com.skilldistillery.jpaspace.entities.User;
@@ -23,40 +24,70 @@ public class UserController {
 		User test = userDAO.findByUsernameAndPassword("admin", "1234");
 		model.addAttribute("test", test);
 
+
 		return "home";
 	}
 
-	@GetMapping("login.do")
-	public String loginForm(HttpSession session) {
-		if (session.getAttribute("loggedInUser") != null) {
-			return "index";
-		}
-		return "login"; // Change this to registration form
-
-	}
+//	@GetMapping("login.do")
+//	public String loginForm(HttpSession session) {
+//		if (session.getAttribute("loggedInUser") != null) {
+//			return "home";
+//		}
+//		return "login"; // Change this to registration form
+//
+//	}
 
 	@PostMapping("login.do")
-	public String login(Model model, User user, HttpSession session) {
+	public String login(Model model, User user, HttpSession session, RedirectAttributes redirect) {
 		if (session.getAttribute("loggedInUser") != null) {
-			return "index";
+			return "home";
 		}
-		String viewName = "";
+		
 		User authenticatedUser = userDAO.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
-			viewName = "userprofile";
+			return "userprofile";
 		} else {
-			viewName = "login";
+			boolean loggedOut = true;
+			model.addAttribute("loggedOut", loggedOut);
+			redirect.addFlashAttribute("loggedOut", loggedOut);
+			
+			
+			
 		}
-		return viewName;
+		return "redirect:home.do";
 	}
 
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loggedInUser");
-		// alternate:
-		// session.invalidate();
-		return "index";
+
+		return "home";
 	}
+	
+	@GetMapping("register.do")
+	public String goToRegistrationForm() {
+		
+		return "register";
+	}
+	
+	@PostMapping("newuser.do")
+	public String addNewUser(Model model, User user, RedirectAttributes redirect) {
+		
+		User newUser = userDAO.addUser(user);
+//		redirect.addFlashAttribute("newUser", userDAO.addUser(user));
+		boolean created = true;
+		
+		if(newUser == null) {
+			created = false;
+		}
+			
+		model.addAttribute("created", created);
+		redirect.addFlashAttribute("created", created);
+		
+		return "redirect:home.do";
+	}
+	
+	
 
 }
