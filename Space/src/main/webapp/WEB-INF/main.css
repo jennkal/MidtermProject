@@ -1,0 +1,23 @@
+* {
+    margin :0;
+    padding :0;
+    box-sizing :border-box;
+}
+
+
+#image {
+	background-image: url('https://imageio.forbes.com/specials-images/imageserve/6127b2920d67d45e8a181602/0x0.jpg?format=jpg&amp;width=1200'); 
+	background-repeat: no-repeat; 
+	background-size: cover;
+}
+
+
+#form {
+	width: 200px; 
+	background-color: rgba(192, 185, 221, .3); 
+	background-blend-mode: overlay;
+	background-repeat: no-repeat; 
+	background-size: contain; 
+	border: 2px solid rgb(192, 185, 221); 
+	border-radius: 8px;
+}

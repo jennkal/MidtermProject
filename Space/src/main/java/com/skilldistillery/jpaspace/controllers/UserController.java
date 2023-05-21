@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaspace.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,6 @@ public class UserController {
 		User test = userDAO.findByUsernameAndPassword("admin", "1234");
 		model.addAttribute("test", test);
 
-
 		return "home";
 	}
 
@@ -42,7 +43,7 @@ public class UserController {
 		if (session.getAttribute("loggedInUser") != null) {
 			return "home";
 		}
-		
+
 		User authenticatedUser = userDAO.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
@@ -51,7 +52,7 @@ public class UserController {
 			boolean loggedOut = true;
 			model.addAttribute("loggedOut", loggedOut);
 			redirect.addFlashAttribute("loggedOut", loggedOut);
-			
+
 		}
 		return "redirect:home.do";
 	}
@@ -62,29 +63,34 @@ public class UserController {
 
 		return "home";
 	}
-	
+
 	@GetMapping("register.do")
 	public String goToRegistrationForm() {
-		
 		return "register";
 	}
-	
+
 	@PostMapping("newuser.do")
 	public String addNewUser(Model model, User user, RedirectAttributes redirect) {
-		
+
 		user.setEnabled(true);
 		User newUser = userDAO.addUser(user);
-		
+
 		boolean created = true;
-		
-		if(newUser == null) {
+
+		if (newUser == null) {
 			created = false;
 		}
-		
+
 		model.addAttribute("created", created);
 		redirect.addFlashAttribute("created", created);
-		
+
 		return "redirect:home.do";
+	}
+
+
+	@GetMapping("sample.do")
+	public String viewSamplePage() {
+		return "sample";
 	}
 
 }

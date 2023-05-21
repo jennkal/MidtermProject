@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="bootheader.jsp"/>
 </head>
 <body>
+<jsp:include page="navbar.jsp"/>
 
 	<h1>Hahaha Sucker give us all you money</h1>
 
@@ -31,5 +33,6 @@
 	</c:choose>
 
 
+<jsp:include page="bootfooter.jsp"/>
 </body>
 </html>
