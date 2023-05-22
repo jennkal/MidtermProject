@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="bootheader.jsp" />
 </head>
 <body>
-
+<jsp:include page="navbar.jsp" />
 	<form action="galaxy.do">
 
 
@@ -16,10 +17,12 @@
 			<c:forEach var="category" items="${categories }">
 				<option name="${category.name }">${category.name }</option>
 			</c:forEach>
-		</select> <input type="text" name="name">
+		</select> 
+		
+		<input type="submit" value="Select Category">
 
-
+	
 	</form>
-
+<jsp:include page="bootfooter.jsp" />
 </body>
 </html>

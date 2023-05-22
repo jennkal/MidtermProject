@@ -33,6 +33,7 @@
 					<option selected value="5">Comet</option>
 					<option selected value="6">Asteroid</option>
 				</select>
+				<input type="submit" value="Select Class">
 			</form>
 
 

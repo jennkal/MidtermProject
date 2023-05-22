@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="bootheader.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 list's
 
 ${list }
+
+<jsp:include page="bootfooter.jsp" />
 </body>
 </html>

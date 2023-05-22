@@ -26,8 +26,8 @@ public class CelestialBodyController {
 	@Autowired
 	private CelestialBodyDAO cbDAO;
 	
-	@Autowired
-	private CelestialBodyCommentDAO commentDAO;
+//	@Autowired
+//	private CelestialBodyCommentDAO commentDAO;
 	
 	@Autowired
 	private CategoryDAO cateDAO;
@@ -63,12 +63,12 @@ public class CelestialBodyController {
 	}
 	
 	
-	@PostMapping("galaxy.do")
-	public String postComment() {
-		
-		return "galaxy";
-		
-	}
+//	@PostMapping("galaxy.do")
+//	public String postComment() {
+//		
+//		return "galaxy";
+//		
+	
 	
 
 }
