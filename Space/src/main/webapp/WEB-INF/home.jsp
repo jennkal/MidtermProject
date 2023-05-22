@@ -51,7 +51,7 @@
 		class="container min-vh-75 d-flex justify-content-center align-items-center">
 		<div id="div" class="container-fluid">
 
-			<table class="table table-hover" style="width: 800px; margin-left: 250px; margin-top: 200px; background-color: rgba(18, 18, 18, .7); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; color: white;">
+			<table class="table table-dark table-hover" style="width: 800px; margin-left: 250px; margin-top: 200px;">
 				<thead style="text-align: center;">
 					<tr>
 						<th colspan="9">Explore Our Community</th>
