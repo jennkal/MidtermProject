@@ -23,17 +23,24 @@
 				<li>ID: ${loggedInUser.id }</li>
 				<li>role: ${loggedInUser.role }</li>
 			</ul>
-
-			<form action="addbody.do">
-				<select name="classification">
-					<option selected value="Nebula">Nebula</option>
-					<option selected value="Solar Sysem">Solar System</option>
-					<option selected value="Star">Star</option>
-					<option selected value="Planet">Planet</option>
-					<option selected value="Comet">Comet</option>
-					<option selected value="Asteroid">Asteroid</option>
+			
+			<c:if test="${notnew == true}">
+				<div class="alert alert-danger" role="alert">
+					<p>Space object is already out there</p>
+				</div>
+		</c:if>
+			
+			<label for="selectClassification">Add a new Celestial Body</label>
+			<form action="addbody.do" id="selectClassification">
+				<select name="classificationId">
+					<option selected value="1">Nebula</option>
+					<option selected value="2">Solar System</option>
+					<option selected value="3">Star</option>
+					<option selected value="4">Planet</option>
+					<option selected value="5">Comet</option>
+					<option selected value="6">Asteroid</option>
 				</select>
-				<input type="submit" value="Select Class">
+				<input type="submit" value="Select Classification">
 			</form>
 
 

@@ -41,6 +41,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User addUser(User user) {
+		user.setEnabled(true);
 		String jpql = "SELECT u FROM User u WHERE u.username LIKE :bindName"; 
 		List<User> duplicate = em.createQuery(jpql, User.class).
 				setParameter("bindName", user.getUsername()).getResultList();

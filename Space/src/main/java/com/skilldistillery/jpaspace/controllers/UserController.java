@@ -46,11 +46,15 @@ public class UserController {
 			boolean loggedOut = true;
 			model.addAttribute("loggedOut", loggedOut);
 			redirect.addFlashAttribute("loggedOut", loggedOut);
-
 		}
 		return "redirect:home.do";
 	}
-
+	
+	@GetMapping("userprofile.do")
+	public String redirectToProfile() {
+		return "userprofile";
+	}
+	
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loggedInUser");
@@ -66,7 +70,6 @@ public class UserController {
 	@PostMapping("newuser.do")
 	public String addNewUser(Model model, User user, RedirectAttributes redirect) {
 
-		user.setEnabled(true);
 		User newUser = userDAO.addUser(user);
 
 		boolean created = true;

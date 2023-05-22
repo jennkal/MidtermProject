@@ -45,8 +45,8 @@ class CelestialBodyTest {
 	@Test
 	void cb_mapping() {
 		assertNotNull(body);
-		assertEquals("Messier-16 (Eagle)", body.getName());
-		assertNull(body.getTrackingUrl());
+		assertEquals("Messier 16 (Eagle)", body.getName());
+		assertEquals("https://stellarium-web.org/skysource/EagleNebula", body.getTrackingUrl());
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ class CelestialBodyTest {
 		assertNotNull(body);
 		assertNotNull(body.getComments());
 		assertNotNull(body.getEncounters());	
-		assertEquals("I hope you'll like this super neat picture I found!",body.getComments().get(0).getBody());
+		assertEquals("I really do enjoy like it! The Pillars of Creation alway amaze me.",body.getComments().get(0).getBody());
 		assertEquals(1 ,body.getEncounters().get(0).getUser().getId());
 	}
 

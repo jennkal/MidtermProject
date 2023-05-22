@@ -6,7 +6,7 @@ import com.skilldistillery.jpaspace.entities.Category;
 
 public interface CategoryDAO {
 	
-	List<Category> findClassId(int clasId);
+	List<Category> findByClassificationId(int clasId);
 	
 
 }
