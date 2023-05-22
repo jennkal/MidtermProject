@@ -35,7 +35,7 @@
 	</c:if>
 
 	<div class="container d-flex justify-content-center">
-		<h1 style="margin-bottom: 50px; color: white;">Sign In</h1>
+		<h1 style="margin-bottom: 35px; color: white;">Sign In</h1>
 	</div>
 	<div
 		class="container min-vh-50 d-flex justify-content-center align-items-center">
@@ -47,11 +47,27 @@
 				class="btn btn-outline-primary" value="Sign In">
 		</form>
 	</div>
+	<div class="container d-flex justify-content-center">
+		<div style="border: 2px solid #023e8a; border-radius: 5px; width: 450px; height: 210px; margin-top: 50px; color: white; padding: 50px ">
+		<h4>About:</h4>
+			<p>
+			Welcome to the Space Station where all our self proclaimed astronaut 
+			share their favorite space adventures. Join us and share pictures of your favorite 
+			planets, stars, galaxies and discuss with your fellow astronauts, and so much more.
+			</p>
+		</div>
+
+
+	</div>
+
+
+
 	<div
 		class="container min-vh-75 d-flex justify-content-center align-items-center">
 		<div id="div" class="container-fluid">
 
-			<table class="table table-dark table-hover" style="width: 800px; margin-left: 250px; margin-top: 200px;">
+			<table class="table table-dark table-hover"
+				style="width: 800px; margin-left: 250px; margin-top: 65px;">
 				<thead style="text-align: center;">
 					<tr>
 						<th colspan="9">Explore Our Community</th>

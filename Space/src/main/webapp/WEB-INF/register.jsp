@@ -28,6 +28,8 @@
 			<textarea id="about" class="input" name="about" rows="5" cols="20" placeholder="Optional:"></textarea>
 			</label>	
 			<br> <input type="submit" value="Create Account">
+			<br>
+			<a href="home.do" ><button type="button" class="btn btn-outline-primary">Cancel</button></a>
 		</form>
 	</div>
 	<jsp:include page="bootfooter.jsp" />

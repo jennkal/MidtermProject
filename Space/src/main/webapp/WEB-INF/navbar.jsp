@@ -17,11 +17,16 @@
 				<div class="container-fluid">
 					<h1 class="navbar-brand">Stacktrace Space Station</h1>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-				<a href="home.do"><button type="button" class="btn btn-outline-primary">Home</button></a>
-					<form class="d-flex" role="search" action="otheruser.do" method="GET">
-						<input type="text" name="username"  placeholder="Search By Keyword" /> <input
-							class="btn btn-outline-success" type="submit"
+					<a href="home.do"><button type="button"
+							class="btn btn-outline-primary">Home</button></a>
+					<form class="d-flex" role="search" action="otheruser.do"
+						method="GET">
+						<input type="text" name="username" placeholder="Search By Keyword" />
+						<input class="btn btn-outline-success" type="submit"
 							value="Search Universe" />
+					</form>
+					<form action="logout.do">
+						<input type="submit" value="logout">
 					</form>
 				</div>
 			</nav>
@@ -33,7 +38,7 @@
 					<h1 class="navbar-brand">Stacktrace Space Station</h1>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 					<form class="d-flex" action="register.do" method="GET">
-					 <input class="btn btn-outline-success" type="submit"
+						<input class="btn btn-outline-success" type="submit"
 							value="Sign Up" />
 					</form>
 				</div>
