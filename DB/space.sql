@@ -314,7 +314,16 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `spacedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (1, 'admin', '1234', 1, '2023-05-18', '2023-05-19', 'ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (1, 'admin', '3%^bGD7cz', 1, '2023-05-18', '2023-05-19', 'ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (2, 'usagi_seramun', 'h6dfYDf(%', 1, '2023-05-22', NULL, 'USER', 'https://images2.fanpop.com/images/photos/2900000/Sailor-Moon-sailor-moon-2949296-1024-768.jpg', 'Protecting Earth with my Sailor Guardians and Luna. Sharing what I see along the way.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (3, 'AstroJets', '2&%D45nfg3', 1, '2023-05-22', NULL, 'USER', 'https://static.wikia.nocookie.net/thejetsons/images/8/8f/Astro_from_The_Jetsons1.jpg/revision/latest?cb=20110901010016', 'I have a stellar view from my treadmill at the Jetsons\' crib.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (4, 'solrock', '453HD6d09', 1, '2023-05-22', NULL, 'USER', 'https://img.pokemondb.net/artwork/large/solrock.jpg', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (5, 'NicCopernicus', 'X74cdL4gd$', 1, '2023-05-22', NULL, 'USER', 'https://cdn.britannica.com/s:690x388,c:crop/83/74283-050-B94F541D/Nicolaus-Copernicus.jpg', 'Get over yourself. Look out to the sky. The universe doesn\'t revolve around you, after all.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (6, 'dottieVaughn', 'sFS^$bs%#', 1, '2023-05-22', NULL, 'USER', 'https://images.newscientist.com/wp-content/uploads/2017/01/20115302/young-dorothy-vaughan.jpg', 'Computing since before my pet \"business machine\" came to NASA. Sending astronauts into orbit along the way.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (7, 'galileo64', '@$g73wZc', 1, '2023-05-22', NULL, 'USER', 'https://miro.medium.com/v2/resize:fit:4800/format:webp/1*XmTUmo5asGFVNQ-y1DkePw.jpeg', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (8, 'shawking', 'xgSG*5sfAS', 1, '2023-05-22', NULL, 'USER', 'https://cdn.mos.cms.futurecdn.net/RrYtmYe8zwRQdSvC8kgio4-1200-80.jpg', 'What begins must end.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (9, 'NeildGTHarvard94', 'A%$#xsea%', 1, '2023-05-22', NULL, 'USER', 'https://en.wikipedia.org/wiki/Nova_ScienceNow#/media/File:NovaScienceNow.jpg', 'Cosmos explorer. Space communicator.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `created_at`, `updated_at`, `role`, `image_url`, `about`) VALUES (10, 'tribble', '5d%%DGs323', 1, '2023-05-22', NULL, 'USER', 'https://en.wikipedia.org/wiki/Tribble#/media/File:ST_TroubleWithTribbles.jpg', 'We\'re no trouble. Check out our view from  Iota Geminorum IV.');
 
 COMMIT;
 
@@ -366,6 +375,7 @@ INSERT INTO `category` (`id`, `name`, `classification_id`) VALUES (24, 'Lost', 5
 INSERT INTO `category` (`id`, `name`, `classification_id`) VALUES (25, 'Carbon', 6);
 INSERT INTO `category` (`id`, `name`, `classification_id`) VALUES (26, 'Metallic', 6);
 INSERT INTO `category` (`id`, `name`, `classification_id`) VALUES (27, 'Silicon', 6);
+INSERT INTO `category` (`id`, `name`, `classification_id`) VALUES (28, 'Binary', 3);
 
 COMMIT;
 
@@ -375,7 +385,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `spacedb`;
-INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (1, 'Messier-16 (Eagle)', '2023-05-19', 1, NULL, 'open-cluster of stars in the constellation Serpens. Discovered in 1745.', 'https://cdn.spacetelescope.org/archives/images/screen/opo9544b.jpg', NULL, 1, NULL);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (1, 'Messier 16 (Eagle)', '2023-05-19', 1, '2023-05-22', 'Open-cluster of stars in the constellation Serpens. Discovered in 1745. AKA Star Queen Nebula.', 'https://cdn.spacetelescope.org/archives/images/screen/opo9544b.jpg', 'https://stellarium-web.org/skysource/EagleNebula', 1, NULL);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (2, 'Alpha Canis Majoris (Sirius)', '2023-05-22', 1, NULL, 'Brightest star in the night sky. AKA Dog Star.', 'https://www.britannica.com/place/Sirius-star', 'https://stellarium-web.org/skysource/Sirius', 28, NULL);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (3, 'Solar System', '2023-05-22', 1, NULL, 'Planetary system home to Earth.', 'https://www.britannica.com/explore/space/wp-content/uploads/sites/5/2019/05/solar-system-hero.jpg', NULL, 5, NULL);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (4, '19 Fortuna (A852 QA)', '2023-05-22', 1, NULL, 'Large main-belt asteroid between Mars and Jupiter. Orbits the Sun every 1,390 days.', NULL, 'https://theskylive.com/where-is-fortuna', 25, 3);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (5, 'Ceres', '2023-05-22', 1, NULL, 'Dwarf planet - the first one visited by spacecraft. Largest object in the asteroid belt. Discovered in 1801.', 'https://solarsystem.nasa.gov/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdEFHIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7703bedd2b3f6bdc3620d2f14f2028a6a1c4a101/PIA22660_hires.jpg', 'https://stellarium-web.org/skysource/Ceres', 20, 3);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (6, 'Mars', '2023-05-22', 1, NULL, 'Fourth planet from the Sun. Farthest terrestrial planet, formed 4.5 billion years ago.', 'https://static.scientificamerican.com/sciam/cache/file/67256189-61A5-402D-8C9FA043722F4B4D_source.jpg', 'https://stellarium-web.org/skysource/Mars', 17, 3);
+INSERT INTO `celestial_body` (`id`, `name`, `created_at`, `enabled`, `updated_at`, `description`, `image_url`, `tracking_url`, `category_id`, `parent_celestial_body_id`) VALUES (7, 'Halley (1P/Halley)', '2023-05-22', 1, NULL, 'Short-period comet that can be seen from Earth every 75-79 years. ', 'https://en.wikipedia.org/wiki/Halley\'s_Comet#/media/File:Lspn_comet_halley.jpg', 'https://stellarium-web.org/skysource/Halley', 21, 3);
 
 COMMIT;
 
@@ -386,6 +402,9 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `celestial_body_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `celestial_body_id`, `in_reply_to_id`) VALUES (1, 'I hope you\'ll like this super neat picture I found!', 1, '2023-05-19', NULL, 1, 1, NULL);
+INSERT INTO `celestial_body_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `celestial_body_id`, `in_reply_to_id`) VALUES (2, 'We barely understood this star factory before the Hubble captured images in the \'90s - wild.', 1, '2023-05-22', NULL, 4, 1, NULL);
+INSERT INTO `celestial_body_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `celestial_body_id`, `in_reply_to_id`) VALUES (3, 'I really do enjoy like it! The Pillars of Creation alway amaze me.', 1, '2023-05-22', NULL, 7, 1, 1);
+INSERT INTO `celestial_body_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `celestial_body_id`, `in_reply_to_id`) VALUES (4, 'Agreed! It\'s fascinating.', 1, '2023-05-22', NULL, 4, 1, 3);
 
 COMMIT;
 
@@ -396,6 +415,12 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (1, NULL, '123 Protect Yourself Way', 'Puhlease', 'NO', 'USA', '90210');
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (2, 'McDonald Observatory', '3640 Dark Sky Drive', 'McDonald Observatory', 'TX', 'USA', '79734');
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (3, 'James Webb Space Telescope', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (4, 'International Space Station', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (5, 'Griffith Observatory', '2800 East Observatory Road', 'Los Angeles', 'CA', 'USA', '90027');
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (6, '', '595 Sesame Ave', 'Secret', 'NV', 'USA', '86753');
+INSERT INTO `location` (`id`, `name`, `address`, `city`, `state`, `country`, `zip_code`) VALUES (7, 'Royal Observatory Greenwich', 'Blackheath Ave', 'London', 'FXGX+PQ', 'UK', 'SE10 8XJ');
 
 COMMIT;
 
@@ -406,6 +431,7 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `encounter` (`id`, `title`, `description`, `behavior`, `enabled`, `created_at`, `updated_at`, `encounter_date`, `encounter_time`, `capture_method`, `user_id`, `celestial_body_id`, `location_id`) VALUES (1, 'Eagle Sighting!', 'It was a glowing and colorful night. Who could resist some telescope time? Lucky idea since I captured this boss image.', 'I caught it spitting out baby stars!', 1, '2023-05-19', NULL, '2023-05-18', NULL, 'QHY 5III585C Planetary Camera and Guider', 1, 1, 1);
+INSERT INTO `encounter` (`id`, `title`, `description`, `behavior`, `enabled`, `created_at`, `updated_at`, `encounter_date`, `encounter_time`, `capture_method`, `user_id`, `celestial_body_id`, `location_id`) VALUES (2, 'Dominating the Night Sky', 'It was the brightest among the sea of stars.', 'It appeared to change color from orange to red.', 1, '2023-05-22', NULL, '2023-05-19', '02:14', 'Camera-only: Leica SL2', 3, 2, 6);
 
 COMMIT;
 
@@ -416,6 +442,11 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `rating` (`user_id`, `encounter_id`, `rating_value`, `created_at`, `updated_at`) VALUES (1, 1, 5, '2023-05-19', NULL);
+INSERT INTO `rating` (`user_id`, `encounter_id`, `rating_value`, `created_at`, `updated_at`) VALUES (5, 1, 3, '2023-05-22', NULL);
+INSERT INTO `rating` (`user_id`, `encounter_id`, `rating_value`, `created_at`, `updated_at`) VALUES (9, 1, 4, '2023-05-22', NULL);
+INSERT INTO `rating` (`user_id`, `encounter_id`, `rating_value`, `created_at`, `updated_at`) VALUES (6, 2, 1, '2023-05-22', NULL);
+INSERT INTO `rating` (`user_id`, `encounter_id`, `rating_value`, `created_at`, `updated_at`) VALUES (4, 1, 5, '2023-05-22', NULL);
+INSERT INTO `rating` (`user_id`, `encounter_id`, `rating_value`, `created_at`, `updated_at`) VALUES (4, 2, 4, '2023-05-22', NULL);
 
 COMMIT;
 
@@ -426,6 +457,10 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `encounter_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `encounter_id`, `in_reply_to_id`) VALUES (1, 'Why hasn\'t anyone commented yet about how amazing my photo is?', 1, '2023-05-19', NULL, 1, 1, NULL);
+INSERT INTO `encounter_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `encounter_id`, `in_reply_to_id`) VALUES (2, 'It\'s a rad image, for sure! Thanks for posting.', 1, '2023-05-20', NULL, 6, 1, 1);
+INSERT INTO `encounter_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `encounter_id`, `in_reply_to_id`) VALUES (3, 'I\'m so happy every time I spot Sirius. Leica is a sick camera, makes me not want to share my phone images.', 1, '2023-05-22', NULL, 3, 2, NULL);
+INSERT INTO `encounter_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `encounter_id`, `in_reply_to_id`) VALUES (4, 'Same - last I was on the road, listening to my satellite radio of a similar name.', 1, '2023-05-22', NULL, 2, 2, 3);
+INSERT INTO `encounter_comment` (`id`, `body`, `enabled`, `created_at`, `updated_at`, `user_id`, `encounter_id`, `in_reply_to_id`) VALUES (5, 'Good thing that YOU didn\'t try to take a picture.', 1, '2023-05-22', NULL, 9, 2, 4);
 
 COMMIT;
 
@@ -436,6 +471,9 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `encounter_image` (`id`, `image_url`, `encounter_id`) VALUES (1, 'http://cs.astronomy.com/cfs-file.ashx/__key/telligent-evolution-components-attachments/13-59-00-00-00-49-12-35/M16-_2D00_-SHO_2D00_RGB.jpg', 1);
+INSERT INTO `encounter_image` (`id`, `image_url`, `encounter_id`) VALUES (2, 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Sirius.jpg', 2);
+INSERT INTO `encounter_image` (`id`, `image_url`, `encounter_id`) VALUES (3, 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Hubble_heic0206j.jpg', 2);
+INSERT INTO `encounter_image` (`id`, `image_url`, `encounter_id`) VALUES (4, 'https://stargazerslounge.com/uploads/monthly_2016_02/56d2ef3d147a3_siriuscloseup.png.d98853e0b6291409e9d129597815d9e1.png', 2);
 
 COMMIT;
 
@@ -446,6 +484,8 @@ COMMIT;
 START TRANSACTION;
 USE `spacedb`;
 INSERT INTO `user_favorited_encounter` (`user_id`, `encounter_id`) VALUES (1, 1);
+INSERT INTO `user_favorited_encounter` (`user_id`, `encounter_id`) VALUES (8, 1);
+INSERT INTO `user_favorited_encounter` (`user_id`, `encounter_id`) VALUES (4, 2);
 
 COMMIT;
 
