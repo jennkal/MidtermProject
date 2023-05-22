@@ -8,21 +8,21 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
-
+import com.skilldistillery.jpaspace.entities.User;
 
 @Service
 @Transactional
 public class CelestialBodyImpl implements CelestialBodyDAO {
-	
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	public List<CelestialBody> findall() {
 		String query = "SELECT body FROM CelestialBody body ";
-		List<CelestialBody> queryResults = em.createQuery(query, CelestialBody.class).getResultList();	
+		List<CelestialBody> queryResults = em.createQuery(query, CelestialBody.class).getResultList();
 		return queryResults;
 	}
 
@@ -36,15 +36,23 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 		String queryString = "SELECT body FROM CelestialBody body WHERE body.name LIKE :keyword "
 				+ "OR body.description LIKE :keyword";
 		List<CelestialBody> bodyList = em.createQuery(queryString, CelestialBody.class)
-				 .setParameter("keyword","%" + keyword + "%")
-				.getResultList();
+				.setParameter("keyword", "%" + keyword + "%").getResultList();
 		return bodyList;
 	}
 
 	@Override
-	public CelestialBody postCelestialBody(CelestialBody body) {
+	public CelestialBody postCelestialBody(CelestialBody body, int categoryId) {
+		body.setEnabled(true);
+		body.setCategory(em.find(Category.class, categoryId));
+		String jpql = "SELECT cb FROM CelestialBody cb WHERE cb.name LIKE :bindName"; 
+		List<CelestialBody> duplicate = em.createQuery(jpql, CelestialBody.class).
+				setParameter("bindName", body.getName()).getResultList();
+		CelestialBody managedBody = null;
+		if (duplicate.size() == 0 || duplicate.get(0) == null) {
 			em.persist(body);
-		return body;
+			managedBody = em.find(CelestialBody.class, body.getId());
+	}
+		return managedBody;
 	}
 
 	@Override

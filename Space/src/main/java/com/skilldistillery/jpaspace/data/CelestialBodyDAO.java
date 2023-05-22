@@ -13,7 +13,7 @@ public interface CelestialBodyDAO {
 	
 	List<CelestialBody> searchByKeyword(String keyword);
 
-	CelestialBody postCelestialBody(CelestialBody body);
+	CelestialBody postCelestialBody(CelestialBody body, int categoryId);
 
 	CelestialBody updateCelestialBodyById(CelestialBody body, int bodyId);
 

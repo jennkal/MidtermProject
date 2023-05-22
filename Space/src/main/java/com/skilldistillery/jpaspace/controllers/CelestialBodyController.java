@@ -22,53 +22,51 @@ import com.skilldistillery.jpaspace.entities.CelestialBody;
 
 @Controller
 public class CelestialBodyController {
-	
+
 	@Autowired
 	private CelestialBodyDAO cbDAO;
-	
+
 //	@Autowired
 //	private CelestialBodyCommentDAO commentDAO;
-	
+
 	@Autowired
 	private CategoryDAO cateDAO;
-	
-	
-	@PostMapping("galaxy.do")
-	public String postCelestialBody(HttpSession session, CelestialBody body, Model model, RedirectAttributes redir) {
-		if(body == null) {
-			body.setEnabled(true);
-			CelestialBody newBody = cbDAO.postCelestialBody(body);
-			session.setAttribute("post", newBody);
-			return "galaxy";
-		}else {
+
+	@PostMapping("viewbody.do")
+	public String postCelestialBody(CelestialBody body, Model model, RedirectAttributes redir, int categoryId) {
+
+		CelestialBody newBody = cbDAO.postCelestialBody(body, categoryId);
+
+		if (newBody != null) {
+			model.addAttribute("post", newBody);
+			return "viewbody";
+		} else {
 			boolean bodyexist = true;
 			model.addAttribute("notnew", bodyexist);
-			redir.addFlashAttribute("notnew", bodyexist);	
+			redir.addFlashAttribute("notnew", bodyexist);
+			return "redirect:userprofile.do";
 		}
-		return "redirect:addbody.do";	
+
 	}
-	
-	@GetMapping(path="addbody.do",  params="classification")
-	public String addbodyForm(@RequestParam("classification") int clasId, Model model) {
-		List<Category> list = cateDAO.findClassId(clasId);
-		model.addAttribute("categories",list);
+
+	@GetMapping(path = "addbody.do")
+	public String addbodyForm(int classificationId, Model model) {
+		List<Category> list = cateDAO.findByClassificationId(classificationId);
+		model.addAttribute("categories", list);
 		return "addbody";
 	}
-	
-	@RequestMapping(path="bodylist", method=RequestMethod.GET)
-	public String getList(Model model ) {
+
+	@RequestMapping(path = "bodylist", method = RequestMethod.GET)
+	public String getList(Model model) {
 		List<CelestialBody> list = cbDAO.findall();
-		model.addAttribute("list",list);
-		return"galaxy";
+		model.addAttribute("list", list);
+		return "galaxy";
 	}
-	
-	
+
 //	@PostMapping("galaxy.do")
 //	public String postComment() {
 //		
 //		return "galaxy";
 //		
-	
-	
 
 }

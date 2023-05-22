@@ -9,20 +9,24 @@
 <jsp:include page="bootheader.jsp" />
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
-	<form action="galaxy.do">
-
-
-		<select name="category">
-			<c:forEach var="category" items="${categories }">
-				<option name="${category.name }">${category.name }</option>
+	<jsp:include page="navbar.jsp" />
+	<form action="viewbody.do" method="POST">
+		<input type="text" name="name" placeholder="Enter Name" required /> <select
+			name="categoryId" required>
+			<c:forEach var="X" items="${categories}">
+				<option selected value="${X.id}">${X.name}</option>
 			</c:forEach>
-		</select> 
-		
-		<input type="submit" value="Select Category">
+		</select><br>
+		<input type="text" name="description" placeholder="Enter Description"
+			required /> <br>
+			<input type="url" name="imageUrl"
+			placeholder="Enter an Image" /> <br>
+			<input type="url" name="trackingUrl"
+			placeholder="Enter a Tracking Link" /> <br>
+			<input type="submit"
+			value="Create Celestial Body">
 
-	
 	</form>
-<jsp:include page="bootfooter.jsp" />
+	<jsp:include page="bootfooter.jsp" />
 </body>
 </html>

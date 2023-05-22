@@ -10,11 +10,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
-	<c:if test="${notnew == true}">
-		<div class="alert alert-danger" role="alert">
-			<p>Space object is already out there</p>
-		</div>
-	</c:if>
+
 
 you're here
 

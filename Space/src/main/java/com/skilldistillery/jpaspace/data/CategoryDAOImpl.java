@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaspace.entities.Category;
+import com.skilldistillery.jpaspace.entities.Classification;
 
 @Service
 @Transactional
@@ -19,10 +20,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	private EntityManager em;
 
 	@Override
-	public List<Category> findClassId(int clasId) {
-		String jpql = "SELECT cat FROM Category cat WHERE cat.classification = :bindId";
-		List<Category> clas = em.createQuery(jpql, Category.class).setParameter("bindId", clasId).getResultList();
-		return clas;
+	public List<Category> findByClassificationId(int clasId) {
+		Classification classification = em.find(Classification.class, clasId);
+		return classification.getCategories();
 	}
 
 }

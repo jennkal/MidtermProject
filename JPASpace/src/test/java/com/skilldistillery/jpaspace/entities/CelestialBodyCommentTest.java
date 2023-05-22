@@ -51,8 +51,8 @@ class CelestialBodyCommentTest {
 		assertNotNull(comment);
 		assertNotNull(comment.getUser());
 		assertNotNull(comment.getCelestialBody());
-		assertEquals("1234", comment.getUser().getPassword());
-		assertEquals("open-cluster of stars in the constellation Serpens. Discovered in 1745.", comment.getCelestialBody().getDescription());
+		assertEquals("3%^bGD7cz", comment.getUser().getPassword());
+		assertEquals("Open-cluster of stars in the constellation Serpens. Discovered in 1745. AKA Star Queen Nebula.", comment.getCelestialBody().getDescription());
 		assertEquals("https://cdn.spacetelescope.org/archives/images/screen/opo9544b.jpg", comment.getCelestialBody().getImageUrl());
 	}
 }
