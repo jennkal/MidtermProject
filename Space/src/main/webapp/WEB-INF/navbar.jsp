@@ -19,7 +19,7 @@
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 				<a href="home.do"><button type="button" class="btn btn-outline-primary">Home</button></a>
 					<form class="d-flex" role="search" action="otheruser.do" method="GET">
-						<input type="text"  placeholder="Search By Keyword" /> <input
+						<input type="text" name="username"  placeholder="Search By Keyword" /> <input
 							class="btn btn-outline-success" type="submit"
 							value="Search Universe" />
 					</form>

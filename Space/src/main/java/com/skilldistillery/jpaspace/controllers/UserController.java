@@ -1,5 +1,7 @@
 package com.skilldistillery.jpaspace.controllers;
 
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpaspace.data.UserDAO;
@@ -28,15 +31,6 @@ public class UserController {
 
 		return "home";
 	}
-
-//	@GetMapping("login.do")
-//	public String loginForm(HttpSession session) {
-//		if (session.getAttribute("loggedInUser") != null) {
-//			return "home";
-//		}
-//		return "login"; // Change this to registration form
-//
-//	}
 
 	@PostMapping("login.do")
 	public String login(Model model, User user, HttpSession session, RedirectAttributes redirect) {
@@ -91,6 +85,13 @@ public class UserController {
 	@GetMapping("sample.do")
 	public String viewSamplePage() {
 		return "sample";
+	}
+	
+	@GetMapping(path="otheruser.do", params="username")
+	public String searchUsers(@RequestParam("username") String keyword, Model model) {
+		List<User> otherprofile = userDAO.searchByKeyword(keyword);
+		model.addAttribute("otheruser",otherprofile);
+		return "otheruser";
 	}
 
 }
