@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class EncounterImpl implements EncounterDAO {
 		encounter.setUser(em.find(User.class, userId));
 		encounter.setCelestialBody(em.find(CelestialBody.class, bodyId));
 		encounter.setEnabled(true);
-		
+				
 		Encounter newEncounter = null;
 		em.persist(encounter);
 		newEncounter = em.find(Encounter.class, encounter.getId());
@@ -93,7 +94,14 @@ public class EncounterImpl implements EncounterDAO {
 	@Override
 	public Encounter updateEncounter(Encounter encounter, int encounterId) {
 		Encounter managedEncounter = em.find(Encounter.class, encounterId);
-		return null;
+		managedEncounter.setTitle(encounter.getTitle());
+		managedEncounter.setDescription(encounter.getDescription());
+		managedEncounter.setBehavior(encounter.getBehavior());
+		managedEncounter.setUpdatedAt(encounter.getUpdatedAt());
+		managedEncounter.setEncounterDate(encounter.getEncounterDate());
+		managedEncounter.setEncounterTime(encounter.getEncounterTime());
+		managedEncounter.setCaptureMethod(encounter.getCaptureMethod());
+		return managedEncounter;
 	}
 
 	@Override

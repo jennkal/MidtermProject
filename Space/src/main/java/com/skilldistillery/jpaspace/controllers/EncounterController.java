@@ -68,8 +68,39 @@ public class EncounterController {
 		}
 
 	}
+	
+	@GetMapping(path = "editencounterform.do")
+	public String editEncounterForm(int encounterId, int bodyId, Model model) {
+		Encounter existingEncounter = encounterDAO.findEncounterById(encounterId); 
+		model.addAttribute("existingEncounter", existingEncounter);
+		model.addAttribute("bodyId", bodyId);
+		return "editencounter";
+	}
+	
+	@PostMapping("editencounter.do")
+	public String updateEncounter(Encounter encounter, Model model, RedirectAttributes redir, int encounterId, int bodyId) {
 
-	@PostMapping("deleteencounter.do")
+		Encounter updatedEncounter = encounterDAO.updateEncounter(encounter, encounterId);
+
+		if (updatedEncounter != null) {
+
+			model.addAttribute("id", bodyId);
+			redir.addFlashAttribute("name", bodyId);
+			return "redirect:singleview.do?id=" + bodyId;
+		} else {
+			boolean editError = true;
+			model.addAttribute("editError", editError);
+			redir.addFlashAttribute("editError", editError);
+			model.addAttribute("bodyId", bodyId);
+			redir.addFlashAttribute("bodyId", bodyId);
+			model.addAttribute("encounterId", encounterId);
+			redir.addFlashAttribute("encounterId", encounterId);
+			return "redirect:editencounterform.do";
+		}
+
+	}
+
+	@GetMapping(path="deleteencounter.do", params={"encounterId", "bodyId"})
 	public String removeEncounter(Model model, RedirectAttributes redir, int encounterId, int bodyId) {
 
 		boolean removedEncounter = encounterDAO.removeEncounter(encounterId);

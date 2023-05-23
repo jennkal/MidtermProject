@@ -29,7 +29,7 @@
 					<label for="encounterDate">Date Encountered:</label>
 					<input type="date" id="encounterDate" name="encounterDate" required><br>
 					<label for="encounterTime">Time Encountered:</label>
-					<input type="time" id="encounterTime" name="encounterTime"><br>
+					<input type="time" id="encounterTime" name="encounterTime" step="1"><br>
 					<input type="text" name="captureMethod" placeholder="Capture Method" required /><br>
 					
 					<p><em>Optional:</em> Add Links to your Image(s)</p> <br> 

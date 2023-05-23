@@ -148,9 +148,8 @@ public class Encounter {
 		return encounterTime;
 	}
 
-	public void setEncounterTime(String encounterTime) {
-		LocalTime setTime = LocalTime.parse(encounterTime + ":00"); 
-		this.encounterTime = setTime;
+	public void setEncounterTime(LocalTime encounterTime) {
+		this.encounterTime = encounterTime;
 	}
 
 	public String getCaptureMethod() {

@@ -12,13 +12,15 @@
 <body>
 	<jsp:include page="navbar.jsp" />
 
-
-	you're here
 	
 <c:if test="${not empty sessionScope.loggedInUser}">
 	<c:choose>
 		<c:when test="${! empty body }">
-
+			<c:if test="${removedEncounter == true}">
+				<div class="alert alert-success" role="alert">
+					<p>Successfully removed the encounter.</p>
+				</div>
+			</c:if>
 			
 
 				<div
@@ -34,7 +36,7 @@
 									<th>${body.description}</th>
 									<c:if test="${! empty body.imageUrl }">
 									<th><img src="${body.imageUrl}" class="img-fluid rounded-start card-img-top" 
-							alt="picture of the ${body.name }"></th>
+							alt="picture of the ${body.name }" /></th>
 									
 									</c:if>
 									<c:if test="${! empty body.trackingUrl }">
@@ -69,22 +71,24 @@
 									<tr>
 										<td>Behavior: ${encounter.behavior}</td>
 									</tr>
-									<c:if test="${not empty encounter.images}">
+								<%-- 	<c:if test="${not empty encounter.images}">
 										<tr>
 										<c:forEach var="image" items="encounter.images">
 											<c:if test="${not empty image}">
+												<c:if test="${not empty image.imageUrl}">
 												<td>
-													<img src="${image.imageUrl}" alt="Image of ${body.name}">
+													<img src="${image.imageUrl}" alt="Image of ${body.name}" />
 												</td>
+												</c:if>
 											</c:if>
 										</c:forEach>
 										<tr>
-									</c:if>
+									</c:if> --%>
 									<c:if test="${loggedInUser.id == encounter.user.id}">
 										<tr>
 											<td><a href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button type="button"
 									class="btn btn-outline-primary">Edit this Encounter</button></a></td>
-											<td><a href="deleteencounter.do?encounterId=${encounter.id}"><button type="button"
+											<td><a href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button type="button"
 									class="btn btn-outline-primary">Delete this Encounter</button></a></td>
 										</tr>
 									</c:if>
