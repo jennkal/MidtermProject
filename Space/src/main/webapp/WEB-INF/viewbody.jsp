@@ -57,6 +57,20 @@
 
 								</c:forEach>
 							</c:if>
+							<c:if test="${! empty body.encounters }">
+								<c:forEach var="encounter" items="${body.encounters }">
+									<tr>
+										<td>${encounter.user.username }</td>
+										<td>${encounter.createdAt }</td>
+									</tr>
+									<tr>
+
+										<td>${encounter.description }</td>
+									</tr>
+
+								</c:forEach>
+							</c:if>
+							<jsp:include page="addencounter.jsp">
 							</tbody>
 
 						</table>
