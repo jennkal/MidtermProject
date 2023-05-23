@@ -70,9 +70,11 @@
 
 								</c:forEach>
 							</c:if>
-							<jsp:include page="addencounter.jsp"/>
+							<tr>
+								<td><a href="encounterform.do?bodyId=${body.id}"><button type="button"
+									class="btn btn-outline-primary">Add an Encounter</button></a></td>
+							</tr>
 							</tbody>
-
 						</table>
 					</div>
 				</div>

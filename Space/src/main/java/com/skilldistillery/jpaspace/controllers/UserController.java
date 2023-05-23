@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skilldistillery.jpaspace.data.RatingDAO;
 import com.skilldistillery.jpaspace.data.UserDAO;
+import com.skilldistillery.jpaspace.entities.Rating;
 import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
@@ -23,6 +25,8 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired RatingDAO ratingDAO;
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String home(Model model) {
@@ -103,5 +107,23 @@ public class UserController {
 		model.addAttribute("otheruser",user);
 		return "otheruser";
 	}
+	
+	@PostMapping(path="rateEncounter.do", params="rate")
+	public String postRating(@RequestParam("rate") int rating, Model model) {
+		int sum;	
+		if(rating <5 && rating> 0) {
+			 sum = rating;
+			ratingDAO.postRating(sum);
+		} else {
+			sum = rating + rating;
+			ratingDAO.updateRatingById(null, sum);
+		}
+
+		return "viewbody";
+		
+	}
+	
+	
+	
 
 }

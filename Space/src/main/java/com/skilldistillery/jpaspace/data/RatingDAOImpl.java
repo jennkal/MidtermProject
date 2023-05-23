@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.Rating;
 
 @Service
@@ -23,6 +24,12 @@ public class RatingDAOImpl implements RatingDAO {
 		List<Rating> queryResults = em.createQuery(query, Rating.class).getResultList();
 		return queryResults;
 	}
+	
+	@Override
+	public List<Rating> ratingByEncounterId(int encounterId) {
+		Encounter encounter = em.find(Encounter.class, encounterId);
+		return encounter.getRatings();
+	}
 
 	@Override
 	public Rating findRatingById(int ratingId) {
@@ -30,14 +37,14 @@ public class RatingDAOImpl implements RatingDAO {
 	}
 
 	@Override
-	public Rating postRating(Rating rate, int encounterId) {
-		em.persist(rate);
-		 return rate;
+	public int postRating( int rateId) {
+		em.persist(rateId);
+		 return rateId;
 	}
 
 	@Override
-	public Rating updateRatingById(Rating rate, int encounterId) {
-		Rating managedRating = em.find(Rating.class, encounterId);
+	public Rating updateRatingById(Rating rate, int rateId) {
+		Rating managedRating = em.find(Rating.class, rateId);
 
 		managedRating.setRating(rate.getRating());
 		managedRating.setUser(rate.getUser());
