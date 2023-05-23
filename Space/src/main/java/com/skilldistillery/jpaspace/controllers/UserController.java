@@ -111,11 +111,7 @@ public class UserController {
 	
 	@PostMapping("rateEncounter.do")
 	public String postRating(Rating rating, Model model, int encounterId, int userId, RedirectAttributes redir) {
-		System.out.println("***********");
-		System.out.println(rating);
-		System.out.println("***********");
 		Rating rate = ratingDAO.postRating(rating, encounterId, userId);
-		System.out.println(rate);
 		return "redirect:singleview.do?id=" + rating.getEncounter().getCelestialBody().getId();
 		
 	}
