@@ -32,7 +32,7 @@
 							<tbody>
 								<c:forEach var="body" items="${bodies}">
 									<tr>
-										<td><a href="viewbody.do?name=${body.name}">${body.name}</a></td>
+										<td><a href="singleview.do?id=${body.id}">${body.name}</a></td>
 										<td>${body.description}</td>
 										<td>${body.category.classification}</td>
 										<td>${body.category}</td>

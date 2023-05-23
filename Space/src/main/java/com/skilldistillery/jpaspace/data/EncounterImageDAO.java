@@ -7,6 +7,8 @@ import com.skilldistillery.jpaspace.entities.EncounterImage;
 public interface EncounterImageDAO {
 	
 	List<EncounterImage> findall();
+	
+	List<EncounterImage> findImageByEncouterId(int encounterId);
 
 	EncounterImage findImageId(int imageId);
 
