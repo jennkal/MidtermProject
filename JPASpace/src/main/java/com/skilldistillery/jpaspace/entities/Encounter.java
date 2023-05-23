@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.entities;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -147,8 +148,9 @@ public class Encounter {
 		return encounterTime;
 	}
 
-	public void setEncounterTime(LocalTime encounterTime) {
-		this.encounterTime = encounterTime;
+	public void setEncounterTime(String encounterTime) {
+		LocalTime setTime = LocalTime.parse(encounterTime + ":00"); 
+		this.encounterTime = setTime;
 	}
 
 	public String getCaptureMethod() {

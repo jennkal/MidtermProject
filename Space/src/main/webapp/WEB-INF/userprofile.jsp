@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>${loggedInUser.username }</title>
 <jsp:include page="bootheader.jsp" />
 </head>
 <body>
@@ -65,6 +65,25 @@
 							All</button>
 					</a>
 				</form>
+			</div>
+			
+			<div>
+				<c:if test="${not empty loggedInUser.encounters}">
+					<p>Here are you previously entered Encounters:</p>
+					<c:forEach var="encounter" items="${loggedInUser.encounters}">
+						<c:if test="${not empty encounter}">
+							<table>	
+									<tr>	
+										<td>${encounter.user.username }</td>
+										<td>${encounter.createdAt }</td>
+									</tr>
+									<tr>
+										<td>${encounter.description }</td>
+									</tr>
+							</table>	
+						</c:if>
+					</c:forEach>
+				</c:if>
 			</div>
 		</c:when>
 		<c:otherwise>

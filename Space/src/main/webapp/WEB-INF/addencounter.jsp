@@ -41,7 +41,7 @@
 
 					<input type="submit" value="Submit Encounter"> 
 					
-					<a href="home.do"><button type="button"	class="btn btn-outline-primary">Cancel</button></a>
+					<a href="viewsingle.do?id=${bodyId}"><button type="button"	class="btn btn-outline-primary">Cancel</button></a>
 				</form>
 			</div>
 		</c:when>

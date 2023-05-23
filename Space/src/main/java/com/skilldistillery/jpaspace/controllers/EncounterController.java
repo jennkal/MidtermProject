@@ -57,11 +57,9 @@ public class EncounterController {
 
 		if (newEncounter != null) {
 			
-			String bodyName = newEncounter.getCelestialBody().getName();
-			
-			model.addAttribute("name", bodyName);
-			redir.addFlashAttribute("name", bodyName);
-			return "redirect:viewbody.do?name=" + bodyName;
+			model.addAttribute("id", bodyId);
+			redir.addFlashAttribute("name", bodyId);
+			return "redirect:singleview.do?id=" + bodyId;
 		} else {
 			boolean creationError = true;
 			model.addAttribute("creationError", creationError);
@@ -73,6 +71,27 @@ public class EncounterController {
 
 	}
 	
+	@PostMapping("addencounter.do")
+	public String removeEncounter(HttpSession session, Encounter encounter, Model model, RedirectAttributes redir, int userId, int bodyId,
+			String imageUrl1, String imageUrl2, String imageUrl3, String imageUrl4, String imageUrl5) {
 
+		Encounter newEncounter = encounterDAO.postEncounter(encounter, userId, bodyId,
+				imageUrl1, imageUrl2, imageUrl3, imageUrl4, imageUrl5);
 
+		if (newEncounter != null) {
+			
+			model.addAttribute("id", bodyId);
+			redir.addFlashAttribute("name", bodyId);
+			return "redirect:singleview.do?id=" + bodyId;
+		} else {
+			boolean creationError = true;
+			model.addAttribute("creationError", creationError);
+			redir.addFlashAttribute("creationError", creationError);
+			model.addAttribute("bodyId", bodyId);
+			redir.addFlashAttribute("bodyId", bodyId);
+			return "redirect:encounterform.do";
+		}
+
+	}
+	
 }

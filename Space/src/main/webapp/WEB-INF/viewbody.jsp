@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Space chat room</title>
+<title>${body.name} Chat Room</title>
 <jsp:include page="bootheader.jsp" />
 </head>
 <body>
@@ -15,7 +15,7 @@
 
 	you're here
 	
-	
+<c:if test="${not empty sessionScope.loggedInUser}">
 	<c:choose>
 		<c:when test="${! empty body }">
 
@@ -58,15 +58,36 @@
 							</c:forEach>
 							</c:if>
 							<c:if test="${! empty body.encounters }">
-								<c:forEach var="encounter" items="${body.encounters }">
+								<c:forEach var="encounter" items="${body.encounters}">
 									<tr>
-										<td>${encounter.user.username }</td>
-										<td>${encounter.createdAt }</td>
+										<td>${encounter.user.username}</td>
+										<td>${encounter.createdAt}</td>
 									</tr>
 									<tr>
-
-										<td>${encounter.description }</td>
+										<td>Description: ${encounter.description}</td>
 									</tr>
+									<tr>
+										<td>Behavior: ${encounter.behavior}</td>
+									</tr>
+									<c:if test="${not empty encounter.images}">
+										<tr>
+										<c:forEach var="image" items="encounter.images">
+											<c:if test="${not empty image}">
+												<td>
+													<img src="${image.imageUrl}" alt="Image of ${body.name}">
+												</td>
+											</c:if>
+										</c:forEach>
+										<tr>
+									</c:if>
+									<c:if test="${loggedInUser.id == encounter.user.id}">
+										<tr>
+											<td><a href="editencounterform.do?encounterId=${encounter.id}"><button type="button"
+									class="btn btn-outline-primary">Edit this Encounter</button></a></td>
+											<td><a href="deleteencounter.do?encounterId=${encounter.id}"><button type="button"
+									class="btn btn-outline-primary">Delete this Encounter</button></a></td>
+										</tr>
+									</c:if>
 
 								</c:forEach>
 							</c:if>
@@ -87,6 +108,7 @@
 		</c:otherwise>
 
 	</c:choose>
+</c:if>
 
 
 	<jsp:include page="bootfooter.jsp" />
