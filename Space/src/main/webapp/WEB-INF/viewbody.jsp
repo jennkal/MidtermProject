@@ -50,13 +50,15 @@
 										<td>${comment.createdAt }</td>
 									</tr>
 									<tr>
-
 										<td>${comment.body }</td>
-
 									</tr>
-
 							</c:forEach>
 							</c:if>
+							<tr>
+								<td><a href="commentsform.do?bodyId=${body.id}"><button type="button" 
+								class="btn btn-outline-success">Add Comment</button></a></td>
+							</tr>
+							
 							<c:if test="${! empty body.encounters }">
 								<c:forEach var="encounter" items="${body.encounters }">
 									<tr>
@@ -73,6 +75,7 @@
 							<tr>
 								<td><a href="encounterform.do?bodyId=${body.id}"><button type="button"
 									class="btn btn-outline-primary">Add an Encounter</button></a></td>
+				
 							</tr>
 							</tbody>
 						</table>
