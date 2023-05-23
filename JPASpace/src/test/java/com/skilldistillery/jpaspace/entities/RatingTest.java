@@ -46,8 +46,8 @@ class RatingTest {
 	@Test
 	void rating_mapping() {
 		assertNotNull(rate);
-		assertNotNull(rate.getRating());
-		assertEquals(5, rate.getRating());
+		assertNotNull(rate.getRatingValue());
+		assertEquals(5, rate.getRatingValue());
 	}
 	
 	@Test 
