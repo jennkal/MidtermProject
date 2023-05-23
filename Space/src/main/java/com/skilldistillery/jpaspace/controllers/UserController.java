@@ -97,8 +97,10 @@ public class UserController {
 		return "bodylist";
 	}
 	
-	@GetMapping("singleuser.do")
-	public String singleuser() {
+	@GetMapping(path="singleuser.do", params="username")
+	public String singleuser(@RequestParam("username") String username, Model model) {
+		User user = userDAO.findByUsername(username);
+		model.addAttribute("otheruser",user);
 		return "otheruser";
 	}
 
