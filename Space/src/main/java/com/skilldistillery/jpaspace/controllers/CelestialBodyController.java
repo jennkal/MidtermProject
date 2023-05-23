@@ -74,12 +74,5 @@ public class CelestialBodyController {
 		CelestialBody body = cbDAO.findCelestialBodyById(id);
 		model.addAttribute("body",body);
 		return "viewbody";
-	}
-
-//	@PostMapping("galaxy.do")
-//	public String postComment() {
-//		
-//		return "galaxy";
-//		
-
+	}	
 }
