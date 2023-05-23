@@ -2,11 +2,10 @@ package com.skilldistillery.jpaspace.data;
 
 import java.util.List;
 
+import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.CelestialBodyComment;
 
 public interface CelestialBodyCommentDAO {
-	
-	List<CelestialBodyComment> findall();
 	
 	CelestialBodyComment findCommentById(int commentId);
 	
@@ -15,5 +14,7 @@ public interface CelestialBodyCommentDAO {
 	CelestialBodyComment updateCommentById(CelestialBodyComment comment, int commentId);
 	
 	boolean removeCommentById(int commentId);
+
+	List<CelestialBodyComment> findall(CelestialBody cbid);
 
 }
