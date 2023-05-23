@@ -34,7 +34,7 @@
 				</div>
 			</div>
 
-			<a href="bodylist.do">View all</a>
+		
 
 			<c:if test="${notnew == true}">
 				<div class="alert alert-danger" role="alert">
@@ -42,22 +42,30 @@
 				</div>
 			</c:if>
 
-			<label for="selectClassification">Add a new Celestial Body</label>
-			<form action="addbody.do" id="selectClassification">
-				<select name="classificationId">
-					<option selected value="1">Nebula</option>
-					<option selected value="2">Solar System</option>
-					<option selected value="3">Star</option>
-					<option selected value="4">Planet</option>
-					<option selected value="5">Comet</option>
-					<option selected value="6">Asteroid</option>
-				</select> <input type="submit" value="Select Classification">
-			</form>
 
 
-			<form action="logout.do">
-				<input type="submit" value="logout">
-			</form>
+			<div
+				class="container min-vh-50 d-flex  align-items-center">
+				<form action="addbody.do"
+					style="width: 250px; height: 160px; padding-left: 10px; margin-left:-45px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+						<p style="">Add Your New Discovery</p>
+					<select name="classificationId">
+						<option selected value="1">Nebula</option>
+						<option selected value="2">Solar System</option>
+						<option selected value="3">Star</option>
+						<option selected value="4">Planet</option>
+						<option selected value="5">Comet</option>
+						<option selected value="6">Asteroid</option>
+					</select> <input class="btn btn-outline-primary" type="submit"
+						value="Select Classification"> 
+					
+					<label for="or">Or:</label>	
+						<a href="bodylist.do">
+						<button id="or" type="button" class="btn btn-outline-primary">View
+							All</button>
+					</a>
+				</form>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<p>Not Logged In.</p>
