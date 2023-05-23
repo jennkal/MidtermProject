@@ -15,32 +15,60 @@
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
 
-			<div
-				class="container min-vh-50 d-flex justify-content-center align-items-center">
-				<div id="div" class="container-fluid">
-					<table class="table table-dark table-hover" style="margin-top: 50px">
-						<thead>
-							<tr>
-								<!-- <th>UserName</th> -->
-								<th>Object in space</th>
-								<th>description</th>
-								<th>Classification</th>
-								<th>Category</th>
-						</thead>
-						<tbody>
-							<c:forEach var="body" items="${bodies}">
-								<tr>
-									<%-- <td><a href="userprofile.do?username=${body.comments.user.username}">${body.comments.user.username}</a></td> --%>
-									<td><a href="viewbody.do?name=${body.name}">${body.name}</a></td>
-									<td>${body.description}</td>
-									<td>${body.category.classification}</td>
-									<td>${body.category}</td>
-							</c:forEach>
 
-						</tbody>
-					</table>
+			<c:if test="${! empty bodies }">
+				<div
+					class="container min-vh-50 d-flex justify-content-center align-items-center">
+					<div id="div" class="container-fluid">
+						<table class="table table-dark table-hover"
+							style="margin-top: 50px">
+							<thead>
+								<tr>
+									<!-- <th>UserName</th> -->
+									<th>Object in space</th>
+									<th>description</th>
+									<th>Classification</th>
+									<th>Category</th>
+							</thead>
+							<tbody>
+								<c:forEach var="body" items="${bodies}">
+									<tr>
+										<%-- <td><a href="userprofile.do?username=${body.comments.user.username}">${body.comments.user.username}</a></td> --%>
+										<td><a href="viewbody.do?name=${body.name}">${body.name}</a></td>
+										<td>${body.description}</td>
+										<td>${body.category.classification}</td>
+										<td>${body.category}</td>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+			</c:if>
+			<c:if test="${! empty otheruser }">
+				<div
+					class="container min-vh-50 d-flex justify-content-center align-items-center">
+					<div id="div" class="container-fluid">
+						<table class="table table-dark table-hover"
+							style="margin-top: 50px">
+							<thead>
+								<tr>
+									<th>Username</th>
+									<th>Active Status</th>
+									<th>Role</th>
+							</thead>
+							<tbody>
+								<c:forEach var="user" items="${otheruser}">
+									<tr>
+										<td><a href="singleuser.do?username=${user.username}">${user.username}</a></td>
+										<td>${user.enabled}</td>
+										<td>${user.role}</td>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</c:if>
 		</c:when>
 		<c:otherwise>
 		must be logged in to view this page

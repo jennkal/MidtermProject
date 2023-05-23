@@ -16,22 +16,23 @@
 	</div>
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
-		<div class="container d-flex justify-content-center">
-			<h2>${loggedInUser.username }</h2>
+			<div class="container d-flex justify-content-center">
+				<h2>${loggedInUser.username }</h2>
 			</div>
-					
-			<div class="card mb-3" style="margin-left: 50px; max-width: 300px; max-height: 100px;">
-						<img src="${loggedInUser.imageUrl}" class="img-fluid rounded-start card-img-top" 
-							alt="picture of the ${loggedInUser.username }">
-						<div class="card-body">
-							<h5 class="card-title">${loggedInUser.username}</h5>
-							<p class="card-text">${loggedInUser.about}</p>
-							<p class="card-text">
-								<small class="text-body-secondary">${loggedInUser.role }
-								</small>
-							</p>
-						</div>
-					</div>
+
+			<div class="card mb-3"
+				style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
+				<img src="${loggedInUser.imageUrl}"
+					class="img-fluid rounded-start card-img-top"
+					alt="picture of the ${loggedInUser.username }">
+				<div class="card-body">
+					<h5 class="card-title">${loggedInUser.username}</h5>
+					<p class="card-text">${loggedInUser.about}</p>
+					<p class="card-text">
+						<small class="text-body-secondary">${loggedInUser.role } </small>
+					</p>
+				</div>
+			</div>
 
 			<a href="bodylist.do">View all</a>
 
