@@ -73,7 +73,7 @@ public class Classification {
 
 	@Override
 	public String toString() {
-		return "Classification [id=" + id + ", name=" + name + "]";
+		return "Classification: "+ "name = " + name;
 	}
 
 	@Override

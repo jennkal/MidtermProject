@@ -94,6 +94,13 @@ public class UserController {
 	public String searchUsers(@RequestParam("username") String keyword, Model model) {
 		List<User> otherprofile = userDAO.searchByKeyword(keyword);
 		model.addAttribute("otheruser",otherprofile);
+		return "bodylist";
+	}
+	
+	@GetMapping(path="singleuser.do", params="username")
+	public String singleuser(@RequestParam("username") String username, Model model) {
+		User user = userDAO.findByUsername(username);
+		model.addAttribute("otheruser",user);
 		return "otheruser";
 	}
 

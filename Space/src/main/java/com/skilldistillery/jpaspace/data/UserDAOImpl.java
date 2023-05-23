@@ -32,6 +32,19 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 
 	}
+	@Override
+	public User findByUsername(String username) {
+		User user = null;
+		String jpql = "SELECT u FROM User u WHERE u.username =:un AND u.enabled = true";
+		try {
+			user = em.createQuery(jpql, User.class).setParameter("un", username)
+					.getSingleResult();
+		} catch (Exception e) {
+			System.err.println("Invalid login");
+		}
+		return user;
+		
+	}
 
 
 	@Override

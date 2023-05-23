@@ -60,7 +60,7 @@ public class CelestialBodyController {
 	public String getList(Model model) {
 		List<CelestialBody> list = cbDAO.findall();
 		model.addAttribute("bodies", list);
-		return "viewbody";
+		return "bodylist";
 	}
 	
 	

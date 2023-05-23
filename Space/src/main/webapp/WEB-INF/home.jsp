@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Space Station</title>
 <jsp:include page="bootheader.jsp" />
 </head>
-<body
-	style="background-image: url('https://imageio.forbes.com/specials-images/imageserve/6127b2920d67d45e8a181602/0x0.jpg?format=jpg&amp;width=1200'); background-repeat: no-repeat; background-size: cover;">
+<body class="bg-image"
+	style="background-image: url('https://imageio.forbes.com/specials-images/imageserve/6127b2920d67d45e8a181602/0x0.jpg?format=jpg&amp;width=1200'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 	<c:if test="${loggedOut == true}">
 		<div class="alert alert-danger" role="alert">
@@ -48,8 +49,7 @@
 		</form>
 	</div>
 	<div class="container d-flex justify-content-center">
-		<div style="border: 2px solid #023e8a; border-radius: 5px; width: 450px; height: 210px; margin-top: 50px; color: white; padding: 50px ">
-		<h4>About:</h4>
+		<div class="container d-flex justify-content-center" style="padding: 30px; border: 2px solid #023e8a; border-radius: 8px; width: 450px; margin-top: 50px; color: white; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; ">
 			<p>
 			Welcome to the Space Station where all our self proclaimed astronaut 
 			share their favorite space adventures. Join us and share pictures of your favorite 
@@ -64,7 +64,7 @@
 
 	<div
 		class="container min-vh-75 d-flex justify-content-center align-items-center">
-		<div id="div" class="container-fluid">
+		<div id="div" class="container-fluid ">
 
 			<table class="table table-dark table-hover"
 				style="width: 800px; margin-left: 250px; margin-top: 65px;">

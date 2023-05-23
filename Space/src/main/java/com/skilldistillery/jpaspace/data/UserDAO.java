@@ -20,6 +20,8 @@ public interface UserDAO {
 	
 	List<User> searchByKeyword(String keyword);
 
+	User findByUsername(String username);
+
 	
 
 }
