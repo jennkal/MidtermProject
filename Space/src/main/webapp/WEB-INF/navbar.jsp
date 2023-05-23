@@ -5,28 +5,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <jsp:include page="bootheader.jsp" />
 </head>
 <body>
-
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
 			<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark"
 				data-bs-theme="dark">
 				<div class="container-fluid">
 					<h1 class="navbar-brand">Stacktrace Space Station</h1>
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+					<br>
+					<br>
 					<a href="home.do"><button type="button"
 							class="btn btn-outline-primary">Home</button></a>
+					<br> 
+					<br>
+					<a href="userprofile.do"><button type="button"
+							class="btn btn-outline-primary">Profile</button></a>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 					<form class="d-flex" role="search" action="otheruser.do"
 						method="GET">
-						<input type="text" name="username" placeholder="Search By Keyword" />
+						<input type="text" name="username" placeholder="Search By Username" />
+						<input class="btn btn-outline-success" type="submit"
+							value="Search Astronauts" />
+					</form>
+					<br>
+					<br>
+					<form class="d-flex" role="search" action="viewbody.do">	
+					<input type="text" name="name" placeholder="Search Celestial name" />
 						<input class="btn btn-outline-success" type="submit"
 							value="Search Universe" />
 					</form>
+					<br>
+					<br>
 					<form action="logout.do">
-						<input type="submit" value="logout">
+						<input class="btn btn-outline-danger"type="submit" value="logout">
 					</form>
 				</div>
 			</nav>
