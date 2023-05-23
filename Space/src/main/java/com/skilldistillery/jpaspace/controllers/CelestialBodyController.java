@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -68,6 +66,13 @@ public class CelestialBodyController {
 	public String searchByKeyword(@RequestParam("name") String keyword, Model model) {
 		List<CelestialBody> list = cbDAO.searchByKeyword(keyword);
 		model.addAttribute("bodies",list);
+		return "bodylist";
+	}
+	
+	@GetMapping(path="singleview.do", params="id")
+	public String singleBody(@RequestParam("id") int id, Model model) {
+		CelestialBody body = cbDAO.findCelestialBodyById(id);
+		model.addAttribute("body",body);
 		return "viewbody";
 	}
 

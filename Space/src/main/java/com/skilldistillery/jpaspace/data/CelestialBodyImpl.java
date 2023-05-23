@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
-import com.skilldistillery.jpaspace.entities.User;
 
 @Service
 @Transactional
@@ -29,6 +28,19 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 	@Override
 	public CelestialBody findCelestialBodyById(int bodyId) {
 		return em.find(CelestialBody.class, bodyId);
+	}
+
+	@Override
+	public CelestialBody findBodyByName(String name) {
+		CelestialBody body = null;
+		String jpql = "SELECT b FROM CelestialBody b WHERE b.name =:n AND b.enabled = true";
+		try {
+			body = em.createQuery(jpql, CelestialBody.class).setParameter("n", name)
+					.getSingleResult();
+		} catch (Exception e) {
+			System.err.println("Invalid login");
+		}
+		return body;
 	}
 
 	@Override
@@ -86,5 +98,6 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 			return false;
 		}
 	}
+
 
 }

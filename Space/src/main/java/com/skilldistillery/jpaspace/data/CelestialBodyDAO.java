@@ -3,7 +3,6 @@ package com.skilldistillery.jpaspace.data;
 import java.util.List;
 
 import com.skilldistillery.jpaspace.entities.CelestialBody;
-import com.skilldistillery.jpaspace.entities.CelestialBodyComment;
 
 public interface CelestialBodyDAO {
 	
@@ -18,5 +17,7 @@ public interface CelestialBodyDAO {
 	CelestialBody updateCelestialBodyById(CelestialBody body, int bodyId);
 
 	boolean removeCelestialBodyId(int bodyId);
+	
+	CelestialBody findBodyByName(String name);
 
 }

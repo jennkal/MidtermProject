@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.EncounterImage;
 
 @Service
@@ -56,6 +57,12 @@ public class EncounterImageImpl implements EncounterImageDAO {
 			System.out.println("No such work exist");
 			return false;
 		}
+	}
+
+	@Override
+	public List<EncounterImage> findImageByEncouterId(int encounterId) {
+		Encounter encounter = em.find(Encounter.class, encounterId);
+		return encounter.getImages();
 	}
 
 }
