@@ -2,38 +2,60 @@ package com.skilldistillery.jpaspace.data;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.skilldistillery.jpaspace.entities.EncounterImage;
 
+@Service
+@Transactional
 public class EncounterImageImpl implements EncounterImageDAO {
+	
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public List<EncounterImage> findall() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT image FROM EncounterImage image ";
+		List<EncounterImage> queryResults = em.createQuery(query, EncounterImage.class).getResultList();
+		return queryResults;
 	}
 
 	@Override
 	public EncounterImage findImageId(int imageId) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(EncounterImage.class, imageId);
 	}
 
 	@Override
 	public EncounterImage postImage(EncounterImage image) {
-		// TODO Auto-generated method stub
-		return null;
+		 em.persist(image);
+		 return image;
 	}
 
 	@Override
 	public EncounterImage updateImage(EncounterImage image, int imageId) {
-		// TODO Auto-generated method stub
-		return null;
+		EncounterImage managedImage = em.find(EncounterImage.class, imageId);
+
+		managedImage.setImageUrl(image.getImageUrl());
+		managedImage.setEncounter(image.getEncounter());
+		
+
+		return managedImage;
 	}
 
 	@Override
 	public boolean removeImage(int imageId) {
-		// TODO Auto-generated method stub
-		return false;
+		if (imageId != 0) {
+			EncounterImage managedImage = em.find(EncounterImage.class, imageId);
+			em.remove(managedImage);
+			return true;
+		} else {
+			System.out.println("No such work exist");
+			return false;
+		}
 	}
 
 }
