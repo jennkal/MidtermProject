@@ -24,7 +24,6 @@
 							style="margin-top: 50px">
 							<thead>
 								<tr>
-									<!-- <th>UserName</th> -->
 									<th>Object in space</th>
 									<th>description</th>
 									<th>Classification</th>
@@ -33,7 +32,6 @@
 							<tbody>
 								<c:forEach var="body" items="${bodies}">
 									<tr>
-										<%-- <td><a href="userprofile.do?username=${body.comments.user.username}">${body.comments.user.username}</a></td> --%>
 										<td><a href="viewbody.do?name=${body.name}">${body.name}</a></td>
 										<td>${body.description}</td>
 										<td>${body.category.classification}</td>
