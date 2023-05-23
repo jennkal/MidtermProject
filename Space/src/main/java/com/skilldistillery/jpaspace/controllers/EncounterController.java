@@ -20,43 +20,41 @@ import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
 public class EncounterController {
-	
+
 //	@Autowired
 //	private EncounterDAO encounterDAO;
 //	
 //	@Autowired
 //	private EncounterCommentDAO commentDAO;
-	
-	
+
 	@Autowired
 	private EncounterImageDAO imageDAO;
-	
+
 	@Autowired
 	private EncounterDAO encounterDAO;
 
-	
 	@GetMapping(path = "viewimage.do")
 	public String getList(Model model) {
 		List<EncounterImage> list = imageDAO.findall();
 		model.addAttribute("images", list);
 		return "viewbody";
 	}
-	
+
 	@GetMapping(path = "encounterform.do")
 	public String addEncounterForm(int bodyId, Model model) {
 		model.addAttribute("bodyId", bodyId);
 		return "addencounter";
 	}
-	
+
 	@PostMapping("addencounter.do")
-	public String postEncounter(HttpSession session, Encounter encounter, Model model, RedirectAttributes redir, int userId, int bodyId,
+	public String postEncounter(Encounter encounter, Model model, RedirectAttributes redir, int userId, int bodyId,
 			String imageUrl1, String imageUrl2, String imageUrl3, String imageUrl4, String imageUrl5) {
 
-		Encounter newEncounter = encounterDAO.postEncounter(encounter, userId, bodyId,
-				imageUrl1, imageUrl2, imageUrl3, imageUrl4, imageUrl5);
+		Encounter newEncounter = encounterDAO.postEncounter(encounter, userId, bodyId, imageUrl1, imageUrl2, imageUrl3,
+				imageUrl4, imageUrl5);
 
 		if (newEncounter != null) {
-			
+
 			model.addAttribute("id", bodyId);
 			redir.addFlashAttribute("name", bodyId);
 			return "redirect:singleview.do?id=" + bodyId;
@@ -70,28 +68,15 @@ public class EncounterController {
 		}
 
 	}
-	
-	@PostMapping("addencounter.do")
-	public String removeEncounter(HttpSession session, Encounter encounter, Model model, RedirectAttributes redir, int userId, int bodyId,
-			String imageUrl1, String imageUrl2, String imageUrl3, String imageUrl4, String imageUrl5) {
 
-		Encounter newEncounter = encounterDAO.postEncounter(encounter, userId, bodyId,
-				imageUrl1, imageUrl2, imageUrl3, imageUrl4, imageUrl5);
+	@PostMapping("deleteencounter.do")
+	public String removeEncounter(Model model, RedirectAttributes redir, int encounterId, int bodyId) {
 
-		if (newEncounter != null) {
-			
-			model.addAttribute("id", bodyId);
-			redir.addFlashAttribute("name", bodyId);
-			return "redirect:singleview.do?id=" + bodyId;
-		} else {
-			boolean creationError = true;
-			model.addAttribute("creationError", creationError);
-			redir.addFlashAttribute("creationError", creationError);
-			model.addAttribute("bodyId", bodyId);
-			redir.addFlashAttribute("bodyId", bodyId);
-			return "redirect:encounterform.do";
-		}
+		boolean removedEncounter = encounterDAO.removeEncounter(encounterId);
+		model.addAttribute("removedEncounter", removedEncounter);
+		redir.addFlashAttribute("removedEncounter", removedEncounter);
+		return "redirect:singleview.do?id=" + bodyId;
 
 	}
-	
+
 }

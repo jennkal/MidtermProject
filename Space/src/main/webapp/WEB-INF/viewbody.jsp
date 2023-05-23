@@ -82,7 +82,7 @@
 									</c:if>
 									<c:if test="${loggedInUser.id == encounter.user.id}">
 										<tr>
-											<td><a href="editencounterform.do?encounterId=${encounter.id}"><button type="button"
+											<td><a href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button type="button"
 									class="btn btn-outline-primary">Edit this Encounter</button></a></td>
 											<td><a href="deleteencounter.do?encounterId=${encounter.id}"><button type="button"
 									class="btn btn-outline-primary">Delete this Encounter</button></a></td>
