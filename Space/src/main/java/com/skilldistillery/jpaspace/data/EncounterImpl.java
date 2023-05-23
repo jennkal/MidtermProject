@@ -45,6 +45,7 @@ public class EncounterImpl implements EncounterDAO {
 		
 		encounter.setUser(em.find(User.class, userId));
 		encounter.setCelestialBody(em.find(CelestialBody.class, bodyId));
+		encounter.setEnabled(true);
 		
 		Encounter newEncounter = null;
 		em.persist(encounter);

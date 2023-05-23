@@ -14,12 +14,12 @@
 
 
 	you're here
-
-
+	
+	
 	<c:choose>
-		<c:when test="${! empty bodies }">
+		<c:when test="${! empty body }">
 
-			<c:forEach var="body" items="${bodies }">
+			
 
 				<div
 					class="container min-vh-75 d-flex justify-content-center align-items-center">
@@ -55,7 +55,7 @@
 
 									</tr>
 
-								</c:forEach>
+							</c:forEach>
 							</c:if>
 							<c:if test="${! empty body.encounters }">
 								<c:forEach var="encounter" items="${body.encounters }">
@@ -70,17 +70,15 @@
 
 								</c:forEach>
 							</c:if>
-<%-- 							<jsp:include page="addencounter.jsp?bodyId=${body.id}"/> --%>
 							<tr>
-								<td><a href="encounterform.do?bodyId=${body.id}">Add an Encounter</a></td>
+								<td><a href="encounterform.do?bodyId=${body.id}"><button type="button"
+									class="btn btn-outline-primary">Add an Encounter</button></a></td>
 							</tr>
 							</tbody>
-
 						</table>
 					</div>
 				</div>
-			</c:forEach>
-
+		
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-danger" role="alert">
@@ -89,6 +87,11 @@
 		</c:otherwise>
 
 	</c:choose>
+
+
+	<jsp:include page="bootfooter.jsp" />
+</body>
+</html>
 
 
 	<jsp:include page="bootfooter.jsp" />
