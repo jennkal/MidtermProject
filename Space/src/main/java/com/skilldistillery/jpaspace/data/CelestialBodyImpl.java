@@ -69,8 +69,8 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 		managedBody.setEncounters(body.getEncounters());
 		managedBody.setTrackingUrl(body.getTrackingUrl());
 		managedBody.setCategory(body.getCategory());
-		managedBody.setParent(body.getParent());
-		managedBody.setChildren(body.getChildren());
+//		managedBody.setParent(body.getParent());
+//		managedBody.setChildren(body.getChildren());
 
 		return managedBody;
 	}

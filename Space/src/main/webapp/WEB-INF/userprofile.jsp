@@ -24,6 +24,8 @@
 				<li>role: ${loggedInUser.role }</li>
 			</ul>
 			
+			<a href="bodylist.do">View all</a>
+			
 			<c:if test="${notnew == true}">
 				<div class="alert alert-danger" role="alert">
 					<p>Space object is already out there</p>

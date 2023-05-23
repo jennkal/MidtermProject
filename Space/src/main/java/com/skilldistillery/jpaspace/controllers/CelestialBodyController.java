@@ -1,8 +1,7 @@
 package com.skilldistillery.jpaspace.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpaspace.data.CategoryDAO;
-import com.skilldistillery.jpaspace.data.CelestialBodyCommentDAO;
 import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
@@ -38,7 +36,9 @@ public class CelestialBodyController {
 		CelestialBody newBody = cbDAO.postCelestialBody(body, categoryId);
 
 		if (newBody != null) {
-			model.addAttribute("post", newBody);
+			List<CelestialBody> posts = new ArrayList<>();
+			posts.add(newBody);
+			model.addAttribute("bodies", posts);
 			return "viewbody";
 		} else {
 			boolean bodyexist = true;
@@ -56,11 +56,19 @@ public class CelestialBodyController {
 		return "addbody";
 	}
 
-	@RequestMapping(path = "bodylist", method = RequestMethod.GET)
+	@GetMapping(path = "bodylist.do")
 	public String getList(Model model) {
 		List<CelestialBody> list = cbDAO.findall();
-		model.addAttribute("list", list);
-		return "galaxy";
+		model.addAttribute("bodies", list);
+		return "viewbody";
+	}
+	
+	
+	@GetMapping(path="viewbody.do", params="name")
+	public String searchByKeyword(@RequestParam("name") String keyword, Model model) {
+		List<CelestialBody> list = cbDAO.searchByKeyword(keyword);
+		model.addAttribute("bodies",list);
+		return "viewbody";
 	}
 
 //	@PostMapping("galaxy.do")

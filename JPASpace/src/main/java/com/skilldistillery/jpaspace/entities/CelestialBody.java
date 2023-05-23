@@ -51,12 +51,12 @@ public class CelestialBody {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
-	@ManyToOne
-	@JoinColumn(name = "parent_celestial_body_id")
-	private CelestialBody parent;
-	
-	@OneToMany(mappedBy = "parent")
-	private List<CelestialBody> children;
+//	@ManyToOne
+//	@JoinColumn(name = "parent_celestial_body_id")
+//	private CelestialBody parent;
+//	
+//	@OneToMany(mappedBy = "parent")
+//	private List<CelestialBody> children;
 	
 	@OneToMany(mappedBy = "celestialBody")
 	private List<CelestialBodyComment> comments;
@@ -132,41 +132,41 @@ public class CelestialBody {
 		this.category = category;
 	}
 
-	public CelestialBody getParent() {
-		return parent;
-	}
-
-	public void setParent(CelestialBody parent) {
-		this.parent = parent;
-	}
-
-	public List<CelestialBody> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<CelestialBody> children) {
-		this.children = children;
-	}
-	
-	public void addBody(CelestialBody body) {
-		if (children == null) {
-			children = new ArrayList<>();
-		}
-		if (!children.contains(body)) {
-			children.add(body);
-			if (body.getParent() != null) {
-				body.getParent().removeBody(body);
-			}
-			body.setParent(this);
-		}
-	}
-
-	public void removeBody(CelestialBody body) {
-		if (children != null && children.contains(body)) {
-			children.remove(body);
-			body.setParent(null);
-		}
-	}
+//	public CelestialBody getParent() {
+//		return parent;
+//	}
+//
+//	public void setParent(CelestialBody parent) {
+//		this.parent = parent;
+//	}
+//
+//	public List<CelestialBody> getChildren() {
+//		return children;
+//	}
+//
+//	public void setChildren(List<CelestialBody> children) {
+//		this.children = children;
+//	}
+//	
+//	public void addBody(CelestialBody body) {
+//		if (children == null) {
+//			children = new ArrayList<>();
+//		}
+//		if (!children.contains(body)) {
+//			children.add(body);
+//			if (body.getParent() != null) {
+//				body.getParent().removeBody(body);
+//			}
+//			body.setParent(this);
+//		}
+//	}
+//
+//	public void removeBody(CelestialBody body) {
+//		if (children != null && children.contains(body)) {
+//			children.remove(body);
+//			body.setParent(null);
+//		}
+//	}
 	
 	public List<CelestialBodyComment> getComments() {
 		return comments;
@@ -237,7 +237,7 @@ public class CelestialBody {
 	public String toString() {
 		return "CelestialBody [id=" + id + ", name=" + name + ", enabled=" + enabled + ", discription=" + description
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", trackingUrl=" + trackingUrl
-				+ ", category=" + category + ", parent=" + parent + ", children=" + children + "]";
+				+ ", category=" + category + ", parent=" + ", children=" + "]";
 	}
 
 	@Override
