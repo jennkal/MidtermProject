@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,13 +9,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.EncounterImage;
 
 @Service
 @Transactional
 public class EncounterImageImpl implements EncounterImageDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -32,8 +34,8 @@ public class EncounterImageImpl implements EncounterImageDAO {
 
 	@Override
 	public EncounterImage postImage(EncounterImage image) {
-		 em.persist(image);
-		 return image;
+		em.persist(image);
+		return image;
 	}
 
 	@Override
@@ -42,7 +44,6 @@ public class EncounterImageImpl implements EncounterImageDAO {
 
 		managedImage.setImageUrl(image.getImageUrl());
 		managedImage.setEncounter(image.getEncounter());
-		
 
 		return managedImage;
 	}
@@ -63,6 +64,29 @@ public class EncounterImageImpl implements EncounterImageDAO {
 	public List<EncounterImage> findImageByEncouterId(int encounterId) {
 		Encounter encounter = em.find(Encounter.class, encounterId);
 		return encounter.getImages();
+	}
+
+	@Override
+	public List<String> findAllImagesByBodyId(int bodyId) {
+		List<String> imageUrls = new ArrayList<>();
+
+		CelestialBody body = em.find(CelestialBody.class, bodyId);
+
+		List<Encounter> encounters = body.getEncounters();
+
+		if (body.getImageUrl() != null) {
+
+			imageUrls.add(body.getImageUrl());
+		}
+
+		for (Encounter encounter : encounters) {
+			List<EncounterImage> pics = encounter.getImages();
+			for (EncounterImage pic : pics) {
+				imageUrls.add(pic.getImageUrl());
+			}
+		}
+
+		return imageUrls;
 	}
 
 }

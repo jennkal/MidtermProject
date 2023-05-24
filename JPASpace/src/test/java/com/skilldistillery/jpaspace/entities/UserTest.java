@@ -51,7 +51,7 @@ class UserTest {
 	void user_mapping_rating() {
 		assertNotNull(user);
 		assertNotNull(user.getRatings());
-		assertEquals(5, user.getRatings().get(0).getRating());
+		assertEquals(5, user.getRatings().get(0).getRatingValue());
 	}
 	
 	@Test

@@ -12,7 +12,7 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
-			<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark"
+			<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary bg-dark"
 				data-bs-theme="dark">
 				<div class="container-fluid">
 					<h1 class="navbar-brand">Stacktrace Space Station</h1>
@@ -47,7 +47,7 @@
 			</nav>
 		</c:when>
 		<c:otherwise>
-			<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark"
+			<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary bg-dark"
 				data-bs-theme="dark">
 				<div class="container-fluid">
 					<h1 class="navbar-brand">Stacktrace Space Station</h1>

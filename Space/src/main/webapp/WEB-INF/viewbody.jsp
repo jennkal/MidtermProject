@@ -6,120 +6,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${body.name} Chat Room</title>
+
+<title>${body.name } Chat Room</title>
+
 <jsp:include page="bootheader.jsp" />
+
 </head>
-<body>
+<body style="background-color: #343a40;">
 	<jsp:include page="navbar.jsp" />
+	<div class="d-flex  min-vh-100 justify-content-between p-2">
+		<c:if test="${not empty sessionScope.loggedInUser}">
+			<c:choose>
+				<c:when test="${! empty body }">
 
-	
-<c:if test="${not empty sessionScope.loggedInUser}">
-	<c:choose>
-		<c:when test="${! empty body }">
-			<c:if test="${removedEncounter == true}">
-				<div class="alert alert-success" role="alert">
-					<p>Successfully removed the encounter.</p>
-				</div>
-			</c:if>
-			
-
-				<div
-					class="container min-vh-75 d-flex justify-content-center align-items-center">
-					<div id="div" class="container-fluid">
-						<table class="table table-dark table-hover"
-				style="width: 800px; margin-left: 250px; margin-top: 65px;">
-							<thead>
-								<tr>
-									<th>${body.category.classification}</th>
-									<th>${body.category.name}</th>
-									<th>${body.name}</th>
-									<th>${body.description}</th>
-									<c:if test="${! empty body.imageUrl }">
-									<th><img src="${body.imageUrl}" class="img-fluid rounded-start card-img-top" 
-							alt="picture of the ${body.name }" /></th>
-									
-									</c:if>
-									<c:if test="${! empty body.trackingUrl }">
-									<th>${body.trackingUrl}</th>
-									</c:if>
-								</tr>
-							</thead>
-							<tbody>
-							<c:if test="${! empty body.comments }">
-								<c:forEach var="comment" items="${body.comments }">
-									<tr>
-										<td>${comment.user.username }</td>
-										<td>${comment.createdAt }</td>
-									</tr>
-									<tr>
-
-										<td>${comment.body }</td>
-
-									</tr>
-
-							</c:forEach>
-							</c:if>
-							<c:if test="${! empty body.encounters }">
-								<c:forEach var="encounter" items="${body.encounters}">
-									<tr>
-										<td>${encounter.user.username}</td>
-										<td>${encounter.createdAt}</td>
-									</tr>
-									<tr>
-										<td>Description: ${encounter.description}</td>
-									</tr>
-									<tr>
-										<td>Behavior: ${encounter.behavior}</td>
-									</tr>
-								<%-- 	<c:if test="${not empty encounter.images}">
-										<tr>
-										<c:forEach var="image" items="encounter.images">
-											<c:if test="${not empty image}">
-												<c:if test="${not empty image.imageUrl}">
-												<td>
-													<img src="${image.imageUrl}" alt="Image of ${body.name}" />
-												</td>
-												</c:if>
-											</c:if>
-										</c:forEach>
-										<tr>
-									</c:if> --%>
-									<c:if test="${loggedInUser.id == encounter.user.id}">
-										<tr>
-											<td><a href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button type="button"
-									class="btn btn-outline-primary">Edit this Encounter</button></a></td>
-											<td><a href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button type="button"
-									class="btn btn-outline-primary">Delete this Encounter</button></a></td>
-										</tr>
-									</c:if>
-
-								</c:forEach>
-							</c:if>
-							<tr>
-								<td><a href="encounterform.do?bodyId=${body.id}"><button type="button"
-									class="btn btn-outline-primary">Add an Encounter</button></a></td>
-							</tr>
-							</tbody>
-						</table>
+					<div class="d-flex p-2 align-self-end flex-shrink-1"
+						style="max-width: 240px; max-height: 200px; background-color: rgba(18, 18, 18, .5); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid black; border-radius: 10px; margin-bottom: 100px; margin-left: 15px;">
+						<div class="table-responsive">
+							<ul style="list-style: none; text-align: left; color: white;">
+								<li>${body.category.classification}</li>
+								<li>${body.category.name}</li>
+								<li>${body.name}</li>
+								<li>${body.description}</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-		
-		</c:when>
-		<c:otherwise>
-			<div class="alert alert-danger" role="alert">
-				<p>Celestial bodies does not exist in database</p>
-			</div>
-		</c:otherwise>
-
-	</c:choose>
-</c:if>
 
 
+					<div
+						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
+						<div class="d-flex p-2 align-self-center"
+							style="margin-top: -53px;">
+
+							<c:if test="${! empty images }">
+								<div id="carouselExample" class="carousel slide">
+									<div class="carousel-inner">
+										<c:forEach varStatus="i" var="image" items="${images}">
+											<c:choose>
+												<c:when test="${i.index == 0 }">
+													<div class="carousel-item active">
+														<img class="d-block w-100" src="${image}"
+															alt="picture of the ${body.name }"
+															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+													</div>
+
+												</c:when>
+												<c:otherwise>
+													<div class="carousel-item">
+														<img class="d-block w-100" src="${image}"
+															alt="picture of the ${body.name }"
+															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+													</div>
+
+												</c:otherwise>
+
+											</c:choose>
+
+										</c:forEach>
+									</div>
+									<button class="carousel-control-prev" type="button"
+										data-bs-target="#carouselExample" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button"
+										data-bs-target="#carouselExample" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
+								</div>
+							</c:if>
+						</div>
+						<div class="d-flex p-2 align-self-center"
+							style="max-height: 150px; max-width: 800px; margin-bottom: 80px;">
+							<div class="table-responsive">
+								<table class="table table-dark table-hover">
+									<thead>
+										<tr>
+											<td>Username</td>
+											<td>Posted At</td>
+											<td>Comment</td>
+										</tr>
+									</thead>
+									<tbody>
+										<c:if test="${! empty body.comments }">
+										<h6>Comments</h6>
+											<c:forEach var="comment" items="${body.comments }">
+												<tr>
+													<td><a href="singleuser.do?username=${user.username}">${comment.user.username }</a></td>
+													<td>${comment.createdAt }</td>
+													<td>${comment.body }</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+					</div>
+
+
+					<div class=" d-flex p-2 align-self-end flex-shrink-1"
+						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
+
+						<a href="${body.trackingUrl}"> <img alt="star map"
+							src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
+							style="max-height: 300px; max-width: auto; border-radius: 50%;">
+						</a>
+
+					</div>
+
+				</c:when>
+				<c:otherwise>
+					<div class="alert alert-danger" role="alert">
+						<p>Celestial bodies does not exist in database</p>
+					</div>
+				</c:otherwise>
+
+			</c:choose>
+		</c:if>
+	</div>
 	<jsp:include page="bootfooter.jsp" />
 </body>
 </html>
 
 
-	<jsp:include page="bootfooter.jsp" />
+<jsp:include page="bootfooter.jsp" />
 </body>
 </html>

@@ -20,7 +20,7 @@ public class Rating {
 	private RatingId id;
 	
 	@Column(name="rating_value")
-	private int rating;
+	private int ratingValue;
 	
 	@Column(name = "created_at")
 	@CreationTimestamp
@@ -52,12 +52,12 @@ public class Rating {
 		this.id = id;
 	}
 
-	public int getRating() {
-		return rating;
+	public int getRatingValue() {
+		return ratingValue;
 	}
 
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setRatingValue(int ratingValue) {
+		this.ratingValue = ratingValue;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -95,7 +95,7 @@ public class Rating {
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", rating=" + rating + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+		return "Rating [id=" + id + ", rating=" + ratingValue + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
 				+ "]";
 	}
 

@@ -33,12 +33,14 @@ public class EncounterController {
 	@Autowired
 	private EncounterDAO encounterDAO;
 
-	@GetMapping(path = "viewimage.do")
-	public String getList(Model model) {
-		List<EncounterImage> list = imageDAO.findall();
-		model.addAttribute("images", list);
-		return "viewbody";
-	}
+	
+//	@PostMapping("viewimage.do")
+//	public String getList(Model model, int bodyid) {
+//		List<String> list = imageDAO.findAllImagesByBodyId(bodyid);
+//		model.addAttribute("images", list);
+//		return "viewbody";
+//	}
+//	
 
 	@GetMapping(path = "encounterform.do")
 	public String addEncounterForm(int bodyId, Model model) {
