@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpaspace.data.CategoryDAO;
 import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
+import com.skilldistillery.jpaspace.data.EncounterImageDAO;
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
 
@@ -21,9 +22,10 @@ public class CelestialBodyController {
 
 	@Autowired
 	private CelestialBodyDAO cbDAO;
-
-//	@Autowired
-//	private CelestialBodyCommentDAO commentDAO;
+	
+	@Autowired
+	
+	private EncounterImageDAO imageDAO;
 
 	@Autowired
 	private CategoryDAO cateDAO;
@@ -73,6 +75,8 @@ public class CelestialBodyController {
 	public String singleBody(@RequestParam("id") int id, Model model) {
 		CelestialBody body = cbDAO.findCelestialBodyById(id);
 		model.addAttribute("body",body);
+		List<String> list = imageDAO.findAllImagesByBodyId(id);
+		model.addAttribute("images", list);
 		return "viewbody";
-	}	
+
 }

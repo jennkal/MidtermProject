@@ -26,7 +26,8 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@Autowired RatingDAO ratingDAO;
+	@Autowired 
+	private RatingDAO ratingDAO;
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String home(Model model) {
@@ -108,22 +109,10 @@ public class UserController {
 		return "otheruser";
 	}
 	
-	@PostMapping(path="rateEncounter.do", params="rate")
-	public String postRating(@RequestParam("rate") int rating, Model model) {
-		int sum;	
-		if(rating <5 && rating> 0) {
-			 sum = rating;
-			ratingDAO.postRating(sum);
-		} else {
-			sum = rating + rating;
-			ratingDAO.updateRatingById(null, sum);
-		}
-
-		return "viewbody";
+	@PostMapping("rateEncounter.do")
+	public String postRating(Rating rating, Model model, int encounterId, int userId, RedirectAttributes redir) {
+		Rating rate = ratingDAO.postRating(rating, encounterId, userId);
+		return "redirect:singleview.do?id=" + rating.getEncounter().getCelestialBody().getId();
 		
 	}
-	
-	
-	
-
 }

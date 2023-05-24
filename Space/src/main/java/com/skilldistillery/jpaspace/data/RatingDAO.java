@@ -10,7 +10,7 @@ public interface RatingDAO {
 	
 	Rating findRatingById(int ratingId);
 	
-	int postRating(int rateId);
+	Rating postRating( Rating rate, int encounterId, int userId);
 
 	Rating updateRatingById(Rating rate, int rateId);
 

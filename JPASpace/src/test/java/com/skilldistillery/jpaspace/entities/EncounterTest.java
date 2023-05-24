@@ -54,7 +54,7 @@ class EncounterTest {
 		
 		assertEquals("http://cs.astronomy.com/cfs-file.ashx/__key/telligent-evolution-components-attachments/13-59-00-00-00-49-12-35/M16-_2D00_-SHO_2D00_RGB.jpg", encounter.getImages().get(0).getImageUrl());
 		assertEquals(1, encounter.getComments().get(0).getId());
-		assertEquals(5, encounter.getRatings().get(0).getRating());
+		assertEquals(5, encounter.getRatings().get(0).getRatingValue());
 		
 	}
 
