@@ -17,13 +17,12 @@
 	<div class="d-flex  min-vh-100 justify-content-between p-2">
 		<c:if test="${not empty sessionScope.loggedInUser}">
 			<c:if test="${not empty encounter}">
-				<div class="d-flex p-2 align-self-center"
-					style="max-height: 350px; max-width: 80%; margin-bottom: 80px; border: 2px solid red;">
+				
 					<div class="table-responsive">
 
 
 						<table class="table table-dark table-hover"
-							style="margin-left: 550px; margin-top: -300px; margin-bottom: 100px;">
+							style="width: 85%; margin: 50px auto;">
 							<thead>
 								<tr>
 									<th>UserName</th>
@@ -77,7 +76,7 @@
 							</tfoot>
 						</table>
 					</div>
-				</div>
+
 			</c:if>
 
 

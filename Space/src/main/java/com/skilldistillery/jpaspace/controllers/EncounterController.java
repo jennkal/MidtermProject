@@ -2,8 +2,6 @@ package com.skilldistillery.jpaspace.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
 import com.skilldistillery.jpaspace.data.EncounterDAO;
 import com.skilldistillery.jpaspace.data.EncounterImageDAO;
-import com.skilldistillery.jpaspace.data.UserDAO;
+import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.Encounter;
-import com.skilldistillery.jpaspace.entities.EncounterImage;
-import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
 public class EncounterController {
@@ -32,6 +29,9 @@ public class EncounterController {
 
 	@Autowired
 	private EncounterDAO encounterDAO;
+	
+	@Autowired
+	private CelestialBodyDAO bodyDAO;
 
 //	@PostMapping("viewimage.do")
 //	public String getList(Model model, int bodyid) {
@@ -41,11 +41,22 @@ public class EncounterController {
 //	}
 //	
 
-	@PostMapping(path="encounterlist.do", params="bodyId")
+	@GetMapping(path="encounterlist.do", params="bodyId")
 	public String viewEncountersByBody(Model model, int bodyId) {
 	 List<Encounter> encounters = encounterDAO.findEncountersByBodyId(bodyId); 
+	 CelestialBody body = bodyDAO.findCelestialBodyById(bodyId);
 	 model.addAttribute("encounters", encounters);
+	 model.addAttribute("body", body);
 	 return "encounterlist";
+	}
+	
+	@GetMapping(path="viewencounter.do", params="encounterId")
+	public String viewSingleEncounter(Model model, int encounterId) {
+	 Encounter encounter = encounterDAO.findEncounterById(encounterId);
+	 CelestialBody body = encounter.getCelestialBody();
+	 model.addAttribute("encounter", encounter);
+	 model.addAttribute("body", body);
+	 return "viewencounter";
 	}
 
 	@GetMapping(path = "encounterform.do")
