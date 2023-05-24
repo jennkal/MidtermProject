@@ -17,7 +17,6 @@
 			<c:choose>
 				<c:when test="${! empty body }">
 
-
 					<div class="d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: 240px; max-height: 200px; background-color: rgba(18, 18, 18, .5); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid black; border-radius: 10px; margin-bottom: 100px; margin-left: 15px;">
 						<div class="table-responsive">
@@ -101,6 +100,8 @@
 								</table>
 							</div>
 						</div>
+
+
 					</div>
 
 
