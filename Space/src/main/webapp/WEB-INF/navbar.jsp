@@ -53,6 +53,9 @@
 					<h1 class="navbar-brand">Stacktrace Space Station</h1>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 					<form class="d-flex" action="register.do" method="GET">
+					<a href="home.do"><button type="button"
+							class="btn btn-outline-primary">Home</button></a>
+					<br>
 						<input class="btn btn-outline-success" type="submit"
 							value="Sign Up" />
 					</form>
