@@ -72,7 +72,7 @@
 				</form>
 			</div>
 
-			<c:if test="${not empty loggedInUser.encounters}">
+<%-- 			<c:if test="${not empty loggedInUser.encounters}">
 				<div class="d-flex p-2 align-self-center"
 					style="max-height: 350px; max-width: 800px; margin-bottom: 80px; border: 2px solid red;">
 					<div class="table-responsive">
@@ -125,14 +125,13 @@
 								<tr>
 									<td colspan="5"><a
 										href="encounterform.do?bodyId=${body.id}"><button
-												type="button" class="btn btn-outline-primary">Add
-												an Encounter</button></a></td>
+												type="button" class="btn btn-outline-primary">Add an Encounter</button></a></td>
 								</tr>
 							</tfoot>
 						</table>
 					</div>
 				</div>
-			</c:if>
+			</c:if> --%>
 		</c:when>
 		<c:otherwise>
 			<p>Not Logged In.</p>

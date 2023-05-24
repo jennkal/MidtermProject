@@ -33,7 +33,6 @@ public class EncounterController {
 	@Autowired
 	private EncounterDAO encounterDAO;
 
-	
 //	@PostMapping("viewimage.do")
 //	public String getList(Model model, int bodyid) {
 //		List<String> list = imageDAO.findAllImagesByBodyId(bodyid);
@@ -41,6 +40,13 @@ public class EncounterController {
 //		return "viewbody";
 //	}
 //	
+
+	@PostMapping(path="encounterlist.do", params="bodyId")
+	public String viewEncountersByBody(Model model, int bodyId) {
+	 List<Encounter> encounters = encounterDAO.findEncountersByBodyId(bodyId); 
+	 model.addAttribute("encounters", encounters);
+	 return "encounterlist";
+	}
 
 	@GetMapping(path = "encounterform.do")
 	public String addEncounterForm(int bodyId, Model model) {
@@ -70,17 +76,18 @@ public class EncounterController {
 		}
 
 	}
-	
+
 	@GetMapping(path = "editencounterform.do")
 	public String editEncounterForm(int encounterId, int bodyId, Model model) {
-		Encounter existingEncounter = encounterDAO.findEncounterById(encounterId); 
+		Encounter existingEncounter = encounterDAO.findEncounterById(encounterId);
 		model.addAttribute("existingEncounter", existingEncounter);
 		model.addAttribute("bodyId", bodyId);
 		return "editencounter";
 	}
-	
+
 	@PostMapping("editencounter.do")
-	public String updateEncounter(Encounter encounter, Model model, RedirectAttributes redir, int encounterId, int bodyId) {
+	public String updateEncounter(Encounter encounter, Model model, RedirectAttributes redir, int encounterId,
+			int bodyId) {
 
 		Encounter updatedEncounter = encounterDAO.updateEncounter(encounter, encounterId);
 
@@ -102,7 +109,7 @@ public class EncounterController {
 
 	}
 
-	@GetMapping(path="deleteencounter.do", params={"encounterId", "bodyId"})
+	@GetMapping(path = "deleteencounter.do", params = { "encounterId", "bodyId" })
 	public String removeEncounter(Model model, RedirectAttributes redir, int encounterId, int bodyId) {
 
 		boolean removedEncounter = encounterDAO.removeEncounter(encounterId);
