@@ -9,7 +9,7 @@ public interface CelestialBodyCommentDAO {
 	
 	CelestialBodyComment findCommentById(int commentId);
 	
-	CelestialBodyComment postComment(CelestialBodyComment comment);
+	CelestialBodyComment postComment(CelestialBodyComment comment, int userId, int bodyId);
 	
 	CelestialBodyComment updateCommentById(CelestialBodyComment comment, int commentId);
 	
