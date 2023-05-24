@@ -77,6 +77,7 @@
 					style="max-height: 350px; max-width: 800px; margin-bottom: 80px; border: 2px solid red;">
 					<div class="table-responsive">
 
+
 						<table class="table table-dark table-hover"
 							style="margin-left: 550px; margin-top: -300px; margin-bottom: 100px;">
 							<thead>
@@ -91,6 +92,7 @@
 							<tbody>
 								<c:forEach var="encounter" items="${loggedInUser.encounters}">
 									<c:if test="${not empty encounter}">
+
 
 										<tr>
 											<td>${encounter.user.username }</td>

@@ -11,10 +11,10 @@ public interface CelestialBodyCommentDAO {
 	
 	CelestialBodyComment postComment(CelestialBodyComment comment, int userId, int bodyId);
 	
-	CelestialBodyComment updateCommentById(CelestialBodyComment comment, int commentId);
-	
 	boolean removeCommentById(int commentId);
 
 	List<CelestialBodyComment> findall(CelestialBody cbid);
+
+	CelestialBodyComment updateCommentById(CelestialBodyComment comment, int userId, int bodyId);
 
 }

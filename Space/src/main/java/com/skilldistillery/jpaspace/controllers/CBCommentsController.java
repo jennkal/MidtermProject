@@ -21,7 +21,7 @@ public class CBCommentsController {
 	@Autowired
 	private CelestialBodyCommentDAO cbcDAO;
 	
-	@GetMapping(path="commentsform.do")
+	@GetMapping(path="commentsform.do", params="bodyId")
 	public String addCommentForCelestialBody(int bodyId, Model model) {
 		
 		model.addAttribute("bodyId", bodyId);
@@ -32,19 +32,37 @@ public class CBCommentsController {
 	public String addCommentToDB(HttpSession session, CelestialBodyComment comment, Model model, RedirectAttributes redir, int userId, int bodyId) {
 		
 		CelestialBodyComment commentToAdd = cbcDAO.postComment(comment, userId, bodyId);
-		//commentToAdd.setBody(bodyText);
-		//commentToAdd.setEnabled(true);
+
+		model.addAttribute("bodyId", bodyId);
+		redir.addFlashAttribute("bodyId", bodyId);
+		return "redirect:singleview.do?id=" + bodyId;
+	}
+	@GetMapping(path="updateform.do", params="commentId")
+	public String updateCommentForCelestialBody(int commentId, Model model) {
 		
-		//LocalDateTime rightNow = LocalDateTime.now();
-		//commentToAdd.setCreatedAt(rightNow);
-		
-		//User user = new User();
-		//user.setId(userId);
-		//commentToAdd.setUser(user);
-		
+		model.addAttribute("commentId", commentId);
+		model.addAttribute("comment", cbcDAO.findCommentById(commentId));
+		return "updatecomment";
+	}
+	
+	@PostMapping(path = "performUpdate.do", params={"commentId", "userId", "bodyId"})
+	public String updateComment(HttpSession session, CelestialBodyComment comment, Model model, RedirectAttributes redir, int userId, int commentId, int bodyId) {
+
+		CelestialBodyComment commentUpdated = cbcDAO.updateCommentById(comment, userId, commentId);
 		
 		model.addAttribute("bodyId", bodyId);
 		redir.addFlashAttribute("bodyId", bodyId);
 		return "redirect:singleview.do?id=" + bodyId;
 	}
+	
+	
+	@GetMapping(path = "deleteComment.do", params={"commentId", "bodyId"})
+	public String deleteLog(CelestialBodyComment comment, Model model, RedirectAttributes redir, int commentId, int bodyId) {
+
+		boolean removed = cbcDAO.removeCommentById(commentId);
+		model.addAttribute("removed", removed);
+		redir.addFlashAttribute("removed", removed);
+		return "redirect:singleview.do?id=" + bodyId;
+	}
+	
 }
