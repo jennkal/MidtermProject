@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.CelestialBodyComment;
+import com.skilldistillery.jpaspace.entities.User;
 
 @Service
 @Transactional
@@ -30,9 +31,11 @@ public class CelestialBodyCommentImpl implements CelestialBodyCommentDAO {
 	}
 
 	@Override
-	public CelestialBodyComment postComment(CelestialBodyComment comment) {
+	public CelestialBodyComment postComment(CelestialBodyComment comment, int userId, int bodyId) {
 		
-		
+		comment.setUser(em.find(User.class, userId));
+		comment.setCelestialBody(em.find(CelestialBody.class, bodyId));
+		comment.setEnabled(true);
 		em.persist(comment);
 		
 		return comment;
@@ -44,8 +47,8 @@ public class CelestialBodyCommentImpl implements CelestialBodyCommentDAO {
 		  CelestialBodyComment managed = em.find(CelestialBodyComment.class, commentId);
 		  
 		  managed.setBody(comment.getBody());
-		  managed.setEnabled(comment.getEnabled());
-		  managed.setCreatedAt(comment.getCreatedAt());
+		//  managed.setEnabled(comment.getEnabled());
+		//  managed.setCreatedAt(comment.getCreatedAt());
 		  managed.setUpdatedAt(comment.getUpdatedAt());
 		  managed.setReply(comment.getReply());
 		  managed.setReplies(comment.getReplies());
@@ -61,6 +64,12 @@ public class CelestialBodyCommentImpl implements CelestialBodyCommentDAO {
 		
 		if (commentId != 0) {
 			CelestialBodyComment comment = em.find(CelestialBodyComment.class, commentId);
+			
+			User user = em.find(User.class, comment.getUser().getId());
+			user.removeComment(comment);
+			CelestialBody body = em.find(CelestialBody.class, comment.getCelestialBody().getId());
+			body.removeComment(comment);
+			
 			em.remove(comment);
 			return true;
 		} else {

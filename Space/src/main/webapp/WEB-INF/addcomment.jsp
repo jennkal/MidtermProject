@@ -24,9 +24,9 @@
 				<form action="addcomment.do?userId=${loggedInUser.id}&bodyId=${bodyId}" method="POST"
 					style="width: 600px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 					
-			 		<input type="text" name="comment" placeholder="Enter Comment" required /> <br> 
+			 		<input type="text" name="body" placeholder="Enter Comment" required /> <br> 
 					
-					<input type="submit" value="Submit Comment"> 
+					<input value="Submit" type="submit" class="btn btn-outline-success"/>
 					
 					<a href="home.do"><button type="button"	class="btn btn-outline-danger">Cancel</button></a>
 				</form>
