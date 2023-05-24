@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpaspace.data.RatingDAO;
 import com.skilldistillery.jpaspace.data.UserDAO;
+import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.Rating;
 import com.skilldistillery.jpaspace.entities.User;
 
@@ -114,6 +115,37 @@ public class UserController {
 		Rating rate = ratingDAO.postRating(rating, encounterId, userId);
 		return "redirect:singleview.do?id=" + rating.getEncounter().getCelestialBody().getId();
 		
+	}
+	
+	@GetMapping(path = "editprofile.do")
+	public String editEncounterForm() {
+		return "editprofile";
+	}
+	
+	@PostMapping(path="edituser.do", params="userId")
+	public String updateEncounter(HttpSession session, User user, int userId, Model model, RedirectAttributes redir) {
+
+		User updatedUser = userDAO.updateUser(userId, user);
+
+		if (updatedUser != null) {
+			User authenticatedUser = userDAO.findByUsernameAndPassword(updatedUser.getUsername(), updatedUser.getPassword());
+			if (authenticatedUser != null) {
+				session.setAttribute("loggedInUser", authenticatedUser);
+				return "redirect:userprofile.do";
+			}
+			else {
+				boolean loggedOut = true;
+				model.addAttribute("loggedOut", loggedOut);
+				redir.addFlashAttribute("loggedOut", loggedOut);
+				return "redirect:home.do";
+			}	
+		} else {
+			boolean editError = true;
+			model.addAttribute("editError", editError);
+			redir.addFlashAttribute("editError", editError);
+			return "redirect:edituser.do";
+		}
+
 	}
 
 }

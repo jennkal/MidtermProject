@@ -16,7 +16,7 @@
 				</div>
 			</c:if>
 			<div class="container d-flex justify-content-center">
-				<h1 style="margin-bottom: 50px;">Overwrite any Encounter Fields that you Want to Update</h1>
+				<h1 style="margin-bottom: 50px;">Overwrite any encounter fields that you want to update.</h1>
 			</div>
 			<div
 				class="container min-vh-50 d-flex justify-content-center align-items-center">

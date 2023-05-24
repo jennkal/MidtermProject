@@ -24,13 +24,14 @@
 				style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
 				<img src="${loggedInUser.imageUrl}"
 					class="img-fluid rounded-start card-img-top"
-					alt="picture of the ${loggedInUser.username }">
+					alt="picture of ${loggedInUser.username }">
 				<div class="card-body">
 					<h5 class="card-title">${loggedInUser.username}</h5>
 					<p class="card-text">${loggedInUser.about}</p>
 					<p class="card-text">
 						<small class="text-body-secondary">${loggedInUser.role } </small>
 					</p>
+					<a href="editprofile.do" ><button type="button" class="btn btn-outline-primary">Update Profile</button></a>
 				</div>
 			</div>
 
