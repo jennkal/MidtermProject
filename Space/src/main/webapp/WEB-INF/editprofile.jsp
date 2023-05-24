@@ -24,12 +24,29 @@
 			</div>
 
 			<div class="container min-vh-50 d-flex justify-content-center align-items-center">
-				<form class="input" action="edituser.do?userId=${loggedInUser.id}" method="POST" style="width: 300px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
-					<input type="text" name="username" value="${loggedInUser.username}" disabled/><br> 
+				<form class="input" action="edituser.do?userId=${loggedInUser.id}" method="POST" style="width: 70%; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+					<label for="username">Username:</label><br>
+					<input type="text" id="username" name="username" value="${loggedInUser.username}" disabled/><br> 
 <!-- 					<input type="text" name="password" placeholder="Create a Password" required /><br>  -->
-					<input type="url" name="imageUrl" value="${loggedInUser.imageUrl}" /><br>
-					<label for="about">${loggedInUser.about}<textarea id="about" class="input" name="about" rows="5" cols="20">
-					</textarea>	</label> <br> 
+					<c:choose>
+						<c:when test="${not empty loggedInUser.imageUrl}">
+							<label for="imageUrl">Profile Picture URL:</label><br>
+							<input type="url" id="imageUrl" name="imageUrl" value="${loggedInUser.imageUrl}" /><br>
+						</c:when>
+						<c:otherwise>
+							<input type="url" name="imageUrl" placeholder="Optional: Add a Profile Picture" /><br>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${not empty loggedInUser.about}">
+							<label for="about">Tell About Us Yourself:</label>
+							<textarea id="about" class="input" name="about" rows="5" cols="20" placeholder="${loggedInUser.about}"></textarea> <br> 
+						</c:when>	
+						<c:otherwise>
+							<label for="about">Tell About Us Yourself:</label>
+							<textarea id="about" class="input" name="about" rows="5" cols="20" placeholder="Optional:"></textarea> <br> 
+						</c:otherwise>
+					</c:choose>		
 					<input type="submit" value="Update Account"> <br>
 					<a href="userprofile.do" ><button type="button" class="btn btn-outline-primary">Cancel</button></a>
 		</form>

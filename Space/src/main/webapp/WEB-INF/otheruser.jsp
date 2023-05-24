@@ -22,9 +22,14 @@
 
 	<div class="card mb-3"
 		style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
-		<img src="${otheruser.imageUrl}"
-			class="img-fluid rounded-start card-img-top"
-			alt="picture of the ${otheruser.username }">
+		<c:choose>
+						<c:when test="${not empty otheruser.imageUrl}">				
+							<img src="${otheruser.imageUrl}" class="img-fluid rounded-start card-img-top" alt="picture of ${otheruser.username }">
+						</c:when>
+						<c:otherwise>
+							<img src="https://static.vecteezy.com/system/resources/previews/000/700/639/original/astronaut-cartoon-floating-with-balloon-planets-in-space-vector.jpg" class="img-fluid rounded-start card-img-top" alt="picture of ${loggedInUser.username }">
+						</c:otherwise>
+					</c:choose>
 		<div class="card-body">
 			<h5 class="card-title">${otheruser.username}</h5>
 			<p class="card-text">${otheruser.about}</p>
