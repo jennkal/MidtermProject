@@ -17,6 +17,6 @@ public interface EncounterDAO {
 	
 	Encounter updateEncounter(Encounter encounter, int encounterId);
 	
-	boolean removeencounter(int encountertId);
+	boolean removeEncounter(int encounterId);
 
 }

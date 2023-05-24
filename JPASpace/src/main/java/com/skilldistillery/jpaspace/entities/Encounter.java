@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.entities;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;

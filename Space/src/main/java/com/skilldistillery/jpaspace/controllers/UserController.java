@@ -115,4 +115,5 @@ public class UserController {
 		return "redirect:singleview.do?id=" + rating.getEncounter().getCelestialBody().getId();
 		
 	}
+
 }

@@ -1,5 +1,6 @@
 package com.skilldistillery.jpaspace.data;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,20 +24,25 @@ public class EncounterImpl implements EncounterDAO {
 
 	@Override
 	public List<Encounter> findall() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Encounter> allEncounters = new ArrayList<>();
+		String jpql = "SELECT encounter FROM Encounter encounter";
+		allEncounters = em.createQuery(jpql, Encounter.class).getResultList();
+		return allEncounters;
 	}
 
 	@Override
 	public Encounter findEncounterById(int encounterId) {
-		// TODO Auto-generated method stub
-		return null;
+		Encounter encounter = em.find(Encounter.class, encounterId);
+		return encounter;
 	}
 
 	@Override
 	public List<Encounter> searchByKeyword(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Encounter> keywordEncounters = new ArrayList<>();
+		String jpql = "SELECT encounter FROM Encounter encounter WHERE encounter.title LIKE :bindKeyword "
+				+ "OR encounter.description LIKE :bindKeyword OR encounter.behavior LIKE :bindKeyword";
+		keywordEncounters = em.createQuery(jpql, Encounter.class).setParameter("bindKeyword", "%" + keyword + "%").getResultList();
+		return keywordEncounters;
 	}
 
 	@Override
@@ -46,7 +52,7 @@ public class EncounterImpl implements EncounterDAO {
 		encounter.setUser(em.find(User.class, userId));
 		encounter.setCelestialBody(em.find(CelestialBody.class, bodyId));
 		encounter.setEnabled(true);
-		
+				
 		Encounter newEncounter = null;
 		em.persist(encounter);
 		newEncounter = em.find(Encounter.class, encounter.getId());
@@ -87,14 +93,33 @@ public class EncounterImpl implements EncounterDAO {
 
 	@Override
 	public Encounter updateEncounter(Encounter encounter, int encounterId) {
-		// TODO Auto-generated method stub
-		return null;
+		Encounter managedEncounter = em.find(Encounter.class, encounterId);
+		managedEncounter.setTitle(encounter.getTitle());
+		managedEncounter.setDescription(encounter.getDescription());
+		managedEncounter.setBehavior(encounter.getBehavior());
+		managedEncounter.setUpdatedAt(encounter.getUpdatedAt());
+		managedEncounter.setEncounterDate(encounter.getEncounterDate());
+		managedEncounter.setEncounterTime(encounter.getEncounterTime());
+		managedEncounter.setCaptureMethod(encounter.getCaptureMethod());
+		return managedEncounter;
 	}
 
 	@Override
-	public boolean removeencounter(int encountertId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeEncounter(int encounterId) {
+		boolean removedEncounter;
+		Encounter managedEncounter = em.find(Encounter.class, encounterId);
+		User user = em.find(User.class, managedEncounter.getUser().getId());
+		user.removeEncounter(managedEncounter);
+		CelestialBody body = em.find(CelestialBody.class, managedEncounter.getCelestialBody().getId());
+		body.removeEncounter(managedEncounter);
+		try {
+			em.remove(managedEncounter);
+			removedEncounter = true;
+		}
+		catch (Exception e) {
+			removedEncounter = false;
+		}
+		return removedEncounter;
 	}
 
 }
