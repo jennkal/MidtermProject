@@ -44,10 +44,9 @@
 
 
 
-			<div
-				class="container min-vh-50 d-flex  align-items-center">
+			<div  style="width: 260; height: 170; margin-left: 15px">
 				<form action="addbody.do"
-					style="width: 250px; height: 160px; padding-left: 10px; margin-left:-45px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+					style="width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 						<p style="">Add Your New Discovery</p>
 					<select name="classificationId">
 						<option selected value="1">Nebula</option>
