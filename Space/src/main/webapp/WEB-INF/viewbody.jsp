@@ -10,35 +10,38 @@
 <jsp:include page="bootheader.jsp" />
 
 </head>
-<body>
+<body style="background-color: #343a40;">
 	<jsp:include page="navbar.jsp" />
-	<div class="d-flex  min-vh-100 justify-content-between p-2"
-		style="border: 2px solid red;">
+	<div class="d-flex  min-vh-100 justify-content-between p-2">
 		<c:if test="${not empty sessionScope.loggedInUser}">
 			<c:choose>
 				<c:when test="${! empty body }">
 
-					<div class="d-flex p-2 align-self-end"
+
+					<div class="d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: 240px; max-height: 200px; background-color: rgba(18, 18, 18, .5); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid black; border-radius: 10px; margin-bottom: 100px; margin-left: 15px;">
-						<ul style="list-style: none; text-align: left;">
-							<li>${body.category.classification}</li>
-							<li>${body.category.name}</li>
-							<li>${body.name}</li>
-							<li>${body.description}</li>
-						</ul>
+						<div class="table-responsive">
+							<ul style="list-style: none; text-align: left; color: white;">
+								<li>${body.category.classification}</li>
+								<li>${body.category.name}</li>
+								<li>${body.name}</li>
+								<li>${body.description}</li>
+							</ul>
+						</div>
 					</div>
 
 
-					<div class=" d-flex p-2 flex-column align-self-center flex-fill"
-						style="border: 2px solid red; max-width: 400px; max-height: 550px;">
-						<img src="${body.imageUrl}" alt="picture of the ${body.name }"
-							style="max-width: 300px; max-height: 250px; border-radius: 5%;">
-
-						<div
-							class="d-flex p-2 align-self-end" style="max-height: 300px;">
+					<div
+						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
+						<div class="d-flex p-2 align-self-center"
+							style="margin-top: -53px;">
+							<img src="${body.imageUrl}" alt="picture of the ${body.name }"
+								style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+						</div>
+						<div class="d-flex p-2 align-self-center"
+							style="max-height: 150px; max-width: 800px; margin-bottom: 80px;">
 							<div class="table-responsive">
-								<table class="table table-dark table-hover"
-									style="max-height: 100px;">
+								<table class="table table-dark table-hover">
 									<thead>
 										<tr>
 											<td>Username</td>
@@ -63,12 +66,12 @@
 					</div>
 
 
-					<div class=" d-flex p-2 align-self-end"
-						style="border: 2px solid red; max-width: auto; max-height: 310px; margin-bottom: 100px; margin-right: 20px;">
+					<div class=" d-flex p-2 align-self-end flex-shrink-1"
+						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
 
 						<a href="${body.trackingUrl}"> <img alt="star map"
 							src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
-							style="max-height: 300px; max-width: auto; border-radius: 48%;">
+							style="max-height: 300px; max-width: auto; border-radius: 50%;">
 						</a>
 
 					</div>
