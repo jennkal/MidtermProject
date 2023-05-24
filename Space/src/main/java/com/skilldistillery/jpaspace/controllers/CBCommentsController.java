@@ -21,7 +21,7 @@ public class CBCommentsController {
 	@Autowired
 	private CelestialBodyCommentDAO cbcDAO;
 	
-	@GetMapping(path="commentsform.do")
+	@GetMapping(path="commentsform.do", params="bodyId")
 	public String addCommentForCelestialBody(int bodyId, Model model) {
 		
 		model.addAttribute("bodyId", bodyId);
@@ -37,22 +37,31 @@ public class CBCommentsController {
 		redir.addFlashAttribute("bodyId", bodyId);
 		return "redirect:singleview.do?id=" + bodyId;
 	}
+	@GetMapping(path="updateform.do", params="commentId")
+	public String updateCommentForCelestialBody(int commentId, Model model) {
+		
+		model.addAttribute("commentId", commentId);
+		model.addAttribute("comment", cbcDAO.findCommentById(commentId));
+		return "updatecomment";
+	}
 	
-	@GetMapping(path = "performUpdate.do")
-	public String updateComment(HttpSession session, CelestialBodyComment comment, Model model, RedirectAttributes redir, int userId, int bodyId) {
+	@PostMapping(path = "performUpdate.do", params={"commentId", "userId", "bodyId"})
+	public String updateComment(HttpSession session, CelestialBodyComment comment, Model model, RedirectAttributes redir, int userId, int commentId, int bodyId) {
 
-		CelestialBodyComment commentUpdated = cbcDAO.updateCommentById(comment, userId, bodyId);
+		CelestialBodyComment commentUpdated = cbcDAO.updateCommentById(comment, userId, commentId);
 		
 		model.addAttribute("bodyId", bodyId);
 		redir.addFlashAttribute("bodyId", bodyId);
 		return "redirect:singleview.do?id=" + bodyId;
 	}
 	
-	@GetMapping(path = "deleteComment.do")
-	public String deleteLog(CelestialBodyComment comment, Model model, RedirectAttributes redir, int bodyId) {
+	
+	@GetMapping(path = "deleteComment.do", params={"commentId", "bodyId"})
+	public String deleteLog(CelestialBodyComment comment, Model model, RedirectAttributes redir, int commentId, int bodyId) {
 
-		cbcDAO.removeCommentById(bodyId);
-
+		boolean removed = cbcDAO.removeCommentById(commentId);
+		model.addAttribute("removed", removed);
+		redir.addFlashAttribute("removed", removed);
 		return "redirect:singleview.do?id=" + bodyId;
 	}
 	

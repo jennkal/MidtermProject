@@ -16,9 +16,15 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="d-flex  min-vh-100 justify-content-between p-2">
 		<c:if test="${not empty sessionScope.loggedInUser}">
+		
 			<c:choose>
 				<c:when test="${! empty body }">
-
+				
+			<c:if test="${removed == true}">
+				<div class="alert alert-success" role="alert">
+					<p>Successfully removed the comment.</p>
+				</div>
+			</c:if>
 					<div class="d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: 240px; max-height: 200px; background-color: rgba(18, 18, 18, .5); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid black; border-radius: 10px; margin-bottom: 100px; margin-left: 15px;">
 						<div class="table-responsive">
@@ -85,6 +91,8 @@
 											<td>Username</td>
 											<td>Posted At</td>
 											<td>Comment</td>
+											<td>Update Comment</td>
+											<td>Delete Comment</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -96,23 +104,27 @@
 													<td>${comment.createdAt }</td>
 													<td>${comment.body }</td>
 													
-													<td><a href="preformUpdate.do?bodyId=${body.id}"> update comment </a></td>
+													<c:if test="${loggedInUser.id == comment.user.id}">
+													<td><a href="updateform.do?commentId=${comment.id}"> update comment </a></td>
 															
-													<td><a href="addcomment.do"> Add comment </a></td>
 																
-													<td><a href="deleteComment.do?bodyId=${body.id}"> Delete comment </a></td>
+													<td><a href="deleteComment.do?commentId=${comment.id}&bodyId=${body.id}"> Delete comment </a></td>
+													</c:if>
 												</tr>
 											</c:forEach>
+					
+													
 										</c:if>
 									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="5"><a href="commentsform.do?bodyId=${body.id}"> Add comment </a></td>
+										</tr>
+									</tfoot>
 								</table>
 							</div>
 						</div>
-
-
 					</div>
-
-
 					<div class=" d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
 

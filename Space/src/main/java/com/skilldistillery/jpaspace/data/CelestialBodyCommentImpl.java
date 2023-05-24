@@ -15,7 +15,7 @@ import com.skilldistillery.jpaspace.entities.User;
 @Service
 @Transactional
 public class CelestialBodyCommentImpl implements CelestialBodyCommentDAO {
-	
+
 	@PersistenceContext
 	public EntityManager em;
 
@@ -32,51 +32,43 @@ public class CelestialBodyCommentImpl implements CelestialBodyCommentDAO {
 
 	@Override
 	public CelestialBodyComment postComment(CelestialBodyComment comment, int userId, int bodyId) {
-		
+
 		comment.setUser(em.find(User.class, userId));
 		comment.setCelestialBody(em.find(CelestialBody.class, bodyId));
 		comment.setEnabled(true);
 		em.persist(comment);
-		
+
 		return comment;
 	}
 
 	@Override
-	public CelestialBodyComment updateCommentById(CelestialBodyComment comment, int userId, int bodyId) {
-		
-		  CelestialBodyComment managed = em.find(CelestialBodyComment.class, bodyId);
-		  
-		  managed.setBody(comment.getBody());
-		  managed.setUser(comment.getUser());
-		//  managed.setEnabled(comment.getEnabled());
-		//  managed.setCreatedAt(comment.getCreatedAt());
-		  managed.setUpdatedAt(comment.getUpdatedAt());
-		  managed.setReply(comment.getReply());
-		  managed.setReplies(comment.getReplies());
-		  managed.setUser(comment.getUser());
-		  managed.setCelestialBody(comment.getCelestialBody());
-	
+	public CelestialBodyComment updateCommentById(CelestialBodyComment comment, int userId, int commentId) {
+		System.out.println(comment + "this is a comment");
+		CelestialBodyComment managed = em.find(CelestialBodyComment.class, commentId);
+		System.out.println(managed);
+		if (managed != null) {
+			managed.setBody(comment.getBody());
+		}
 		return managed;
 	}
 
 	@Override
 	public boolean removeCommentById(int commentId) {
-		
-		
+
 		if (commentId != 0) {
 			CelestialBodyComment comment = em.find(CelestialBodyComment.class, commentId);
-			
+
 			User user = em.find(User.class, comment.getUser().getId());
 			user.removeComment(comment);
 			CelestialBody body = em.find(CelestialBody.class, comment.getCelestialBody().getId());
 			body.removeComment(comment);
-			
+
 			em.remove(comment);
 			return true;
 		} else {
-		
-		System.out.println("comment doesn't exist");
-		return false;
+
+			System.out.println("comment doesn't exist");
+			return false;
 		}
 	}
 }
