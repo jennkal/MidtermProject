@@ -18,6 +18,6 @@ public interface EncounterImageDAO {
 
 	boolean removeImage(int imageId);
 	
-	List<EncounterImage> findAllImagesByBodyId(int bodyId);
+	List<String> findAllImagesByBodyId(int bodyId);
 
 }

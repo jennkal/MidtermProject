@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Space chat room</title>
+<title>${body.name } Chat Room</title>
 <jsp:include page="bootheader.jsp" />
 
 </head>
@@ -36,27 +36,44 @@
 						<div class="d-flex p-2 align-self-center"
 							style="margin-top: -53px;">
 
-							<div id="carouselExample" class="carousel slide">
-								<div class="carousel-inner">
-									<c:forEach var="image" items="${ body.encounters}">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="${image.body.imageUrl}"
-												alt="picture of the ${image.body.name }"
-												style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
-										</div>
-									</c:forEach>
+							<c:if test="${! empty images }">
+								<div id="carouselExample" class="carousel slide">
+									<div class="carousel-inner">
+										<c:forEach varStatus="i" var="image" items="${images}">
+											<c:choose>
+												<c:when test="${i.index == 0 }">
+													<div class="carousel-item active">
+														<img class="d-block w-100" src="${image}"
+															alt="picture of the ${body.name }"
+															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+													</div>
+
+												</c:when>
+												<c:otherwise>
+													<div class="carousel-item">
+														<img class="d-block w-100" src="${image}"
+															alt="picture of the ${body.name }"
+															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+													</div>
+
+												</c:otherwise>
+
+											</c:choose>
+
+										</c:forEach>
+									</div>
+									<button class="carousel-control-prev" type="button"
+										data-bs-target="#carouselExample" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button"
+										data-bs-target="#carouselExample" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
 								</div>
-								<button class="carousel-control-prev" type="button"
-									data-bs-target="#carouselExample" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button"
-									data-bs-target="#carouselExample" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
-							</div>
+							</c:if>
 						</div>
 						<div class="d-flex p-2 align-self-center"
 							style="max-height: 150px; max-width: 800px; margin-bottom: 80px;">
@@ -71,6 +88,7 @@
 									</thead>
 									<tbody>
 										<c:if test="${! empty body.comments }">
+										<h6>Comments</h6>
 											<c:forEach var="comment" items="${body.comments }">
 												<tr>
 													<td><a href="singleuser.do?username=${user.username}">${comment.user.username }</a></td>
