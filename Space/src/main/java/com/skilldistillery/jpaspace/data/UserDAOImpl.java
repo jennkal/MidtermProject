@@ -26,6 +26,7 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			user = em.createQuery(jpql, User.class).setParameter("un", username).setParameter("pw", password)
 					.getSingleResult();
+			user.getEncounters().size();
 		} catch (Exception e) {
 			System.err.println("Invalid login");
 		}
@@ -39,6 +40,7 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			user = em.createQuery(jpql, User.class).setParameter("un", username)
 					.getSingleResult();
+			user.getEncounters().size();
 		} catch (Exception e) {
 			System.err.println("Invalid login");
 		}
@@ -49,7 +51,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User findById(int userId) {
-		return em.find(User.class, userId);
+		User user = em.find(User.class, userId);
+		user.getEncounters().size();
+		return user;
 	}
 
 	@Override
@@ -82,19 +86,11 @@ public class UserDAOImpl implements UserDAO {
 	public User updateUser(int userId, User user) {
 		User managedUser = em.find(User.class, userId);
 
-		managedUser.setUsername(user.getUsername());
-		managedUser.setPassword(user.getPassword());
-		managedUser.setEnabled(user.getEnabled());
-		managedUser.setRole(user.getRole());
-		managedUser.setCreatedAt(user.getCreatedAt());
 		managedUser.setUpdatedAt(user.getUpdatedAt());
 		managedUser.setImageUrl(user.getImageUrl());
 		managedUser.setAbout(user.getAbout());
-		managedUser.setComments(user.getComments());
-		managedUser.setEncounters(user.getEncounters());
-		managedUser.setEncounterComments(user.getEncounterComments());
-		managedUser.setRatings(user.getRatings());
-		managedUser.setFavoritedEncounters(user.getFavoritedEncounters());
+		managedUser.setRole(user.getRole());
+		managedUser.getEncounters().size();
 
 		return managedUser;
 	}

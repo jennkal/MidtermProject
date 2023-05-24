@@ -23,17 +23,22 @@
 				<h3>Here Are You're Previously Entered Encounters</h3>
 			</div>
 
-			<div class="card mb-3"
-				style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
-				<img src="${loggedInUser.imageUrl}"
-					class="img-fluid rounded-start card-img-top"
-					alt="picture of the ${loggedInUser.username }">
+			<div class="card mb-3" style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
+					<c:choose>
+						<c:when test="${not empty loggedInUser.imageUrl}">				
+							<img src="${loggedInUser.imageUrl}" class="img-fluid rounded-start card-img-top" alt="picture of ${loggedInUser.username }">
+						</c:when>
+						<c:otherwise>
+							<img src="https://static.vecteezy.com/system/resources/previews/000/700/639/original/astronaut-cartoon-floating-with-balloon-planets-in-space-vector.jpg" class="img-fluid rounded-start card-img-top" alt="picture of ${loggedInUser.username }">
+						</c:otherwise>
+					</c:choose>
 				<div class="card-body">
 					<h5 class="card-title">${loggedInUser.username}</h5>
 					<p class="card-text">${loggedInUser.about}</p>
 					<p class="card-text">
 						<small class="text-body-secondary">${loggedInUser.role } </small>
 					</p>
+					<a href="editprofile.do" ><button type="button" class="btn btn-outline-primary">Update Profile</button></a>
 				</div>
 			</div>
 
