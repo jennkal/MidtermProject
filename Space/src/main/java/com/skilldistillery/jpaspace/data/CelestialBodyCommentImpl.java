@@ -42,11 +42,12 @@ public class CelestialBodyCommentImpl implements CelestialBodyCommentDAO {
 	}
 
 	@Override
-	public CelestialBodyComment updateCommentById(CelestialBodyComment comment, int commentId) {
+	public CelestialBodyComment updateCommentById(CelestialBodyComment comment, int userId, int bodyId) {
 		
-		  CelestialBodyComment managed = em.find(CelestialBodyComment.class, commentId);
+		  CelestialBodyComment managed = em.find(CelestialBodyComment.class, bodyId);
 		  
 		  managed.setBody(comment.getBody());
+		  managed.setUser(comment.getUser());
 		//  managed.setEnabled(comment.getEnabled());
 		//  managed.setCreatedAt(comment.getCreatedAt());
 		  managed.setUpdatedAt(comment.getUpdatedAt());

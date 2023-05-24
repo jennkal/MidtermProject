@@ -103,7 +103,8 @@
 										name="ratingValue"> <br> <br> <input
 										type=submit class="btn btn-outline-primary" />
 								</form>
-
+							
+					
 				<a href="encounterform.do?bodyId=${body.id}"><button
 						type="button" class="btn btn-outline-primary">Add an
 						Encounter</button></a> 

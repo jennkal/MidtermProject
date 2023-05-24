@@ -32,19 +32,28 @@ public class CBCommentsController {
 	public String addCommentToDB(HttpSession session, CelestialBodyComment comment, Model model, RedirectAttributes redir, int userId, int bodyId) {
 		
 		CelestialBodyComment commentToAdd = cbcDAO.postComment(comment, userId, bodyId);
-		//commentToAdd.setBody(bodyText);
-		//commentToAdd.setEnabled(true);
-		
-		//LocalDateTime rightNow = LocalDateTime.now();
-		//commentToAdd.setCreatedAt(rightNow);
-		
-		//User user = new User();
-		//user.setId(userId);
-		//commentToAdd.setUser(user);
-		
+
+		model.addAttribute("bodyId", bodyId);
+		redir.addFlashAttribute("bodyId", bodyId);
+		return "redirect:singleview.do?id=" + bodyId;
+	}
+	
+	@GetMapping(path = "performUpdate.do")
+	public String updateComment(HttpSession session, CelestialBodyComment comment, Model model, RedirectAttributes redir, int userId, int bodyId) {
+
+		CelestialBodyComment commentUpdated = cbcDAO.updateCommentById(comment, userId, bodyId);
 		
 		model.addAttribute("bodyId", bodyId);
 		redir.addFlashAttribute("bodyId", bodyId);
 		return "redirect:singleview.do?id=" + bodyId;
 	}
+	
+	@GetMapping(path = "deleteComment.do")
+	public String deleteLog(CelestialBodyComment comment, Model model, RedirectAttributes redir, int bodyId) {
+
+		cbcDAO.removeCommentById(bodyId);
+
+		return "redirect:singleview.do?id=" + bodyId;
+	}
+	
 }

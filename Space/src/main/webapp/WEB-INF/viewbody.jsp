@@ -95,6 +95,12 @@
 													<td><a href="singleuser.do?username=${user.username}">${comment.user.username }</a></td>
 													<td>${comment.createdAt }</td>
 													<td>${comment.body }</td>
+													
+													<td><a href="preformUpdate.do?bodyId=${body.id}"> update comment </a></td>
+															
+													<td><a href="addcomment.do"> Add comment </a></td>
+																
+													<td><a href="deleteComment.do?bodyId=${body.id}"> Delete comment </a></td>
 												</tr>
 											</c:forEach>
 										</c:if>
