@@ -103,10 +103,7 @@
 										name="ratingValue"> <br> <br> <input
 										type=submit class="btn btn-outline-primary" />
 								</form>
-							</c:forEach>
-						</table>
-						</div>
-						</div>
+
 				<a href="encounterform.do?bodyId=${body.id}"><button
 						type="button" class="btn btn-outline-primary">Add an
 						Encounter</button></a> 

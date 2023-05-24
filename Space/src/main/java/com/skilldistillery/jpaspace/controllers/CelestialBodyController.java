@@ -78,5 +78,5 @@ public class CelestialBodyController {
 		List<String> list = imageDAO.findAllImagesByBodyId(id);
 		model.addAttribute("images", list);
 		return "viewbody";
-
+	}
 }
