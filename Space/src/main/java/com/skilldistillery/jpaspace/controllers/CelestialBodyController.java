@@ -3,6 +3,8 @@ package com.skilldistillery.jpaspace.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
 import com.skilldistillery.jpaspace.data.EncounterImageDAO;
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
+import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
 public class CelestialBodyController {
@@ -72,11 +75,13 @@ public class CelestialBodyController {
 	}
 	
 	@GetMapping(path="singleview.do", params="id")
-	public String singleBody(@RequestParam("id") int id, Model model) {
+	public String singleBody(@RequestParam("id") int id, Model model, HttpSession session) {
 		CelestialBody body = cbDAO.findCelestialBodyById(id);
 		model.addAttribute("body",body);
 		List<String> list = imageDAO.findAllImagesByBodyId(id);
 		model.addAttribute("images", list);
+		User user = (User) session.getAttribute("loggedInUser");
+		model.addAttribute("loggedInUser",user);
 		return "viewbody";
 	}
 	

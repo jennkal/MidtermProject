@@ -104,11 +104,11 @@
 													<td>${comment.createdAt }</td>
 													<td>${comment.body }</td>
 													
-													<c:if test="${loggedInUser.id == comment.user.id}">
-													<td><a href="updateform.do?commentId=${comment.id}"> update comment </a></td>
-															
-																
+													<c:if test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == comment.user.id}">
+												
+													<td><a href="updateform.do?commentId=${comment.id}"> update comment </a></td>				
 													<td><a href="deleteComment.do?commentId=${comment.id}&bodyId=${body.id}"> Delete comment </a></td>
+										
 													</c:if>
 												</tr>
 											</c:forEach>

@@ -12,8 +12,9 @@
 </head>
 <body class="bg-image"
 	style="background-image: url('https://imageio.forbes.com/specials-images/imageserve/6127b2920d67d45e8a181602/0x0.jpg?format=jpg&amp;width=1200'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-	<jsp:include page="navbar.jsp" />
+	<jsp:include page="navbar.jsp" />	
 	<c:if test="${loggedOut == true}">
+	
 		<div class="alert alert-danger" role="alert">
 			<p>Username or password incorrect, please try again</p>
 		</div>
@@ -34,7 +35,14 @@
 			</c:otherwise>
 		</c:choose>
 	</c:if>
-
+	<c:if test="${test.role == 'ADMIN' }">
+	<p style="color:white;">******************${test}</p>
+	
+	</c:if>
+	<c:if test="${admin == true }">
+	<p style="color:white;">******************${admin}</p>
+	
+	</c:if>
 	<div class="container d-flex justify-content-center">
 		<h1 style="margin-bottom: 35px; color: white;">Sign In</h1>
 	</div>
@@ -47,7 +55,9 @@
 				placeholder="Enter Password" /> <br> <input type="submit"
 				class="btn btn-outline-primary" value="Sign In">
 		</form>
+	
 	</div>
+
 	<div class="container d-flex justify-content-center">
 		<div class="container d-flex justify-content-center"
 			style="padding: 30px; border: 2px solid #023e8a; border-radius: 8px; width: 450px; margin-top: 50px; color: white; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain;">

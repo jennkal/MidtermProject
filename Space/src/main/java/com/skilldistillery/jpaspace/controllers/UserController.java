@@ -30,8 +30,9 @@ public class UserController {
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String home(Model model) {
-		User test = userDAO.findByUsernameAndPassword("admin", "1234");
+		User test = userDAO.findByUsernameAndPassword("admin", "3%^bGD7cz");
 		model.addAttribute("test", test);
+		model.addAttribute("admin", test.getRole().equals("ADMIN"));
 
 		return "home";
 	}
@@ -44,6 +45,11 @@ public class UserController {
 
 		User authenticatedUser = userDAO.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
+			if(authenticatedUser.getRole() != null && authenticatedUser.getRole().equals("ADMIN")) {
+				boolean admin = true;
+				System.out.println(admin);
+				model.addAttribute("admin", admin);
+			}
 			session.setAttribute("loggedInUser", authenticatedUser);
 			return "userprofile";
 		} else {
