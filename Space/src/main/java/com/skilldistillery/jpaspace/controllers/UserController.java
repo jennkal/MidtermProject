@@ -1,7 +1,5 @@
 package com.skilldistillery.jpaspace.controllers;
 
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.jpaspace.data.RatingDAO;
 import com.skilldistillery.jpaspace.data.UserDAO;
+import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.Rating;
 import com.skilldistillery.jpaspace.entities.User;
 
@@ -25,8 +24,8 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
-	
-	@Autowired 
+
+	@Autowired
 	private RatingDAO ratingDAO;
 
 	@RequestMapping(path = { "/", "home.do" })
@@ -54,12 +53,12 @@ public class UserController {
 		}
 		return "redirect:home.do";
 	}
-	
+
 	@GetMapping("userprofile.do")
 	public String redirectToProfile() {
 		return "userprofile";
 	}
-	
+
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loggedInUser");
@@ -89,31 +88,54 @@ public class UserController {
 		return "redirect:home.do";
 	}
 
-
 	@GetMapping("sample.do")
 	public String viewSamplePage() {
 		return "sample";
 	}
-	
-	@GetMapping(path="otheruser.do", params="username")
+
+	@GetMapping(path = "otheruser.do", params = "username")
 	public String searchUsers(@RequestParam("username") String keyword, Model model) {
 		List<User> otherprofile = userDAO.searchByKeyword(keyword);
-		model.addAttribute("otheruser",otherprofile);
+		model.addAttribute("otheruser", otherprofile);
 		return "bodylist";
 	}
-	
-	@GetMapping(path="singleuser.do", params="username")
+
+	@GetMapping(path = "singleuser.do", params = "username")
 	public String singleuser(@RequestParam("username") String username, Model model) {
 		User user = userDAO.findByUsername(username);
-		model.addAttribute("otheruser",user);
+		model.addAttribute("otheruser", user);
 		return "otheruser";
 	}
-	
+
 	@PostMapping("rateEncounter.do")
 	public String postRating(Rating rating, Model model, int encounterId, int userId, RedirectAttributes redir) {
 		Rating rate = ratingDAO.postRating(rating, encounterId, userId);
 		return "redirect:singleview.do?id=" + rating.getEncounter().getCelestialBody().getId();
-		
+
+	}
+
+	@GetMapping(path = "editprofile.do")
+	public String editEncounterForm() {
+		return "editprofile";
+	}
+
+	@PostMapping(path = "edituser.do", params = "userId")
+	public String updateEncounter(HttpSession session, User user, int userId, Model model, RedirectAttributes redir) {
+
+		User updatedUser = userDAO.updateUser(userId, user);
+
+		if (updatedUser != null) {
+
+			session.setAttribute("loggedInUser", updatedUser);
+			return "redirect:userprofile.do";
+
+		} else {
+			boolean editError = true;
+			model.addAttribute("editError", editError);
+			redir.addFlashAttribute("editError", editError);
+			return "redirect:edituser.do";
+		}
+
 	}
 
 }

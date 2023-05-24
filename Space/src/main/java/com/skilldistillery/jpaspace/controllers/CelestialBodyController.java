@@ -79,4 +79,15 @@ public class CelestialBodyController {
 		model.addAttribute("images", list);
 		return "viewbody";
 	}
+	
+	
+	@GetMapping(path="sampleview.do", params="id")
+	public String nonUserSingleBody(@RequestParam("id") int id, Model model) {
+		CelestialBody body = cbDAO.findCelestialBodyById(id);
+		model.addAttribute("body",body);
+		List<String> list = imageDAO.findAllImagesByBodyId(id);
+		model.addAttribute("images", list);
+		return "sample";
+	}
+	
 }

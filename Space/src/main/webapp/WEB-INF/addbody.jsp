@@ -23,8 +23,8 @@
 					style="width: 300px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 					<input type="text" name="name" placeholder="Enter Name" required />
 					<select name="categoryId" required>
-						<c:forEach var="X" items="${categories}">
-							<option selected value="${X.id}">${X.name}</option>
+						<c:forEach var="categ" items="${categories}">
+							<option selected value="${categ.id}">${categ.name}</option>
 						</c:forEach>
 					</select><br> <input type="text" name="description"
 						placeholder="Enter Description" required /> <br> <input
