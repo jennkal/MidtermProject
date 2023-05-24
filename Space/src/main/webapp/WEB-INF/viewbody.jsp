@@ -35,8 +35,26 @@
 						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
 						<div class="d-flex p-2 align-self-center"
 							style="margin-top: -53px;">
-							<img src="${body.imageUrl}" alt="picture of the ${body.name }"
-								style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+
+							<div id="carouselExample" class="carousel slide">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<img class="d-block w-100" src="${body.imageUrl}"
+											alt="picture of the ${body.name }"
+											style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+									</div>
+								</div>
+								<button class="carousel-control-prev" type="button"
+									data-bs-target="#carouselExample" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button"
+									data-bs-target="#carouselExample" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
 						</div>
 						<div class="d-flex p-2 align-self-center"
 							style="max-height: 150px; max-width: 800px; margin-bottom: 80px;">
