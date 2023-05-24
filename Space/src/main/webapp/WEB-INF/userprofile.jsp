@@ -65,6 +65,53 @@
 					</a>
 				</form>
 			</div>
+			<c:if test="${! empty body.encounters }">
+					<div
+					class="container min-vh-50 d-flex justify-content-center align-items-center">
+					<div id="div" class="container-fluid">
+						<table class="table table-dark table-hover"
+							style="margin-top: 50px">
+
+
+							<c:forEach var="encounter" items="${body.encounters }">
+								
+										${encounter.user.username }
+										${encounter.createdAt }
+									
+					
+
+										${encounter.description }<
+									
+											<form
+									action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
+									method="POST">
+									<p>Please Rate This Encounter</p>
+									<label for="one">1</label> <input id="one" type=radio value="1"
+										name="ratingValue"> <br> <br> <label
+										for="two">2</label> <input id="two" type=radio value="2"
+										name="ratingValue"> <br> <br> <label
+										for="three">3</label> <input id="three" type=radio value="3"
+										name="ratingValue"> <br> <br> <label
+										for="four">4</label> <input id="four" type=radio value="4"
+										name="ratingValue"> <br> <br> <label
+										for="five">5</label> <input id="five" type=radio value="5"
+										name="ratingValue"> <br> <br> <input
+										type=submit class="btn btn-outline-primary" />
+								</form>
+							</c:forEach>
+						</table>
+						</div>
+						</div>
+				<a href="encounterform.do?bodyId=${body.id}"><button
+						type="button" class="btn btn-outline-primary">Add an
+						Encounter</button></a> 
+						
+						
+						</c:if>
+
+			
+			
+			
 		</c:when>
 		<c:otherwise>
 			<p>Not Logged In.</p>

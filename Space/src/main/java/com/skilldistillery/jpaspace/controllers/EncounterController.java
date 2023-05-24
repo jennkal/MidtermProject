@@ -35,9 +35,9 @@ public class EncounterController {
 	private EncounterDAO encounterDAO;
 
 	
-	@GetMapping(path = "viewimage.do")
-	public String getList(Model model) {
-		List<EncounterImage> list = imageDAO.findall();
+	@PostMapping("viewimage.do")
+	public String getList(Model model, int bodyid) {
+		List<EncounterImage> list = imageDAO.findAllImagesByBodyId(bodyid);
 		model.addAttribute("images", list);
 		return "viewbody";
 	}

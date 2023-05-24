@@ -65,4 +65,13 @@ public class EncounterImageImpl implements EncounterImageDAO {
 		return encounter.getImages();
 	}
 
+	@Override
+	public List<EncounterImage> findAllImagesByBodyId(int bodyId) {
+		String jpql = "SELECT image FROM EncounterImage image JOIN image.Encounter e JOIN e.CelestialBody cb WHERE cb.id = :body ";
+		List<EncounterImage> images = em.createQuery(jpql, EncounterImage.class)
+				.setParameter("body", bodyId).getResultList();
+		
+		return images;
+	}
+
 }

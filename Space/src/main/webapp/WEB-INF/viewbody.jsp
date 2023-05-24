@@ -38,11 +38,13 @@
 
 							<div id="carouselExample" class="carousel slide">
 								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img class="d-block w-100" src="${body.imageUrl}"
-											alt="picture of the ${body.name }"
-											style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
-									</div>
+									<c:forEach var="image" items="${ body.encounters}">
+										<div class="carousel-item active">
+											<img class="d-block w-100" src="${image.body.imageUrl}"
+												alt="picture of the ${image.body.name }"
+												style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+										</div>
+									</c:forEach>
 								</div>
 								<button class="carousel-control-prev" type="button"
 									data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -94,42 +96,6 @@
 
 					</div>
 
-
-
-
-
-					<%-- 	
-				<c:if test="${! empty body.encounters }">
-					<c:forEach var="encounter" items="${body.encounters }">
-								
-										${encounter.user.username }
-										${encounter.createdAt }
-									
-					
-
-										${encounter.description }<
-									
-											<form
-							action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
-							method="POST">
-							<p>Please Rate This Encounter</p>
-							<label for="one">1</label> <input id="one" type=radio value="1"
-								name="ratingValue"> <br> <br> <label for="two">2</label>
-							<input id="two" type=radio value="2" name="ratingValue">
-							<br> <br> <label for="three">3</label> <input
-								id="three" type=radio value="3" name="ratingValue"> <br>
-							<br> <label for="four">4</label> <input id="four" type=radio
-								value="4" name="ratingValue"> <br> <br> <label
-								for="five">5</label> <input id="five" type=radio value="5"
-								name="ratingValue"> <br> <br> <input
-								type=submit class="btn btn-outline-primary" />
-						</form>
-					</c:forEach>
-				</c:if>
-
-				<a href="encounterform.do?bodyId=${body.id}"><button
-						type="button" class="btn btn-outline-primary">Add an
-						Encounter</button></a> --%>
 				</c:when>
 				<c:otherwise>
 					<div class="alert alert-danger" role="alert">

@@ -17,5 +17,7 @@ public interface EncounterImageDAO {
 	EncounterImage updateImage(EncounterImage image, int imageId);
 
 	boolean removeImage(int imageId);
+	
+	List<EncounterImage> findAllImagesByBodyId(int bodyId);
 
 }

@@ -22,9 +22,6 @@ public class CelestialBodyController {
 	@Autowired
 	private CelestialBodyDAO cbDAO;
 
-//	@Autowired
-//	private CelestialBodyCommentDAO commentDAO;
-
 	@Autowired
 	private CategoryDAO cateDAO;
 
@@ -75,11 +72,6 @@ public class CelestialBodyController {
 		model.addAttribute("body",body);
 		return "viewbody";
 	}
-
-//	@PostMapping("galaxy.do")
-//	public String postComment() {
-//		
-//		return "galaxy";
-//		
+	
 
 }
