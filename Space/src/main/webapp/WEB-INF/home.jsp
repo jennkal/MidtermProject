@@ -49,12 +49,12 @@
 		</form>
 	</div>
 	<div class="container d-flex justify-content-center">
-		<div class="container d-flex justify-content-center" style="padding: 30px; border: 2px solid #023e8a; border-radius: 8px; width: 450px; margin-top: 50px; color: white; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; ">
-			<p>
-			Welcome to the Space Station where all our self proclaimed astronaut 
-			share their favorite space adventures. Join us and share pictures of your favorite 
-			planets, stars, galaxies and discuss with your fellow astronauts, and so much more.
-			</p>
+		<div class="container d-flex justify-content-center"
+			style="padding: 30px; border: 2px solid #023e8a; border-radius: 8px; width: 450px; margin-top: 50px; color: white; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain;">
+			<p>Welcome to the Space Station where all our self proclaimed
+				astronaut share their favorite space adventures. Join us and share
+				pictures of your favorite planets, stars, galaxies and discuss with
+				your fellow astronauts, and so much more.</p>
 		</div>
 
 
@@ -79,16 +79,16 @@
 						<th>Explore</th>
 					</tr>
 				</thead>
-				<!-- 	we might put this in a foreach -->
 				<tbody style="text-align: center;">
 					<tr>
-						<td>username</td>
-						<td>encounter name</td>
-						<td>encounter info</td>
-						<td><a href="sample.do"><button type="button"
-									class="btn btn-outline-primary">Explore</button></a></td>
+						<td>Buzz_Aldrin_2ndToNone</td>
+						<td>The Eagle Nebula</td>
+						<td>I was on my way to the moon when I saw saw this sick star
+							factory to share with you guys</td>
+						<td><a href="bodylist.do">
+								<button type="button" class="btn btn-outline-primary">Explore</button>
+						</a></td>
 					</tr>
-
 				</tbody>
 			</table>
 		</div>
