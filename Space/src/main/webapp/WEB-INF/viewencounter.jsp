@@ -20,7 +20,7 @@
 					<div class="table-responsive">
 
 
-						<table class="table table-dark"
+						<table class="table table-dark table-hover"
 							style="width: 80%; margin: 50px auto;">
 							<thead>
 								<tr>
