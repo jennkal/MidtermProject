@@ -31,7 +31,7 @@
 						type="url" name="imageUrl" placeholder="Enter an Image" /> <br>
 					<input type="url" name="trackingUrl"
 						placeholder="Enter a Tracking Link" /> <br> <input
-						type="submit" value="Create Celestial Body"> <a
+						type="submit" class="btn btn-outline-primary" value="Create Celestial Body"> <a
 						href="home.do"><button type="button"
 							class="btn btn-outline-primary">Cancel</button></a>
 				</form>

@@ -124,10 +124,10 @@
 								</table>
 							</div>
 						</div>
-					</div>
 					<c:if test="${not empty body.encounters}">
 					<a href="encounterlist.do?bodyId=${body.id}"><button type="button" class="btn btn-outline-primary">View all Encounters for ${body.name}</button></a>
 					</c:if>
+
 					<c:if test="${empty body.encounters}">
 							<div style="margin: 10px auto;">
 								<a href="encounterform.do?bodyId=${body.id}"><button type="button"
@@ -135,6 +135,9 @@
 							</div>
 					</c:if>	
 					
+
+					</div>
+
 					<div class=" d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
 						<div style="position: relative; text-align: center; color: white;">

@@ -71,20 +71,16 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 	@Override
 	public CelestialBody updateCelestialBodyById(CelestialBody body, int bodyId) {
 		CelestialBody managedBody = em.find(CelestialBody.class, bodyId);
-
+		if (managedBody != null) {
 		managedBody.setName(body.getName());
-		managedBody.setEnabled(body.getEnabled());
-		managedBody.setCreatedAt(body.getCreatedAt());
+		
+		
 		managedBody.setUpdatedAt(body.getUpdatedAt());
 		managedBody.setImageUrl(body.getImageUrl());
 		managedBody.setDescription(body.getDescription());
-		managedBody.setComments(body.getComments());
-		managedBody.setEncounters(body.getEncounters());
+		
 		managedBody.setTrackingUrl(body.getTrackingUrl());
-		managedBody.setCategory(body.getCategory());
-//		managedBody.setParent(body.getParent());
-//		managedBody.setChildren(body.getChildren());
-
+		}
 		return managedBody;
 	}
 
