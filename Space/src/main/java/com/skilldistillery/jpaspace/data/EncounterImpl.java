@@ -1,6 +1,5 @@
 package com.skilldistillery.jpaspace.data;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +33,13 @@ public class EncounterImpl implements EncounterDAO {
 	public Encounter findEncounterById(int encounterId) {
 		Encounter encounter = em.find(Encounter.class, encounterId);
 		return encounter;
+	}
+	
+	@Override
+	public List<Encounter> findEncountersByBodyId(int bodyId) {
+		CelestialBody body = em.find(CelestialBody.class, bodyId);
+		List<Encounter> bodyEncounters = body.getEncounters();
+		return bodyEncounters;
 	}
 
 	@Override

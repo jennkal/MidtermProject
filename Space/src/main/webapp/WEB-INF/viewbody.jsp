@@ -36,8 +36,6 @@
 							</ul>
 						</div>
 					</div>
-
-
 					<div
 						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
 						<div class="d-flex p-2 align-self-center"
@@ -54,7 +52,6 @@
 															alt="picture of the ${body.name }"
 															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -20px;">
 													</div>
-
 												</c:when>
 												<c:otherwise>
 													<div class="carousel-item">
@@ -62,11 +59,8 @@
 															alt="picture of the ${body.name }"
 															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
 													</div>
-
 												</c:otherwise>
-
 											</c:choose>
-
 										</c:forEach>
 									</div>
 									<button class="carousel-control-prev" type="button"
@@ -131,6 +125,9 @@
 							</div>
 						</div>
 					</div>
+					<c:if test="${not empty body.encounters}">
+					<a href="encounterlist.do?bodyId=${body.id}"><button type="button" class="btn btn-outline-primary">View all Encounters for ${body.name}</button></a>
+					</c:if>
 					<div class=" d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
 						<div style="position: relative; text-align: center; color: white;">
@@ -147,7 +144,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="alert alert-danger" role="alert">
-						<p>Celestial bodies does not exist in database</p>
+						<p>Celestial body does not exist in database</p>
 					</div>
 				</c:otherwise>
 
