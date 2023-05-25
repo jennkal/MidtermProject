@@ -43,7 +43,7 @@ public class CelestialBodyController {
 			List<CelestialBody> posts = new ArrayList<>();
 			posts.add(newBody);
 			model.addAttribute("bodies", posts);
-			return "viewbody";
+			return "redirect:bodylist.do";
 		} else {
 			boolean bodyexist = true;
 			model.addAttribute("notnew", bodyexist);
@@ -98,12 +98,21 @@ public class CelestialBodyController {
 	
 	
 	
-	@GetMapping(path = "deleteBody.do", params={"categoryId", "bodyId"})
-	public String removeCelestialBody (CelestialBody body, Model model, RedirectAttributes redir, int categoryId, int bodyId) {
+	@GetMapping(path = "updatecelestialbody.do", params="bodyId")
+	public String toUpdateCelestialBody (Model model, int bodyId) {
 		
-		boolean removed = cbDAO.removeCelestialBodyId(categoryId);
-		model.addAttribute("removed", removed);
-		redir.addFlashAttribute("removed", removed);
+		model.addAttribute("bodyId", bodyId);
+		model.addAttribute("body", cbDAO.findCelestialBodyById(bodyId));
+		
+		return "editcelestialbody";
+	}
+	
+	@PostMapping(path = "updatebody.do", params="bodyId")
+	public String updateCelestialBody (CelestialBody body, Model model, RedirectAttributes redir, int bodyId) {
+		
+		CelestialBody cbbody = cbDAO.updateCelestialBodyById(body, bodyId);
+		model.addAttribute("bodyId", bodyId);
+		redir.addFlashAttribute("bodyId", bodyId);
 		return "redirect:bodylist.do?id=" + bodyId;
 	}
 	

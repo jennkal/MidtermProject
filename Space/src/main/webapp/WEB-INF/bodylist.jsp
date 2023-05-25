@@ -28,6 +28,7 @@
 									<th>description</th>
 									<th>Classification</th>
 									<th>Category</th>
+									<th>Update</th>
 							</thead>
 							<tbody>
 								<c:forEach var="body" items="${bodies}">
@@ -36,6 +37,8 @@
 										<td>${body.description}</td>
 										<td>${body.category.classification}</td>
 										<td>${body.category}</td>
+										<td><a href="updatecelestialbody.do?bodyId=${body.id}" class="btn btn-outline-primary">Update ${body.name}</a></td>
+										
 								</c:forEach>
 
 							</tbody>
