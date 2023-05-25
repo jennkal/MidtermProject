@@ -39,7 +39,7 @@
 					<div
 						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
 						<div class="d-flex p-2 align-self-center"
-							style="margin-top: -53px;">
+							style="margin-top: -33px;">
 
 							<c:if test="${! empty images }">
 								<div id="carouselExample" class="carousel slide">

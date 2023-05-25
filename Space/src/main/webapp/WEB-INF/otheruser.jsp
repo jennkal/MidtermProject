@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>${otheruser.username }</title>
 <jsp:include page="bootheader.jsp" />
 </head>
 <body class="bg-image"
-	style="background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: center;" >
+	style="background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 	<div class="container d-flex justify-content-center">
 		<h1>Their Adventure So Far!</h1>
@@ -45,8 +45,9 @@
 					<p class="card-text">
 						<small class="text-body-secondary">${otheruser.role } </small>
 					</p>
-					<a href="editprofile.do" style="color: grey; pointer-events: none;"><button type="button"
-							class="btn btn-outline-primary" style="color: grey;">Update Profile</button></a>
+<!-- 					<a href="editprofile.do" style="color: grey; pointer-events: none;"><button
+							type="button" class="btn btn-outline-primary"
+							style="color: grey;">Update Profile</button></a> -->
 				</div>
 			</div>
 			<c:if test="${notnew == true}">
@@ -54,6 +55,7 @@
 					<p>Space object is already out there</p>
 				</div>
 			</c:if>
+
 			<div style="width: 260; height: 170; margin-left: 15px">
 				<form action="addbody.do"
 					style="width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
@@ -66,34 +68,49 @@
 						<option selected value="5">Comet</option>
 						<option selected value="6">Asteroid</option>
 					</select> <input class="btn btn-outline-primary" type="submit"
-						value="Select Classification" style="color: grey; pointer-events: none;" > <label for="or">Or:</label>
-					<a href="bodylist.do" style="color: grey; pointer-events: none;" >
-						<button id="or" type="button" class="btn btn-outline-primary" style="color: grey;" >View
+						value="Select Classification"> <label for="or">Or:</label>
+					<a href="bodylist.do">
+						<button id="or" type="button" class="btn btn-outline-primary">View
 							All</button>
 					</a>
 				</form>
 			</div>
+			
 			<c:if test="${not empty otheruser.encounters}">
 				<div class="d-flex p-2 align-self-center"
-					style="max-height: 350px; width: 1300px; margin-left: 320px; margin-top: -450px;">
-					<div class="table-responsive" style="width: 1300px;">
-						<table class="table table-dark table-hover"
-							style="width: 1300px;">
-							<thead>
-								<tr>
-									<th>UserName</th>
-									<th>Title</th>
-									<th>Posted</th>
-									<th>About</th>
-									<th>Rate/Rating</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="encounter" items="${otheruser.encounters}">
-									<c:if test="${not empty encounter}">
+					style="max-height: 350px; width: 800px; margin-left: 320px; margin-top: -450px;">
+					<div class="table-responsive" style="width: 800px;">
+						<c:forEach var="encounter" items="${otheruser.encounters}">
+							<c:if test="${not empty encounter}">
 
+								<table class="table table-dark table-hover"
+									style="width: 1300px;">
+									<thead>
+										<tr>
+											<th colspan="5"><a
+												href="singleview.do?id=${encounter.celestialBody.id}">${encounter.celestialBody.name}</a>
+												Encounter</th>
+										</tr>
+										<tr>
+											<th>UserName</th>
+											<th>Title</th>
+											<th>Posted</th>
+											<th colspan="2">About</th>
+										</tr>
+									</thead>
+									<tbody>
 
 										<tr>
+											<td>${encounter.user.username }</td>
+											<td><a
+												href="viewencounter.do?encounterId=${encounter.id}&userId=${loggedInUser.id}">${encounter.title }</a></td>
+											<td>${encounter.createdAt }</td>
+											<td colspan="2">${encounter.description }</td>
+										</tr>
+
+
+
+										<%-- 										<tr>
 											<td>${encounter.user.username }</td>
 											<td><a href="singleview.do?title=${encounter.title }" style="color: grey; pointer-events: none;">${encounter.title }</a></td>
 											<td>${encounter.createdAt }</td>
@@ -116,19 +133,30 @@
 													<input type=submit class="btn btn-outline-primary" style="color: grey; pointer-events: none;" />
 												</form>
 											</td>
-										</tr>
-									</c:if>
-								</c:forEach>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="5"><a
-										href="encounterform.do?bodyId=${body.id}" style="color: grey; pointer-events: none;"><button
-												type="button" class="btn btn-outline-primary" style="color: grey;">Add
-												an Encounter</button></a></td>
-								</tr>
-							</tfoot>
-						</table>
+										</tr> --%>
+
+
+
+									</tbody>
+									<tfoot>
+										<c:if
+											test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
+											<tr>
+												<td><a
+													href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+															type="button" class="btn btn-outline-primary">Edit
+															this Encounter</button></a></td>
+												<td><a
+													href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+															type="button" class="btn btn-outline-primary">Delete
+															this Encounter</button></a></td>
+											</tr>
+										</c:if>
+									</tfoot>
+								</table>
+
+							</c:if>
+						</c:forEach>
 					</div>
 				</div>
 			</c:if>

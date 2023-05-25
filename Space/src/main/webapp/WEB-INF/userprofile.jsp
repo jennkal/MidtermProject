@@ -81,68 +81,80 @@
 			</div>
 
 
-<%-- 			<c:if test="${not empty loggedInUser.encounters}">
+
 				<div class="d-flex p-2 align-self-center"
 					style="max-height: 350px; max-width: 800px; margin-bottom: 80px; border: 2px solid red;">
-					<div class="table-responsive">
+ 					<div class="table-responsive"> 
 
-				<div class="d-flex p-2 align-self-center"
-					style="max-height: 350px; width: 1300px; margin-left: 320px; margin-top: -550px;">
-					<div class="table-responsive" style="width: 1300px;">
-						<table class="table table-dark table-hover"
-							style="width: 1300px;">
-							<thead>
-								<tr>
-									<th>UserName</th>
-									<th>Title</th>
-									<th>Posted</th>
-									<th>About</th>
-									<th>Rate/Rating</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="encounter" items="${loggedInUser.encounters}">
+
+						<c:choose>
+							<c:when test="${! empty loggedInUser.encounters}">
+								<c:forEach var="encounter" items="${encounters}">
 									<c:if test="${not empty encounter}">
 
+										<div class="table">
 
-										<tr>
-											<td>${encounter.user.username }</td>
-											<td><a href="singleview.do?title=${encounter.title }">${encounter.title }</a></td>
-											<td>${encounter.createdAt }</td>
-											<td>${encounter.description }</td>
-											<td>
-												<form
-													action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
-													method="POST">
-													<p>Please Rate This Encounter</p>
-													<label for="one">1: </label> <input id="one" type=radio
-														value="1" name="ratingValue">
-													<label for="two">2: </label> <input id="two" type=radio
-														value="2" name="ratingValue"> 
-													<label for="three">3:</label> <input id="three" type=radio
-														value="3" name="ratingValue"> 
-													<label for="four">4:</label> <input id="four" type=radio
-														value="4" name="ratingValue"> 
-													<label for="five">5:</label> <input id="five" type=radio
-														value="5" name="ratingValue"> <br> <br>
-													<input type=submit class="btn btn-outline-primary" />
-												</form>
-											</td>
-										</tr>
+
+											<table class="table table-dark"
+												style="width: 80%; margin: 50px 5%;">
+												<thead>
+													<tr>
+														<th colspan="5"><a href="singleview.do?id=${encounter.celestialBody.id}">${encounter.celestialBody.name}</a> Encounter</th>
+													</tr>
+													<tr>
+														<th>UserName</th>
+														<th>Title</th>
+														<th>Posted</th>
+														<th colspan="2">About</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:if test="${not empty encounter}">
+
+
+														<tr>
+															<td>${encounter.user.username }</td>
+															<td><a
+																href="viewencounter.do?encounterId=${encounter.id}&userId=${loggedInUser.id}">${encounter.title }</a></td>
+															<td>${encounter.createdAt }</td>
+															<td colspan="2">${encounter.description }</td>
+
+														</tr>
+													</c:if>
+												</tbody>
+												<tfoot>
+													<c:if
+														test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
+														<tr>
+															<td><a
+																href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+																		type="button" class="btn btn-outline-primary">Edit
+																		this Encounter</button></a></td>
+															<td><a
+																href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+																		type="button" class="btn btn-outline-primary">Delete
+																		this Encounter</button></a></td>
+														</tr>
+													</c:if>
+												</tfoot>
+											</table>
+											<br>
+										</div>
+
 									</c:if>
 								</c:forEach>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="5"><a
-										href="encounterform.do?bodyId=${body.id}"><button
-												type="button" class="btn btn-outline-primary">Add an Encounter</button></a></td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
+							</c:when>
+							<c:otherwise>
+								<div class="alert alert-danger" role="alert">
+									<p>Encounters do not exist in database</p>
+								</div>
+							</c:otherwise>
+
+						</c:choose>
+
+					 </div>
 				</div>
-			</c:if> --%>
+		
 		</c:when>
 		<c:otherwise>
 			<p>Not Logged In.</p>

@@ -46,10 +46,10 @@ public class RatingDAOImpl implements RatingDAO {
 	
 	@Override
 	public double averageRatingByEncounterId(int encounterId) {
-		String jpql = "SELECT AVG(rating.ratingValue) FROM Rating rating WHERE rating.encounter.id = ?bindId";
+		String jpql = "SELECT AVG(rating.ratingValue) FROM Rating rating WHERE rating.encounter.id = :bindId";
 		double averageRating = 0;
 		try {
-			averageRating = em.createQuery(jpql, double.class).setParameter("bindId", encounterId).getSingleResult();
+			averageRating = em.createQuery(jpql, Double.class).setParameter("bindId", encounterId).getSingleResult();
 		}
 		catch (Exception e) {}
 		return averageRating;
