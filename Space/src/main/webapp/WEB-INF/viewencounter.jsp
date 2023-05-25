@@ -39,7 +39,7 @@
 		
 									<tr>
 										<td>${encounter.user.username }</td>
-										<td><a href="viewencounter.do?encounterId=${encounter.id}">${encounter.title }</a></td>
+										<td><a href="viewencounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}">${encounter.title }</a></td>
 										<td>${encounter.createdAt }</td>
 										<td >${encounter.description }</td>
 										
@@ -96,8 +96,10 @@
 							</tfoot>
 						</table>
 					</div>
+					<div
+						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
 						<div class="d-flex p-2 align-self-center"
-							style="margin-top: -53px;">
+							style="margin-top: 10px;">
 
 							<c:if test="${! empty encounter.images }">
 								<div id="carouselExample" class="carousel slide">
@@ -134,10 +136,7 @@
 								</div>
 							</c:if>
 						</div>
-
-
-
-
+					</div>
 
 			</c:if>
 

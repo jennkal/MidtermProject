@@ -80,80 +80,61 @@
 				</form>
 			</div>
 
-
-
+			<c:if test="${not empty loggedInUser.encounters}">
 				<div class="d-flex p-2 align-self-center"
-					style="max-height: 350px; max-width: 800px; margin-bottom: 80px; border: 2px solid red;">
- 					<div class="table-responsive"> 
+					style="max-height: 350px; width: 80%; margin-left: 320px; margin-top: -450px;">
+					<div class="table-responsive" style="width: 900px;">
+						<c:forEach var="encounter" items="${loggedInUser.encounters}">
+							<c:if test="${not empty encounter}">
 
+								<table class="table table-dark table-hover"
+									style="width: 800px;">
+									<thead>
+										<tr>
+											<th colspan="5"><a
+												href="singleview.do?id=${encounter.celestialBody.id}">${encounter.celestialBody.name}</a>
+												Encounter</th>
+										</tr>
+										<tr>
+											<th>UserName</th>
+											<th>Title</th>
+											<th>Posted</th>
+											<th colspan="2">About</th>
+										</tr>
+									</thead>
+									<tbody>
 
-						<c:choose>
-							<c:when test="${! empty loggedInUser.encounters}">
-								<c:forEach var="encounter" items="${encounters}">
-									<c:if test="${not empty encounter}">
+										<tr>
+											<td>${encounter.user.username }</td>
+											<td><a
+												href="viewencounter.do?encounterId=${encounter.id}&userId=${loggedInUser.id}">${encounter.title }</a></td>
+											<td>${encounter.createdAt }</td>
+											<td colspan="2">${encounter.description }</td>
+										</tr>
 
-										<div class="table">
+									</tbody>
+									<tfoot>
+										<c:if
+											test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
+											<tr>
+												<td><a
+													href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+															type="button" class="btn btn-outline-primary">Edit
+															this Encounter</button></a></td>
+												<td><a
+													href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+															type="button" class="btn btn-outline-primary">Delete
+															this Encounter</button></a></td>
+											</tr>
+										</c:if>
+									</tfoot>
+								</table>
 
-
-											<table class="table table-dark"
-												style="width: 80%; margin: 50px 5%;">
-												<thead>
-													<tr>
-														<th colspan="5"><a href="singleview.do?id=${encounter.celestialBody.id}">${encounter.celestialBody.name}</a> Encounter</th>
-													</tr>
-													<tr>
-														<th>UserName</th>
-														<th>Title</th>
-														<th>Posted</th>
-														<th colspan="2">About</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:if test="${not empty encounter}">
-
-
-														<tr>
-															<td>${encounter.user.username }</td>
-															<td><a
-																href="viewencounter.do?encounterId=${encounter.id}&userId=${loggedInUser.id}">${encounter.title }</a></td>
-															<td>${encounter.createdAt }</td>
-															<td colspan="2">${encounter.description }</td>
-
-														</tr>
-													</c:if>
-												</tbody>
-												<tfoot>
-													<c:if
-														test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
-														<tr>
-															<td><a
-																href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
-																		type="button" class="btn btn-outline-primary">Edit
-																		this Encounter</button></a></td>
-															<td><a
-																href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
-																		type="button" class="btn btn-outline-primary">Delete
-																		this Encounter</button></a></td>
-														</tr>
-													</c:if>
-												</tfoot>
-											</table>
-											<br>
-										</div>
-
-									</c:if>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<div class="alert alert-danger" role="alert">
-									<p>Encounters do not exist in database</p>
-								</div>
-							</c:otherwise>
-
-						</c:choose>
-
-					 </div>
+							</c:if>
+						</c:forEach>
+					</div>
 				</div>
+			</c:if>
 		
 		</c:when>
 		<c:otherwise>

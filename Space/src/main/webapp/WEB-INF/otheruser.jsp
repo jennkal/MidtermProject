@@ -78,13 +78,13 @@
 			
 			<c:if test="${not empty otheruser.encounters}">
 				<div class="d-flex p-2 align-self-center"
-					style="max-height: 350px; width: 800px; margin-left: 320px; margin-top: -450px;">
+					style="max-height: 350px; width: 80%; margin-left: 320px; margin-top: -450px;">
 					<div class="table-responsive" style="width: 800px;">
 						<c:forEach var="encounter" items="${otheruser.encounters}">
 							<c:if test="${not empty encounter}">
 
 								<table class="table table-dark table-hover"
-									style="width: 1300px;">
+									style="width: 800px;">
 									<thead>
 										<tr>
 											<th colspan="5"><a
@@ -107,35 +107,6 @@
 											<td>${encounter.createdAt }</td>
 											<td colspan="2">${encounter.description }</td>
 										</tr>
-
-
-
-										<%-- 										<tr>
-											<td>${encounter.user.username }</td>
-											<td><a href="singleview.do?title=${encounter.title }" style="color: grey; pointer-events: none;">${encounter.title }</a></td>
-											<td>${encounter.createdAt }</td>
-											<td>${encounter.description }</td>
-											<td>
-												<form
-													action="rateEncounter.do?userId=${otheruser.id }&encounterId=${encounter.id}"
-													method="POST">
-													<p>Please Rate This Encounter</p>
-													<label for="one">1: </label> <input id="one" type=radio
-														value="1" name="ratingValue">
-													<label for="two">2: </label> <input id="two" type=radio
-														value="2" name="ratingValue"> 
-													<label for="three">3:</label> <input id="three" type=radio
-														value="3" name="ratingValue"> 
-													<label for="four">4:</label> <input id="four" type=radio
-														value="4" name="ratingValue"> 
-													<label for="five">5:</label> <input id="five" type=radio
-														value="5" name="ratingValue"> <br> <br>
-													<input type=submit class="btn btn-outline-primary" style="color: grey; pointer-events: none;" />
-												</form>
-											</td>
-										</tr> --%>
-
-
 
 									</tbody>
 									<tfoot>

@@ -59,8 +59,10 @@ public class UserController {
 		return "redirect:home.do";
 	}
 
-	@GetMapping("userprofile.do")
-	public String redirectToProfile() {
+	@GetMapping(path="userprofile.do", params="userId")
+	public String redirectToProfile(HttpSession session, int userId) {
+		User user = userDAO.findById(userId);
+		session.setAttribute("loggedInUser", user);
 		return "userprofile";
 	}
 
@@ -112,10 +114,10 @@ public class UserController {
 		return "otheruser";
 	}
 
-	@PostMapping("rateEncounter.do")
+	@PostMapping(path="rateEncounter.do", params={"encounterId", "userId"})
 	public String postRating(Rating rating, Model model, int encounterId, int userId, RedirectAttributes redir) {
 		Rating rate = ratingDAO.postRating(rating, encounterId, userId);
-		return "redirect:singleview.do?id=" + rating.getEncounter().getCelestialBody().getId();
+		return "redirect:viewencounter.do?encounterId=" + encounterId + "&userId=" + userId;
 
 	}
 
@@ -132,7 +134,7 @@ public class UserController {
 		if (updatedUser != null) {
 
 			session.setAttribute("loggedInUser", updatedUser);
-			return "redirect:userprofile.do";
+			return "redirect:userprofile.do?userId=" + userId;
 
 		} else {
 			boolean editError = true;
