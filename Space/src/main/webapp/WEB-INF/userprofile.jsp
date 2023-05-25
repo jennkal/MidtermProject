@@ -118,11 +118,11 @@
 											test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
 											<tr>
 												<td><a
-													href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+													href="editencounterform.do?encounterId=${encounter.id}&bodyId=${encounter.celestialBody.id}"><button
 															type="button" class="btn btn-outline-primary">Edit
 															this Encounter</button></a></td>
 												<td><a
-													href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
+													href="deleteencounter.do?encounterId=${encounter.id}&bodyId=${encounter.celestialBody.id}"><button
 															type="button" class="btn btn-outline-primary">Delete
 															this Encounter</button></a></td>
 											</tr>

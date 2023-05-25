@@ -85,7 +85,7 @@ public class EncounterController {
 
 			model.addAttribute("id", bodyId);
 			redir.addFlashAttribute("name", bodyId);
-			return "redirect:singleview.do?id=" + bodyId;
+			return "redirect:encounterlist.do?bodyId=" + bodyId;
 		} else {
 			boolean creationError = true;
 			model.addAttribute("creationError", creationError);
@@ -115,7 +115,7 @@ public class EncounterController {
 
 			model.addAttribute("id", bodyId);
 			redir.addFlashAttribute("name", bodyId);
-			return "redirect:singleview.do?id=" + bodyId;
+			return "redirect:encounterlist.do?bodyId=" + bodyId;
 		} else {
 			boolean editError = true;
 			model.addAttribute("editError", editError);

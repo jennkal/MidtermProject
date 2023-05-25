@@ -95,7 +95,7 @@
 											<c:forEach var="comment" items="${body.comments }">
 												<tr>
 													<td><a
-														href="singleuser.do?username=${otheruser.username}">${comment.user.username }</a></td>
+														href="singleuser.do?username=${comment.user.username}">${comment.user.username }</a></td>
 													<td>${comment.createdAt }</td>
 													<td>${comment.body }</td>
 
