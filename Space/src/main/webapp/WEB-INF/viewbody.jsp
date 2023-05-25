@@ -160,8 +160,3 @@
 	<jsp:include page="bootfooter.jsp" />
 </body>
 </html>
-
-
-<jsp:include page="bootfooter.jsp" />
-</body>
-</html>
