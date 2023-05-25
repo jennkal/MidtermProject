@@ -299,8 +299,7 @@ public class Encounter {
 		return "Encounter [id=" + id + ", title=" + title + ", description=" + description + ", behavior=" + behavior
 				+ ", enabled=" + enabled + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", encounterDate="
 				+ encounterDate + ", encounterTime=" + encounterTime + ", captureMethod=" + captureMethod
-				+ ", location=" + location + ", celestialBody=" + celestialBody + ", user=" + user + ", images="
-				+ images + ", comments=" + comments + ", ratings=" + ratings + "]";
+				+ ", location=" + location + ", celestialBody=" + celestialBody + "]";
 	}
 
 	@Override

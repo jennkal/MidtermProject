@@ -10,6 +10,8 @@ public interface EncounterDAO {
 	
 	Encounter findEncounterById(int encounterId);   
 	
+	List<Encounter> findEncountersByBodyId(int bodyId);
+	
 	List<Encounter> searchByKeyword(String keyword);
 	
 	Encounter postEncounter(Encounter encounter, int userId, int bodyId,
