@@ -33,7 +33,7 @@
 												<th>Title</th>
 												<th>Posted</th>
 												<th>About</th>
-												<th>Rate/Rating</th>
+												<th>Average Rating</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -44,30 +44,13 @@
 													<td>${encounter.user.username }</td>
 													<td><a href="viewencounter.do?encounterId=${encounter.id}">${encounter.title }</a></td>
 													<td>${encounter.createdAt }</td>
-													<td>${encounter.description }</td>
-													<td>
-														<form
-															action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
-															method="POST">
-															<p>Please Rate This Encounter</p>
-															<label for="one">1</label> 
-															<input id="one" type=radio value="1" name="ratingValue"> 
-															<label for="two">2</label>
-															<input id="two" type=radio value="2" name="ratingValue">
-															<label for="three">3</label> 
-															<input id="three" type=radio value="3" name="ratingValue"> 
-															<label for="four">4</label>
-															<input id="four" type=radio value="4" name="ratingValue">
-															<label for="five">5</label> 
-															<input id="five" type=radio value="5" name="ratingValue"> 
-															<input type=submit class="btn btn-outline-primary" />
-														</form>
-													</td>
+													<td colspan="2">${encounter.description }</td>
+													
 												</tr>
 											</c:if>
 										</tbody>
 										<tfoot>
-											<c:if test="${loggedInUser.id == encounter.user.id}">
+											<c:if test="${oggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
 												<tr>
 													<td><a
 														href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button

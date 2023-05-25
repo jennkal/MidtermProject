@@ -25,25 +25,31 @@
 							style="width: 85%; margin: 50px auto;">
 							<thead>
 								<tr>
+									<th colspan="5">${encounter.user.username}'s <a href="singleview.do?id=${encounter.celestialBody.id}">${encounter.celestialBody.name}</a> Encounter</th>
+								</tr>
+								<tr>
 									<th>UserName</th>
 									<th>Title</th>
 									<th>Posted</th>
 									<th>About</th>
-									<th>Rate/Rating</th>
+									<th>Average Rating</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${not empty encounter}">
-
-
+		
 									<tr>
 										<td>${encounter.user.username }</td>
 										<td><a href="viewencounter.do?encounterId=${encounter.id}">${encounter.title }</a></td>
 										<td>${encounter.createdAt }</td>
-										<td>${encounter.description }</td>
+										<td >${encounter.description }</td>
 										<td>
-											<form
-												action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
+
+											
+										</td>
+									</tr>
+									<tr>
+										<td colspan="5">
+											<form action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
 												method="POST">
 												<p>Please Rate This Encounter</p>
 												<label for="one">1</label> 
@@ -60,10 +66,10 @@
 											</form>
 										</td>
 									</tr>
-								</c:if>
+
 							</tbody>
 							<tfoot>
-								<c:if test="${loggedInUser.id == encounter.user.id}">
+								<c:if test="${oggedInUser.role == 'ADMIN' || loggedInUser.id == encounter.user.id}">
 									<tr>
 										<td><a
 											href="editencounterform.do?encounterId=${encounter.id}&bodyId=${body.id}"><button
