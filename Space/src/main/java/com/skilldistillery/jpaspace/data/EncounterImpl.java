@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.EncounterImage;
+import com.skilldistillery.jpaspace.entities.Rating;
+import com.skilldistillery.jpaspace.entities.RatingId;
 import com.skilldistillery.jpaspace.entities.User;
 
 @Service
@@ -118,6 +120,16 @@ public class EncounterImpl implements EncounterDAO {
 		user.removeEncounter(managedEncounter);
 		CelestialBody body = em.find(CelestialBody.class, managedEncounter.getCelestialBody().getId());
 		body.removeEncounter(managedEncounter);
+		List<EncounterImage> images = managedEncounter.getImages();
+		for (EncounterImage encounterImage : images) {
+			em.remove(encounterImage);
+		}
+		List<Rating> ratings = managedEncounter.getRatings();
+		for (Rating rating : ratings) {
+			RatingId id = new RatingId(rating.getUser().getId(), rating.getEncounter().getId());
+			Rating managedRating = em.find(Rating.class, id);
+			em.remove(managedRating);
+		}
 		try {
 			em.remove(managedEncounter);
 			removedEncounter = true;
