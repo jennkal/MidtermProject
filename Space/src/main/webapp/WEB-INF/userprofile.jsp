@@ -135,7 +135,6 @@
 					</div>
 				</div>
 			</c:if> 
-			</c:if>
 		</c:when>
 		<c:otherwise>
 			<p>Not Logged In.</p>
