@@ -63,10 +63,10 @@
 	</div>
 
 
+	<div
+		class="container min-vh-75 d-flex justify-content-center align-items-center">
+		<div id="div" class="container-fluid ">
 
-	<div class="d-flex p-2 align-self-center"
-		style="max-height: 150px; max-width: 800px; margin-bottom: 80px;">
-		<div class="table-responsive">
 			<table class="table table-dark table-hover"
 				style="width: 800px; margin-left: 250px; margin-top: 65px;">
 				<thead style="text-align: center;">
