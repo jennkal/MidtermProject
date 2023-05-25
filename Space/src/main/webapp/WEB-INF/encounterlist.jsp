@@ -12,9 +12,8 @@
 <jsp:include page="bootheader.jsp" />
 
 </head>
-<body style="background-color: #343a40;">
+<body style="background-image: url('https://media1.giphy.com/media/aRZ4vTsHnyW6A/giphy.gif'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
-	<!-- 	<div class="d-flex  min-vh-100 justify-content-between p-2"> -->
 	<c:if test="${not empty sessionScope.loggedInUser}">
 		<c:if test="${removedEncounter == true}">
 		<div class="alert alert-success" role="alert">
@@ -89,12 +88,6 @@
 
 		</c:choose>
 	</c:if>
-	<!-- 	</div> -->
-	<jsp:include page="bootfooter.jsp" />
-</body>
-</html>
-
-
 <jsp:include page="bootfooter.jsp" />
 </body>
 </html>
