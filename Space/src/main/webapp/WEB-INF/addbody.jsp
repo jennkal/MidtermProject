@@ -19,7 +19,7 @@
 			</div>
 			<div
 				class="container min-vh-50 d-flex justify-content-center align-items-center">
-				<form action="viewbody.do" method="POST"
+				<form action="viewbody.do?userId=${loggedInUser.id}" method="POST"
 					style="width: 300px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 					<input type="text" name="name" placeholder="Enter Name" required />
 					<select name="categoryId" required>

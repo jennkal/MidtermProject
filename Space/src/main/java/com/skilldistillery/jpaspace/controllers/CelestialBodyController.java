@@ -34,8 +34,8 @@ public class CelestialBodyController {
 	@Autowired
 	private CategoryDAO cateDAO;
 
-	@PostMapping("viewbody.do")
-	public String postCelestialBody(CelestialBody body, Model model, RedirectAttributes redir, int categoryId) {
+	@PostMapping(path="viewbody.do", params="userId")
+	public String postCelestialBody(CelestialBody body, Model model, RedirectAttributes redir, int categoryId, int userId) {
 
 		CelestialBody newBody = cbDAO.postCelestialBody(body, categoryId);
 
@@ -48,7 +48,7 @@ public class CelestialBodyController {
 			boolean bodyexist = true;
 			model.addAttribute("notnew", bodyexist);
 			redir.addFlashAttribute("notnew", bodyexist);
-			return "redirect:userprofile.do";
+			return "redirect:userprofile.do?userId=" + userId;
 		}
 
 	}
