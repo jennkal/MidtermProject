@@ -10,18 +10,18 @@
 <jsp:include page="bootheader.jsp" />
 </head>
 <body class="bg-image"
-	style="background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: center;">
+	style="background-image: url('https://apod.nasa.gov/apod/image/2304/Barnard-150_LRGB_HIGH-RES1024.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 	<div class="container d-flex justify-content-center">
-		<h1>Your Adventure So Far!</h1>
+		<h1 style="color: white;">Your Adventure So Far!</h1>
 	</div>
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
 			<div class="container d-flex justify-content-center">
-				<h2>${loggedInUser.username }</h2>
+				<h2 style="color: white;">${loggedInUser.username }</h2>
 			</div>
 			<div class="container d-flex justify-content-center">
-				<h3>Here Are You're Previously Entered Encounters</h3>
+				<h3 style="color: white;">Here Are You're Previously Entered Encounters</h3>
 			</div>
 
 			<div class="card mb-3"
@@ -62,8 +62,10 @@
 
 			<div style="width: 260; height: 170; margin-left: 15px">
 				<form action="addbody.do"
-					style="width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
-					<p style="">Add Your New Discovery</p>
+					style="color: white; width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+					<a href="bodylist.do" class="btn btn-outline-primary">View All Celestial Body</a>
+					<br>
+					<p>Or Add Your New Discovery</p>
 					<select name="classificationId">
 						<option selected value="1">Nebula</option>
 						<option selected value="2">Solar System</option>
@@ -72,11 +74,8 @@
 						<option selected value="5">Comet</option>
 						<option selected value="6">Asteroid</option>
 					</select> <input class="btn btn-outline-primary" type="submit"
-						value="Select Classification"> <label for="or">Or:</label>
-					<a href="bodylist.do">
-						<button id="or" type="button" class="btn btn-outline-primary">View
-							All</button>
-					</a>
+						value="Select Classification">
+					
 				</form>
 			</div>
 
