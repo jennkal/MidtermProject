@@ -97,7 +97,7 @@
 									</thead>
 									<tbody>
 										<c:if test="${! empty body.comments }">
-											<h6>Comments</h6>
+											<h6 style="color: white;">Comments</h6>
 											<c:forEach var="comment" items="${body.comments }">
 												<tr>
 													<td><a
