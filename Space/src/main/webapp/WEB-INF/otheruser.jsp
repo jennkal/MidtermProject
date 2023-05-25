@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 <jsp:include page="bootheader.jsp" />
 </head>
-<body>
+<body class="bg-image"
+	style="background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: center;" >
 	<jsp:include page="navbar.jsp" />
 	<div class="container d-flex justify-content-center">
 		<h1>Their Adventure So Far!</h1>
