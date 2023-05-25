@@ -3,6 +3,8 @@ package com.skilldistillery.jpaspace.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
 import com.skilldistillery.jpaspace.data.EncounterImageDAO;
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
+import com.skilldistillery.jpaspace.entities.CelestialBodyComment;
+import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
 public class CelestialBodyController {
@@ -72,11 +76,13 @@ public class CelestialBodyController {
 	}
 	
 	@GetMapping(path="singleview.do", params="id")
-	public String singleBody(@RequestParam("id") int id, Model model) {
+	public String singleBody(@RequestParam("id") int id, Model model, HttpSession session) {
 		CelestialBody body = cbDAO.findCelestialBodyById(id);
 		model.addAttribute("body",body);
 		List<String> list = imageDAO.findAllImagesByBodyId(id);
 		model.addAttribute("images", list);
+		User user = (User) session.getAttribute("loggedInUser");
+		model.addAttribute("loggedInUser",user);
 		return "viewbody";
 	}
 	
@@ -89,5 +95,17 @@ public class CelestialBodyController {
 		model.addAttribute("images", list);
 		return "sample";
 	}
+	
+	
+	
+	@GetMapping(path = "deleteBody.do", params={"categoryId", "bodyId"})
+	public String removeCelestialBody (CelestialBody body, Model model, RedirectAttributes redir, int categoryId, int bodyId) {
+		
+		boolean removed = cbDAO.removeCelestialBodyId(categoryId);
+		model.addAttribute("removed", removed);
+		redir.addFlashAttribute("removed", removed);
+		return "redirect:bodylist.do?id=" + bodyId;
+	}
+	
 	
 }

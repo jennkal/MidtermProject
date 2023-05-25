@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
+import com.skilldistillery.jpaspace.entities.User;
 
 @Service
 @Transactional
@@ -91,6 +92,10 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 	public boolean removeCelestialBodyId(int bodyId) {
 		if (bodyId != 0) {
 			CelestialBody managedBody = em.find(CelestialBody.class, bodyId);
+			
+			User adminUserOnly = em.find(User.class, managedBody.getComments().get(bodyId).getUser().getRole());
+			
+			
 			em.remove(managedBody);
 			return true;
 		} else {

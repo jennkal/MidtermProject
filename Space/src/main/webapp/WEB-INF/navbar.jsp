@@ -28,14 +28,14 @@
 					<form class="d-flex" role="search" action="otheruser.do"
 						method="GET">
 						<input type="text" name="username" placeholder="Search By Username" />
-						<input class="btn btn-outline-success" type="submit"
+						<input class="btn btn-outline-primary" type="submit"
 							value="Search Astronauts" />
 					</form>
 					<br>
 					<br>
 					<form class="d-flex" role="search" action="viewbody.do">	
 					<input type="text" name="name" placeholder="Search Celestial name" />
-						<input class="btn btn-outline-success" type="submit"
+						<input class="btn btn-outline-primary" type="submit"
 							value="Search Universe" />
 					</form>
 					<br>
@@ -56,7 +56,7 @@
 					<a href="home.do"><button type="button"
 							class="btn btn-outline-primary">Home</button></a>
 					<br>
-						<input class="btn btn-outline-success" type="submit"
+						<input class="btn btn-outline-primary" type="submit"
 							value="Sign Up" />
 					</form>
 				</div>

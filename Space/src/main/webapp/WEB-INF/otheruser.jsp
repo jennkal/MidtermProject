@@ -9,35 +9,134 @@
 <title>Insert title here</title>
 <jsp:include page="bootheader.jsp" />
 </head>
-<body>
+<body class="bg-image"
+	style="background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: center;" >
 	<jsp:include page="navbar.jsp" />
-
-
 	<div class="container d-flex justify-content-center">
 		<h1>Their Adventure So Far!</h1>
 	</div>
 	<div class="container d-flex justify-content-center">
 		<h2>${otheruser.username }</h2>
 	</div>
+	<c:choose>
+		<c:when test="${not empty sessionScope.loggedInUser}">
+			<div class="container d-flex justify-content-center">
+				<h3>Their Previously Entered Encounters</h3>
+			</div>
 
-	<div class="card mb-3"
-		style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
-		<c:choose>
-						<c:when test="${not empty otheruser.imageUrl}">				
-							<img src="${otheruser.imageUrl}" class="img-fluid rounded-start card-img-top" alt="picture of ${otheruser.username }">
-						</c:when>
-						<c:otherwise>
-							<img src="https://static.vecteezy.com/system/resources/previews/000/700/639/original/astronaut-cartoon-floating-with-balloon-planets-in-space-vector.jpg" class="img-fluid rounded-start card-img-top" alt="picture of ${loggedInUser.username }">
-						</c:otherwise>
-					</c:choose>
-		<div class="card-body">
-			<h5 class="card-title">${otheruser.username}</h5>
-			<p class="card-text">${otheruser.about}</p>
-			<p class="card-text">
-				<small class="text-body-secondary">${other.role } </small>
-			</p>
-		</div>
-	</div>
+			<div class="card mb-3"
+				style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
+				<c:choose>
+					<c:when test="${not empty otheruser.imageUrl}">
+						<img src="${otheruser.imageUrl}"
+							class="img-fluid rounded-start card-img-top"
+							alt="picture of ${otheruser.username }">
+					</c:when>
+					<c:otherwise>
+						<img
+							src="https://static.vecteezy.com/system/resources/previews/000/700/639/original/astronaut-cartoon-floating-with-balloon-planets-in-space-vector.jpg"
+							class="img-fluid rounded-start card-img-top"
+							alt="picture of ${otheruser.username }">
+					</c:otherwise>
+				</c:choose>
+				<div class="card-body">
+					<h5 class="card-title">${otheruser.username}</h5>
+					<p class="card-text">${otheruser.about}</p>
+					<p class="card-text">
+						<small class="text-body-secondary">${otheruser.role } </small>
+					</p>
+					<a href="editprofile.do" style="color: grey; pointer-events: none;"><button type="button"
+							class="btn btn-outline-primary" style="color: grey;">Update Profile</button></a>
+				</div>
+			</div>
+			<c:if test="${notnew == true}">
+				<div class="alert alert-danger" role="alert">
+					<p>Space object is already out there</p>
+				</div>
+			</c:if>
+			<div style="width: 260; height: 170; margin-left: 15px">
+				<form action="addbody.do"
+					style="width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+					<p style="">Add Your New Discovery</p>
+					<select name="classificationId">
+						<option selected value="1">Nebula</option>
+						<option selected value="2">Solar System</option>
+						<option selected value="3">Star</option>
+						<option selected value="4">Planet</option>
+						<option selected value="5">Comet</option>
+						<option selected value="6">Asteroid</option>
+					</select> <input class="btn btn-outline-primary" type="submit"
+						value="Select Classification" style="color: grey; pointer-events: none;" > <label for="or">Or:</label>
+					<a href="bodylist.do" style="color: grey; pointer-events: none;" >
+						<button id="or" type="button" class="btn btn-outline-primary" style="color: grey;" >View
+							All</button>
+					</a>
+				</form>
+			</div>
+			<c:if test="${not empty otheruser.encounters}">
+				<div class="d-flex p-2 align-self-center"
+					style="max-height: 350px; width: 1300px; margin-left: 320px; margin-top: -450px;">
+					<div class="table-responsive" style="width: 1300px;">
+						<table class="table table-dark table-hover"
+							style="width: 1300px;">
+							<thead>
+								<tr>
+									<th>UserName</th>
+									<th>Title</th>
+									<th>Posted</th>
+									<th>About</th>
+									<th>Rate/Rating</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="encounter" items="${otheruser.encounters}">
+									<c:if test="${not empty encounter}">
+
+
+										<tr>
+											<td>${encounter.user.username }</td>
+											<td><a href="singleview.do?title=${encounter.title }" style="color: grey; pointer-events: none;">${encounter.title }</a></td>
+											<td>${encounter.createdAt }</td>
+											<td>${encounter.description }</td>
+											<td>
+												<form
+													action="rateEncounter.do?userId=${otheruser.id }&encounterId=${encounter.id}"
+													method="POST">
+													<p>Please Rate This Encounter</p>
+													<label for="one">1: </label> <input id="one" type=radio
+														value="1" name="ratingValue">
+													<label for="two">2: </label> <input id="two" type=radio
+														value="2" name="ratingValue"> 
+													<label for="three">3:</label> <input id="three" type=radio
+														value="3" name="ratingValue"> 
+													<label for="four">4:</label> <input id="four" type=radio
+														value="4" name="ratingValue"> 
+													<label for="five">5:</label> <input id="five" type=radio
+														value="5" name="ratingValue"> <br> <br>
+													<input type=submit class="btn btn-outline-primary" style="color: grey; pointer-events: none;" />
+												</form>
+											</td>
+										</tr>
+									</c:if>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="5"><a
+										href="encounterform.do?bodyId=${body.id}" style="color: grey; pointer-events: none;"><button
+												type="button" class="btn btn-outline-primary" style="color: grey;">Add
+												an Encounter</button></a></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<p>Not Logged In.</p>
+		</c:otherwise>
+	</c:choose>
 	<jsp:include page="bootfooter.jsp" />
 </body>
 </html>

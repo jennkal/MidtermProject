@@ -7,24 +7,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>${body.name } Chat Room</title>
+<title>${body.name }ChatRoom</title>
 
 <jsp:include page="bootheader.jsp" />
 
 </head>
 <body style="background-color: #343a40;">
 	<jsp:include page="navbar.jsp" />
+	<c:if test="${removed == true}">
+		<div class="alert alert-success" role="alert">
+			<p>Successfully removed the comment.</p>
+		</div>
+	</c:if>
 	<div class="d-flex  min-vh-100 justify-content-between p-2">
 		<c:if test="${not empty sessionScope.loggedInUser}">
-		
+
 			<c:choose>
 				<c:when test="${! empty body }">
-				
-			<c:if test="${removed == true}">
-				<div class="alert alert-success" role="alert">
-					<p>Successfully removed the comment.</p>
-				</div>
-			</c:if>
+
 					<div class="d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: 240px; max-height: 200px; background-color: rgba(18, 18, 18, .5); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid black; border-radius: 10px; margin-bottom: 100px; margin-left: 15px;">
 						<div class="table-responsive">
@@ -50,7 +50,7 @@
 													<div class="carousel-item active">
 														<img class="d-block w-100" src="${image}"
 															alt="picture of the ${body.name }"
-															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -20px;">
 													</div>
 												</c:when>
 												<c:otherwise>
@@ -91,28 +91,34 @@
 									</thead>
 									<tbody>
 										<c:if test="${! empty body.comments }">
-										<h6>Comments</h6>
+											<h6 style="color: white;">Comments</h6>
 											<c:forEach var="comment" items="${body.comments }">
 												<tr>
-													<td><a href="singleuser.do?username=${user.username}">${comment.user.username }</a></td>
+													<td><a
+														href="singleuser.do?username=${otheruser.username}">${comment.user.username }</a></td>
 													<td>${comment.createdAt }</td>
 													<td>${comment.body }</td>
-													
-													<c:if test="${loggedInUser.id == comment.user.id}">
-													<td><a href="updateform.do?commentId=${comment.id}"> update comment </a></td>
-															
-																
-													<td><a href="deleteComment.do?commentId=${comment.id}&bodyId=${body.id}"> Delete comment </a></td>
+
+													<c:if
+														test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == comment.user.id}">
+
+														<td><a href="updateform.do?commentId=${comment.id}">
+																update comment </a></td>
+														<td><a
+															href="deleteComment.do?commentId=${comment.id}&bodyId=${body.id}">
+																Delete comment </a></td>
+
 													</c:if>
 												</tr>
 											</c:forEach>
-					
-													
+
+
 										</c:if>
 									</tbody>
 									<tfoot>
 										<tr>
-											<td colspan="5"><a href="commentsform.do?bodyId=${body.id}"> Add comment </a></td>
+											<td colspan="5"><a
+												href="commentsform.do?bodyId=${body.id}"> Add comment </a></td>
 										</tr>
 									</tfoot>
 								</table>
@@ -124,12 +130,15 @@
 					</c:if>
 					<div class=" d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
-
-						<a href="${body.trackingUrl}"> <img alt="star map"
-							src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
-							style="max-height: 300px; max-width: auto; border-radius: 50%;">
-						</a>
-
+						<div style="position: relative; text-align: center; color: white;">
+							<a href="${body.trackingUrl}"> <img alt="star map"
+								src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
+								style="max-height: 300px; max-width: auto; border-radius: 50%;">
+							</a>
+							<div
+								style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Did
+								you use a TrackingUrl? Click me and find out.</div>
+						</div>
 					</div>
 
 				</c:when>
