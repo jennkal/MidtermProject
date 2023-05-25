@@ -23,22 +23,29 @@
 				<h3>Here Are You're Previously Entered Encounters</h3>
 			</div>
 
-			<div class="card mb-3" style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
-					<c:choose>
-						<c:when test="${not empty loggedInUser.imageUrl}">				
-							<img src="${loggedInUser.imageUrl}" class="img-fluid rounded-start card-img-top" alt="picture of ${loggedInUser.username }">
-						</c:when>
-						<c:otherwise>
-							<img src="https://static.vecteezy.com/system/resources/previews/000/700/639/original/astronaut-cartoon-floating-with-balloon-planets-in-space-vector.jpg" class="img-fluid rounded-start card-img-top" alt="picture of ${loggedInUser.username }">
-						</c:otherwise>
-					</c:choose>
+			<div class="card mb-3"
+				style="max-width: 200px; , max-height: 90px; margin-left: 30px; margin-top: -30px">
+				<c:choose>
+					<c:when test="${not empty loggedInUser.imageUrl}">
+						<img src="${loggedInUser.imageUrl}"
+							class="img-fluid rounded-start card-img-top"
+							alt="picture of ${loggedInUser.username }">
+					</c:when>
+					<c:otherwise>
+						<img
+							src="https://static.vecteezy.com/system/resources/previews/000/700/639/original/astronaut-cartoon-floating-with-balloon-planets-in-space-vector.jpg"
+							class="img-fluid rounded-start card-img-top"
+							alt="picture of ${loggedInUser.username }">
+					</c:otherwise>
+				</c:choose>
 				<div class="card-body">
 					<h5 class="card-title">${loggedInUser.username}</h5>
 					<p class="card-text">${loggedInUser.about}</p>
 					<p class="card-text">
 						<small class="text-body-secondary">${loggedInUser.role } </small>
 					</p>
-					<a href="editprofile.do" ><button type="button" class="btn btn-outline-primary">Update Profile</button></a>
+					<a href="editprofile.do"><button type="button"
+							class="btn btn-outline-primary">Update Profile</button></a>
 				</div>
 			</div>
 
@@ -73,13 +80,12 @@
 			</div>
 
 			<c:if test="${not empty loggedInUser.encounters}">
+
 				<div class="d-flex p-2 align-self-center"
-					style="max-height: 350px; max-width: 800px; margin-bottom: 80px; border: 2px solid red;">
-					<div class="table-responsive">
-
-
+					style="max-height: 350px; width: 1300px; margin-left: 320px; margin-top: -550px;">
+					<div class="table-responsive" style="width: 1300px;">
 						<table class="table table-dark table-hover"
-							style="margin-left: 550px; margin-top: -300px; margin-bottom: 100px;">
+							style="width: 1300px;">
 							<thead>
 								<tr>
 									<th>UserName</th>
@@ -104,15 +110,15 @@
 													action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
 													method="POST">
 													<p>Please Rate This Encounter</p>
-													<label for="one">1</label> <input id="one" type=radio
-														value="1" name="ratingValue"> <br> <br>
-													<label for="two">2</label> <input id="two" type=radio
-														value="2" name="ratingValue"> <br> <br>
-													<label for="three">3</label> <input id="three" type=radio
-														value="3" name="ratingValue"> <br> <br>
-													<label for="four">4</label> <input id="four" type=radio
-														value="4" name="ratingValue"> <br> <br>
-													<label for="five">5</label> <input id="five" type=radio
+													<label for="one">1: </label> <input id="one" type=radio
+														value="1" name="ratingValue">
+													<label for="two">2: </label> <input id="two" type=radio
+														value="2" name="ratingValue"> 
+													<label for="three">3:</label> <input id="three" type=radio
+														value="3" name="ratingValue"> 
+													<label for="four">4:</label> <input id="four" type=radio
+														value="4" name="ratingValue"> 
+													<label for="five">5:</label> <input id="five" type=radio
 														value="5" name="ratingValue"> <br> <br>
 													<input type=submit class="btn btn-outline-primary" />
 												</form>

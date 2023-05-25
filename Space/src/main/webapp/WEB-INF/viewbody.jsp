@@ -52,7 +52,7 @@
 													<div class="carousel-item active">
 														<img class="d-block w-100" src="${image}"
 															alt="picture of the ${body.name }"
-															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -20px;">
 													</div>
 
 												</c:when>

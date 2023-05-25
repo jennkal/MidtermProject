@@ -47,7 +47,6 @@ public class UserController {
 		if (authenticatedUser != null) {
 			if(authenticatedUser.getRole() != null && authenticatedUser.getRole().equals("ADMIN")) {
 				boolean admin = true;
-				System.out.println(admin);
 				model.addAttribute("admin", admin);
 			}
 			session.setAttribute("loggedInUser", authenticatedUser);
