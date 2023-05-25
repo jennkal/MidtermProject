@@ -30,4 +30,10 @@
 
 ## Lessons Learned
 
-	
+	How important it is to understand the relationship between the objects in the database, the entities, and how to relate them to eachother.
+
+	Having a good team dinamic, being ok with playing your strenths and improving your weaknesses.
+
+	Linking database tables and rows to creating entities and linking the field's of each entity to the other entities. 
+
+	Mapping was easy to mess up fast, but this project helped iron out mapping between the .jsp's and the controllers.
