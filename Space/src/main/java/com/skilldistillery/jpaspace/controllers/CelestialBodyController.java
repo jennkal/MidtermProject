@@ -61,9 +61,10 @@ public class CelestialBodyController {
 	}
 
 	@GetMapping(path = "bodylist.do")
-	public String getList(Model model) {
+	public String getList(Model model, HttpSession session) {
 		List<CelestialBody> list = cbDAO.findall();
 		model.addAttribute("bodies", list);
+		User user = (User) session.getAttribute("loggedInUser");
 		return "bodylist";
 	}
 	

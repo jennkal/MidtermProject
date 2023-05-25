@@ -37,8 +37,9 @@
 										<td>${body.description}</td>
 										<td>${body.category.classification}</td>
 										<td>${body.category}</td>
+										<c:if test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == body.id}">
 										<td><a href="updatecelestialbody.do?bodyId=${body.id}" class="btn btn-outline-primary">Update ${body.name}</a></td>
-										
+										</c:if>
 								</c:forEach>
 
 							</tbody>
