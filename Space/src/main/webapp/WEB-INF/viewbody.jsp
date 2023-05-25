@@ -112,7 +112,6 @@
 												</tr>
 											</c:forEach>
 
-
 										</c:if>
 									</tbody>
 									<tfoot>
