@@ -16,6 +16,12 @@
 	<jsp:include page="navbar.jsp" />
 	<!-- 	<div class="d-flex  min-vh-100 justify-content-between p-2"> -->
 	<c:if test="${not empty sessionScope.loggedInUser}">
+		<c:if test="${removedEncounter == true}">
+		<div class="alert alert-success" role="alert">
+			<p>Successfully removed the encounter.</p>
+		</div>
+	</c:if>
+	
 		<div style="margin: 10px auto;">
 			<a href="encounterform.do?bodyId=${body.id}"><button type="button"
 				class="btn btn-outline-primary">Add an Encounter for

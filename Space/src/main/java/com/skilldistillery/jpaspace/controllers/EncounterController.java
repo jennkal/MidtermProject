@@ -135,7 +135,7 @@ public class EncounterController {
 		boolean removedEncounter = encounterDAO.removeEncounter(encounterId);
 		model.addAttribute("removedEncounter", removedEncounter);
 		redir.addFlashAttribute("removedEncounter", removedEncounter);
-		return "redirect:singleview.do?id=" + bodyId;
+		return "redirect:encounterlist.do?bodyId=" + bodyId;
 
 	}
 
