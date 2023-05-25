@@ -81,7 +81,7 @@
 			</div>
 
 
-<%-- 			<c:if test="${not empty loggedInUser.encounters}">
+		<c:if test="${not empty loggedInUser.encounters}">
 				<div class="d-flex p-2 align-self-center"
 					style="max-height: 350px; max-width: 800px; margin-bottom: 80px; border: 2px solid red;">
 					<div class="table-responsive">
@@ -142,7 +142,7 @@
 						</table>
 					</div>
 				</div>
-			</c:if> --%>
+			</c:if> 
 		</c:when>
 		<c:otherwise>
 			<p>Not Logged In.</p>

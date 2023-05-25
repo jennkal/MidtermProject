@@ -73,17 +73,10 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 		CelestialBody managedBody = em.find(CelestialBody.class, bodyId);
 
 		managedBody.setName(body.getName());
-		managedBody.setEnabled(body.getEnabled());
-		managedBody.setCreatedAt(body.getCreatedAt());
 		managedBody.setUpdatedAt(body.getUpdatedAt());
 		managedBody.setImageUrl(body.getImageUrl());
 		managedBody.setDescription(body.getDescription());
-		managedBody.setComments(body.getComments());
-		managedBody.setEncounters(body.getEncounters());
 		managedBody.setTrackingUrl(body.getTrackingUrl());
-		managedBody.setCategory(body.getCategory());
-//		managedBody.setParent(body.getParent());
-//		managedBody.setChildren(body.getChildren());
 
 		return managedBody;
 	}
@@ -92,9 +85,6 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 	public boolean removeCelestialBodyId(int bodyId) {
 		if (bodyId != 0) {
 			CelestialBody managedBody = em.find(CelestialBody.class, bodyId);
-			
-			User adminUserOnly = em.find(User.class, managedBody.getComments().get(bodyId).getUser().getRole());
-			
 			
 			em.remove(managedBody);
 			return true;
