@@ -32,6 +32,28 @@ public class RatingDAOImpl implements RatingDAO {
 		Encounter encounter = em.find(Encounter.class, encounterId);
 		return encounter.getRatings();
 	}
+	
+	@Override
+	public Rating ratingByEncounterIdAndUserId(int encounterId, int userId) {
+		RatingId id = new RatingId(userId, encounterId);
+		Rating rating = null;
+		try {
+			rating = em.find(Rating.class, id);
+		}
+		catch (Exception e) {}
+		return rating;
+	}
+	
+	@Override
+	public double averageRatingByEncounterId(int encounterId) {
+		String jpql = "SELECT AVG(rating.ratingValue) FROM Rating rating WHERE rating.encounter.id = :bindId";
+		double averageRating = 0;
+		try {
+			averageRating = em.createQuery(jpql, Double.class).setParameter("bindId", encounterId).getSingleResult();
+		}
+		catch (Exception e) {}
+		return averageRating;
+	}
 
 	@Override
 	public Rating findRatingById(int ratingId) {

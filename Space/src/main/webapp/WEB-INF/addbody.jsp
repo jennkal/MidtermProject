@@ -19,7 +19,7 @@
 			</div>
 			<div
 				class="container min-vh-50 d-flex justify-content-center align-items-center">
-				<form action="viewbody.do" method="POST"
+				<form action="viewbody.do?userId=${loggedInUser.id}" method="POST"
 					style="width: 300px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 					<input type="text" name="name" placeholder="Enter Name" required />
 					<select name="categoryId" required>
@@ -31,7 +31,7 @@
 						type="url" name="imageUrl" placeholder="Enter an Image" /> <br>
 					<input type="url" name="trackingUrl"
 						placeholder="Enter a Tracking Link" /> <br> <input
-						type="submit" value="Create Celestial Body"> <a
+						type="submit" class="btn btn-outline-primary" value="Create Celestial Body"> <a
 						href="home.do"><button type="button"
 							class="btn btn-outline-primary">Cancel</button></a>
 				</form>

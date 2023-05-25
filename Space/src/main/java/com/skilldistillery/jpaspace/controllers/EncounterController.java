@@ -12,8 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
 import com.skilldistillery.jpaspace.data.EncounterDAO;
 import com.skilldistillery.jpaspace.data.EncounterImageDAO;
+import com.skilldistillery.jpaspace.data.RatingDAO;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.Encounter;
+import com.skilldistillery.jpaspace.entities.Rating;
 
 @Controller
 public class EncounterController {
@@ -32,6 +34,9 @@ public class EncounterController {
 	
 	@Autowired
 	private CelestialBodyDAO bodyDAO;
+	
+	@Autowired
+	private RatingDAO ratingDAO;
 
 //	@PostMapping("viewimage.do")
 //	public String getList(Model model, int bodyid) {
@@ -50,16 +55,20 @@ public class EncounterController {
 	 return "encounterlist";
 	}
 	
-	@GetMapping(path="viewencounter.do", params="encounterId")
-	public String viewSingleEncounter(Model model, int encounterId) {
+	@GetMapping(path="viewencounter.do", params={"encounterId", "userId"})
+	public String viewSingleEncounter(Model model, int encounterId, int userId) {
 	 Encounter encounter = encounterDAO.findEncounterById(encounterId);
 	 CelestialBody body = encounter.getCelestialBody();
+	 double averageRating = ratingDAO.averageRatingByEncounterId(encounterId);
+	 Rating loggedInUserRating = ratingDAO.ratingByEncounterIdAndUserId(encounterId, userId);
 	 model.addAttribute("encounter", encounter);
 	 model.addAttribute("body", body);
+	 model.addAttribute("averageRating" , averageRating);
+	 model.addAttribute("loggedInUserRating" , loggedInUserRating);
 	 return "viewencounter";
 	}
 
-	@GetMapping(path = "encounterform.do")
+	@GetMapping(path = "encounterform.do", params="bodyId")
 	public String addEncounterForm(int bodyId, Model model) {
 		model.addAttribute("bodyId", bodyId);
 		return "addencounter";
