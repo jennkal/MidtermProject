@@ -145,8 +145,6 @@
 			<p>Not Logged In.</p>
 		</c:otherwise>
 	</c:choose>
-
-
 	<jsp:include page="bootfooter.jsp" />
 </body>
 </html>

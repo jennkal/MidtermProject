@@ -18,6 +18,7 @@ import com.skilldistillery.jpaspace.data.CelestialBodyDAO;
 import com.skilldistillery.jpaspace.data.EncounterImageDAO;
 import com.skilldistillery.jpaspace.entities.Category;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
+import com.skilldistillery.jpaspace.entities.CelestialBodyComment;
 import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
@@ -94,5 +95,17 @@ public class CelestialBodyController {
 		model.addAttribute("images", list);
 		return "sample";
 	}
+	
+	
+	
+	@GetMapping(path = "deleteBody.do", params={"categoryId", "bodyId"})
+	public String removeCelestialBody (CelestialBody body, Model model, RedirectAttributes redir, int categoryId, int bodyId) {
+		
+		boolean removed = cbDAO.removeCelestialBodyId(categoryId);
+		model.addAttribute("removed", removed);
+		redir.addFlashAttribute("removed", removed);
+		return "redirect:bodylist.do?id=" + bodyId;
+	}
+	
 	
 }
