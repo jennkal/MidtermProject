@@ -38,9 +38,7 @@
 					</div>
 					<div
 						class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
-						<div class="d-flex p-2 align-self-center"
-							style="margin-top: -53px;">
-
+						<div class="d-flex p-2 align-self-center">
 							<c:if test="${! empty images }">
 								<div id="carouselExample" class="carousel slide">
 									<div class="carousel-inner">
@@ -50,14 +48,14 @@
 													<div class="carousel-item active">
 														<img class="d-block w-100" src="${image}"
 															alt="picture of the ${body.name }"
-															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -20px;">
+															style="max-width: 600px; max-height: 400px; border-radius: 5%;">
 													</div>
 												</c:when>
 												<c:otherwise>
 													<div class="carousel-item">
 														<img class="d-block w-100" src="${image}"
 															alt="picture of the ${body.name }"
-															style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+															style="max-width: 600px; max-height: 400px; border-radius: 5%;">
 													</div>
 												</c:otherwise>
 											</c:choose>
@@ -145,8 +143,7 @@
 								style="max-height: 300px; max-width: auto; border-radius: 50%;">
 							</a>
 							<div
-								style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Did
-								you use a TrackingUrl? Click me and find out.</div>
+								style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Click to Track.</div>
 						</div>
 					</div>
 

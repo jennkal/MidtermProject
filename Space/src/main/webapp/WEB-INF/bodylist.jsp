@@ -24,8 +24,8 @@
 							style="margin-top: 50px">
 							<thead>
 								<tr>
-									<th>Object in space</th>
-									<th>description</th>
+									<th>Object in Space</th>
+									<th>Description</th>
 									<th>Classification</th>
 									<th>Category</th>
 									<th>Update</th>
@@ -80,8 +80,8 @@
 						style="margin-top: 50px">
 						<thead>
 							<tr>
-								<th>Object in space</th>
-								<th>description</th>
+								<th>Object in Space</th>
+								<th>Description</th>
 								<th>Classification</th>
 								<th>Category</th>
 						</thead>

@@ -9,7 +9,8 @@
 <title>Update Your Account</title>
 <jsp:include page="bootheader.jsp" />
 </head>
-<body>
+<body class="bg-image"
+	style="background-image: url('https://apod.nasa.gov/apod/image/2304/Trottier_M31SW_APOD_Re1024.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 <c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
@@ -20,14 +21,13 @@
 			</c:if>	
 	
 			<div class="container d-flex justify-content-center">
-			<h1 style="margin-bottom: 50px;">Overwrite any profile fields that you want to update.</h1>
+			<h1 style="margin-bottom: 50px; color: white;">Overwrite any profile fields that you want to update.</h1>
 			</div>
 
 			<div class="container min-vh-50 d-flex justify-content-center align-items-center">
-				<form class="input" action="edituser.do?userId=${loggedInUser.id}" method="POST" style="width: 70%; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+				<form class="input" action="edituser.do?userId=${loggedInUser.id}" method="POST" style=" color: white; width: 300px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 					<label for="username">Username:</label><br>
 					<input type="text" id="username" name="username" value="${loggedInUser.username}" disabled/><br> 
-<!-- 					<input type="text" name="password" placeholder="Create a Password" required /><br>  -->
 					<c:choose>
 						<c:when test="${not empty loggedInUser.imageUrl}">
 							<label for="imageUrl">Profile Picture URL:</label><br>
@@ -39,16 +39,17 @@
 					</c:choose>
 					<c:choose>
 						<c:when test="${not empty loggedInUser.about}">
-							<label for="about">Tell About Us Yourself:</label>
-							<textarea id="about" class="input" name="about" rows="5" cols="20" placeholder="${loggedInUser.about}"></textarea> <br> 
+							<label for="about">
+							<textarea id="about" class="input" name="about" rows="5" cols="20" placeholder="${loggedInUser.about}"></textarea>
+							:Tell About Us Yourself</label> <br> 
 						</c:when>	
 						<c:otherwise>
 							<label for="about">Tell About Us Yourself:</label>
 							<textarea id="about" class="input" name="about" rows="5" cols="20" placeholder="Optional:"></textarea> <br> 
 						</c:otherwise>
 					</c:choose>		
-					<input type="submit" value="Update Account"> <br>
-					<a href="userprofile.do" ><button type="button" class="btn btn-outline-primary">Cancel</button></a>
+					<input type="submit" class="btn btn-outline-primary" value="Update Account"> <br>
+					<a href="userprofile.do?userId=${loggedInUser.id }"  class="btn btn-outline-primary">Cancel</a>
 		</form>
 	</div>
 </c:when>

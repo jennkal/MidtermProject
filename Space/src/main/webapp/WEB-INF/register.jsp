@@ -9,12 +9,13 @@
 <title>Create A New Account</title>
 <jsp:include page="bootheader.jsp" />
 </head>
-<body>
+<body class="bg-image"
+	style="background-image: url('https://apod.nasa.gov/apod/image/2304/Trottier_M31SW_APOD_Re1024.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 	
 	
 <div class="container d-flex justify-content-center">
-		<h1 style="margin-bottom: 50px;">Create An Account</h1>
+		<h1 style="margin-bottom: 50px; color: white;">Create An Account</h1>
 	</div>
 
 	<div

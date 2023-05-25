@@ -29,7 +29,7 @@
 				<div
 					class=" d-flex p-2 min-vh-100 flex-column align-self-center justify-content-around flex-fill">
 					<div class="d-flex p-2 align-self-center"
-						style="margin-top: -53px;">
+						style="">
 
 						<c:if test="${! empty images }">
 							<div id="carouselExample" class="carousel slide">
@@ -40,7 +40,7 @@
 												<div class="carousel-item active">
 													<img class="d-block w-100" src="${image}"
 														alt="picture of the ${body.name }"
-														style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+														style="max-width: 600px; max-height: 400px; border-radius: 5%;">
 												</div>
 
 											</c:when>
@@ -48,7 +48,7 @@
 												<div class="carousel-item">
 													<img class="d-block w-100" src="${image}"
 														alt="picture of the ${body.name }"
-														style="max-width: 600px; max-height: auto; border-radius: 5%; margin-top: -10px;">
+														style="max-width: 600px; max-height: 400px; border-radius: 5%;">
 												</div>
 											</c:otherwise>
 										</c:choose>
@@ -80,7 +80,7 @@
 								</thead>
 								<tbody>
 									<c:if test="${! empty body.comments }">
-										<h6>Comments</h6>
+										<h6 style="color: white;">Comments</h6>
 										<c:forEach var="comment" items="${body.comments }">
 											<tr>
 												<td><a href="register.do">${comment.user.username }</a></td>
@@ -96,12 +96,17 @@
 				</div>
 				<div class=" d-flex p-2 align-self-end flex-shrink-1"
 					style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
-
-					<a href="register.do"> <img alt="star map"
-						src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
-						style="max-height: 300px; max-width: auto; border-radius: 50%;">
-					</a>
+					<div style="position: relative; text-align: center; color: white;">
+						<a href="register.do"> <img alt="star map"
+							src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
+							style="max-height: 300px; max-width: auto; border-radius: 50%;">
+						</a>
+						<div
+							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Click
+							to Track.</div>
+					</div>
 				</div>
+
 			</c:when>
 			<c:otherwise>
 				<div class="alert alert-danger" role="alert">

@@ -8,7 +8,8 @@
 <title>Update Body</title>
 <jsp:include page="bootheader.jsp"></jsp:include>
 </head>
-<body>
+<body class="bg-image"
+	style="background-image: url('https://apod.nasa.gov/apod/image/2304/Trottier_M31SW_APOD_Re1024.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
 	
@@ -19,10 +20,13 @@
 					<p>Error adding a body. Please try again.</p>
 				</div>
 			</c:if>
+			<div class="container d-flex justify-content-center">
+			<h1 style="margin-bottom: 50px; color: white;">Update Your Celestial Body</h1>
+			</div>
 			<div
 				class="container min-vh-50 d-flex justify-content-center align-items-center">
 				<form action="updatebody.do?bodyId=${bodyId}" method="POST"
-					style="width: 600px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+					style="color: white; width: 300px; height: 400px; padding: 50px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
 				
 					
 					<input type="hidden" name="bodyId" value="${bodyId}"> 
@@ -33,8 +37,8 @@
 					<input placeholder="Enter Description" type="text" value="${body.description}" class="form-control" name="description" required> 
 					<input placeholder="Enter Tracking URL" type="text" value="${body.trackingUrl}" class="form-control" name="trackingUrl"> 
 					
-					<input class="btn btn-outline-success" type="submit" value="Update Celestial Body">
-					<a href="userprofile.do"><button type="button" class="btn btn-outline-success">Cancel</button></a>
+					<input class="btn btn-outline-primary" type="submit" value="Update Celestial Body">
+					<a href="userprofile.do" class="btn btn-outline-primary">Cancel</a>
 				</form>
 				
 				</div>

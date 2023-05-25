@@ -10,18 +10,18 @@
 <jsp:include page="bootheader.jsp" />
 </head>
 <body class="bg-image"
-	style="background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: center;">
+	style="background-image: url('https://apod.nasa.gov/apod/image/2304/Barnard-150_LRGB_HIGH-RES1024.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 	<jsp:include page="navbar.jsp" />
 	<div class="container d-flex justify-content-center">
-		<h1>Their Adventure So Far!</h1>
+		<h1 style="color: white;">Their Adventure So Far!</h1>
 	</div>
 	<div class="container d-flex justify-content-center">
-		<h2>${otheruser.username }</h2>
+		<h2 style="color: white;">${otheruser.username }</h2>
 	</div>
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
 			<div class="container d-flex justify-content-center">
-				<h3>Their Previously Entered Encounters</h3>
+				<h3 style="color: white; margin-bottom: 50px;">Their Previously Entered Encounters</h3>
 			</div>
 
 			<div class="card mb-3"

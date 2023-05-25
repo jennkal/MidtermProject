@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Add Encounter</title>
 </head>
-<body>
+<body class="bg-image"
+	style="background-image: url('https://apod.nasa.gov/apod/image/2304/Trottier_M31SW_APOD_Re1024.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 <c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
 						<c:if test="${creationError == true}">
