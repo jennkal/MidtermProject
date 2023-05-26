@@ -63,9 +63,9 @@
 			<div style="width: 260; height: 170; margin-left: 15px">
 				<form action="addbody.do"
 					style="color: white; width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
-					<a href="bodylist.do" class="btn btn-outline-primary">View All Celestial Body</a>
+					<a href="bodylist.do" class="btn btn-outline-primary">View All Celestial Bodies</a>
 					<br>
-					<p>Or Add Your New Discovery</p>
+					<p>Or Add Your New Discovery:</p>
 					<select name="classificationId">
 						<option selected value="1">Nebula</option>
 						<option selected value="2">Solar System</option>
