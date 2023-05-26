@@ -103,18 +103,20 @@ public class EncounterController {
 	}
 
 	@GetMapping(path = "editencounterform.do")
-	public String editEncounterForm(int encounterId, int bodyId, Model model) {
+	public String editEncounterForm(int encounterId, int bodyId, Model model, HttpSession session) {
 		Encounter existingEncounter = encounterDAO.findEncounterById(encounterId);
 		model.addAttribute("existingEncounter", existingEncounter);
 		model.addAttribute("bodyId", bodyId);
+		 User user = (User) session.getAttribute("loggedInUser");
 		return "editencounter";
 	}
 
 	@PostMapping("editencounter.do")
 	public String updateEncounter(Encounter encounter, Model model, RedirectAttributes redir, int encounterId,
-			int bodyId) {
+			int bodyId, HttpSession session) {
 
 		Encounter updatedEncounter = encounterDAO.updateEncounter(encounter, encounterId);
+		 User user = (User) session.getAttribute("loggedInUser");
 
 		if (updatedEncounter != null) {
 
@@ -135,11 +137,12 @@ public class EncounterController {
 	}
 
 	@GetMapping(path = "deleteencounter.do", params = { "encounterId", "bodyId" })
-	public String removeEncounter(Model model, RedirectAttributes redir, int encounterId, int bodyId) {
+	public String removeEncounter(Model model, RedirectAttributes redir, int encounterId, int bodyId, HttpSession session) {
 
 		boolean removedEncounter = encounterDAO.removeEncounter(encounterId);
 		model.addAttribute("removedEncounter", removedEncounter);
 		redir.addFlashAttribute("removedEncounter", removedEncounter);
+		 User user = (User) session.getAttribute("loggedInUser");
 		return "redirect:encounterlist.do?bodyId=" + bodyId;
 
 	}

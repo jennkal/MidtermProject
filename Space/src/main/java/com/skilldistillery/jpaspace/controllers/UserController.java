@@ -131,6 +131,7 @@ public class UserController {
 	public String updateEncounter(HttpSession session, User user, int userId, Model model, RedirectAttributes redir) {
 
 		User updatedUser = userDAO.updateUser(userId, user);
+		User userAdmin = (User) session.getAttribute("loggedInUser");
 
 		if (updatedUser != null) {
 

@@ -122,6 +122,7 @@ public class EncounterImpl implements EncounterDAO {
 		body.removeEncounter(managedEncounter);
 		List<EncounterImage> images = managedEncounter.getImages();
 		for (EncounterImage encounterImage : images) {
+			EncounterImage managedImage = em.find(EncounterImage.class, encounterImage.getId());
 			em.remove(encounterImage);
 		}
 		List<Rating> ratings = managedEncounter.getRatings();
