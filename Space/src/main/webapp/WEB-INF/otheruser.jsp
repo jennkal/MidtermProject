@@ -70,7 +70,7 @@
 						<option selected value="5">Comet</option>
 						<option selected value="6">Asteroid</option>
 					</select> <input class="btn btn-outline-primary" type="submit"
-						value="Select Classification">
+						value="Select Classification" style="pointer-events: none;">
 					
 				</form>
 			</div>

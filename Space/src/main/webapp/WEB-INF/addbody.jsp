@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Add a Celestial Body</title>
 <jsp:include page="bootheader.jsp" />
 </head>
 <body class="bg-image"
@@ -16,7 +16,7 @@
 	<c:choose>
 		<c:when test="${not empty sessionScope.loggedInUser}">
 			<div class="container d-flex justify-content-center">
-				<h1 style="margin-bottom: 50px;">Tell Us About Your Discovery</h1>
+				<h1 style="margin-bottom: 50px; color: white;">Tell Us About Your Discovery</h1>
 			</div>
 			<div
 				class="container min-vh-50 d-flex justify-content-center align-items-center">
