@@ -36,7 +36,7 @@
 										<td><a href="singleview.do?id=${body.id}">${body.name}</a></td>
 										<td>${body.description}</td>
 										<td>${body.category.classification}</td>
-										<td>${body.category}</td>
+										<td>${body.category.name}</td>
 										<c:if test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == body.id}">
 										<td><a href="updatecelestialbody.do?bodyId=${body.id}" class="btn btn-outline-primary">Update ${body.name}</a></td>
 										</c:if>

@@ -58,8 +58,10 @@
 
 			<div style="width: 260; height: 170; margin-left: 15px">
 				<form action="addbody.do"
-					style="width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
-					<p style="">Add Your New Discovery</p>
+					style="color: white; width: 250px; height: 160px; padding-left: 15px; background-color: rgba(2, 62, 138, .3); background-blend-mode: overlay; background-repeat: no-repeat; background-size: contain; border: 2px solid #023e8a; border-radius: 8px;">
+					<a href="bodylist.do" class="btn btn-outline-primary">View All Celestial Bodies</a>
+					<br>
+					<p>Or Add Your New Discovery:</p>
 					<select name="classificationId">
 						<option selected value="1">Nebula</option>
 						<option selected value="2">Solar System</option>
@@ -68,11 +70,8 @@
 						<option selected value="5">Comet</option>
 						<option selected value="6">Asteroid</option>
 					</select> <input class="btn btn-outline-primary" type="submit"
-						value="Select Classification"> <label for="or">Or:</label>
-					<a href="bodylist.do">
-						<button id="or" type="button" class="btn btn-outline-primary">View
-							All</button>
-					</a>
+						value="Select Classification">
+					
 				</form>
 			</div>
 			

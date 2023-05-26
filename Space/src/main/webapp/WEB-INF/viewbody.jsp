@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>${body.name }ChatRoom</title>
+<title>${body.name } ChatRoom</title>
 
 <jsp:include page="bootheader.jsp" />
 
@@ -101,10 +101,10 @@
 														test="${loggedInUser.role == 'ADMIN' || loggedInUser.id == comment.user.id}">
 
 														<td><a href="updateform.do?commentId=${comment.id}">
-																update comment </a></td>
+																Update Comment </a></td>
 														<td><a
 															href="deleteComment.do?commentId=${comment.id}&bodyId=${body.id}">
-																Delete comment </a></td>
+																Delete Comment </a></td>
 
 													</c:if>
 												</tr>
@@ -115,7 +115,7 @@
 									<tfoot>
 										<tr>
 											<td colspan="5"><a
-												href="commentsform.do?bodyId=${body.id}"> Add comment </a></td>
+												href="commentsform.do?bodyId=${body.id}"> Add a Comment </a></td>
 										</tr>
 									</tfoot>
 								</table>
@@ -138,7 +138,7 @@
 					<div class=" d-flex p-2 align-self-end flex-shrink-1"
 						style="max-width: auto; max-height: 340px; margin-bottom: 100px; margin-right: 10px;">
 						<div style="position: relative; text-align: center; color: white;">
-							<a href="${body.trackingUrl}"> <img alt="star map"
+							<a href="${body.trackingUrl}" target="_blank"> <img alt="star map"
 								src="https://in-the-sky.org/data/charts/constellations_map_equ1110112_icon.png"
 								style="max-height: 300px; max-width: auto; border-radius: 50%;">
 							</a>

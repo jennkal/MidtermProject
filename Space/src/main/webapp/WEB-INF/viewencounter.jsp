@@ -60,15 +60,15 @@
 														<form action="rateEncounter.do?userId=${loggedInUser.id }&encounterId=${encounter.id}"
 															method="POST">
 															<p>Please Rate This Encounter</p>
-															<label for="one">1</label> 
+															<label for="one">1:</label> 
 															<input id="one" type=radio value="1" name="ratingValue"> 
-															<label for="two">2</label>
+															<label for="two">&emsp;&emsp;2:</label>
 															<input id="two" type=radio value="2" name="ratingValue">
-															<label for="three">3</label> 
+															<label for="three">&emsp;&emsp;3:</label> 
 															<input id="three" type=radio value="3" name="ratingValue"> 
-															<label for="four">4</label>
+															<label for="four">&emsp;&emsp;4:</label>
 															<input id="four" type=radio value="4" name="ratingValue">
-															<label for="five">5</label> 
+															<label for="five">&emsp;&emsp;5:</label> 
 															<input id="five" type=radio value="5" name="ratingValue"> 
 															<input type=submit class="btn btn-outline-primary" />
 														</form>
