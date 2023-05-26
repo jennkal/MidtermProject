@@ -108,9 +108,10 @@ public class UserController {
 	}
 
 	@GetMapping(path = "singleuser.do", params = "username")
-	public String singleuser(@RequestParam("username") String username, Model model) {
+	public String singleuser(@RequestParam("username") String username, HttpSession session, Model model) {
 		User user = userDAO.findByUsername(username);
 		model.addAttribute("otheruser", user);
+		User userAdmin = (User) session.getAttribute("loggedInUser");
 		return "otheruser";
 	}
 

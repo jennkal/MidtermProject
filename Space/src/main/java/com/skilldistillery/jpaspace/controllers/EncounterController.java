@@ -2,6 +2,8 @@ package com.skilldistillery.jpaspace.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import com.skilldistillery.jpaspace.data.RatingDAO;
 import com.skilldistillery.jpaspace.entities.CelestialBody;
 import com.skilldistillery.jpaspace.entities.Encounter;
 import com.skilldistillery.jpaspace.entities.Rating;
+import com.skilldistillery.jpaspace.entities.User;
 
 @Controller
 public class EncounterController {
@@ -47,16 +50,17 @@ public class EncounterController {
 //	
 
 	@GetMapping(path="encounterlist.do", params="bodyId")
-	public String viewEncountersByBody(Model model, int bodyId) {
+	public String viewEncountersByBody(HttpSession session, Model model, int bodyId) {
 	 List<Encounter> encounters = encounterDAO.findEncountersByBodyId(bodyId); 
 	 CelestialBody body = bodyDAO.findCelestialBodyById(bodyId);
 	 model.addAttribute("encounters", encounters);
 	 model.addAttribute("body", body);
+	 User user = (User) session.getAttribute("loggedInUser");
 	 return "encounterlist";
 	}
 	
 	@GetMapping(path="viewencounter.do", params={"encounterId", "userId"})
-	public String viewSingleEncounter(Model model, int encounterId, int userId) {
+	public String viewSingleEncounter(HttpSession session, Model model, int encounterId, int userId) {
 	 Encounter encounter = encounterDAO.findEncounterById(encounterId);
 	 CelestialBody body = encounter.getCelestialBody();
 	 double averageRating = ratingDAO.averageRatingByEncounterId(encounterId);
@@ -65,6 +69,7 @@ public class EncounterController {
 	 model.addAttribute("body", body);
 	 model.addAttribute("averageRating" , averageRating);
 	 model.addAttribute("loggedInUserRating" , loggedInUserRating);
+	 User user = (User) session.getAttribute("loggedInUser");
 	 return "viewencounter";
 	}
 
