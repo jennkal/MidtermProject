@@ -21,7 +21,7 @@ public class CelestialBodyImpl implements CelestialBodyDAO {
 
 	@Override
 	public List<CelestialBody> findall() {
-		String query = "SELECT body FROM CelestialBody body ";
+		String query = "SELECT body FROM CelestialBody body ORDER BY body.name";
 		List<CelestialBody> queryResults = em.createQuery(query, CelestialBody.class).getResultList();
 		return queryResults;
 	}
